@@ -55,6 +55,9 @@ export const endpoints = {
     update: (linkId: string) => `/cloud-links/${linkId}`,
     delete: (linkId: string) => `/cloud-links/${linkId}`,
   },
+  media: {
+    upload: () => "/media/upload",
+  },
   equipment: {
     inventory: () => "/equipment/inventory",
     list: () => "/equipment",

@@ -22,7 +22,19 @@
     "days": "{count, plural, one {# day} other {# days}}",
     "events": "{count, plural, one {# moment} other {# moments}}",
     "comingSoon": "Coming soon",
-    "optional": "Optional"
+    "optional": "Optional",
+    "imageUpload": {
+      "chooseFile": "Choose image",
+      "tapToUpload": "Tap to upload",
+      "dragDropHint": "Or drag and drop an image here",
+      "constraints": "JPEG, PNG, GIF, or WebP · max 5 MB",
+      "replace": "Replace",
+      "remove": "Remove",
+      "previewAlt": "Image preview",
+      "uploadFailed": "Upload failed. Please try again.",
+      "invalidType": "Only image files are allowed",
+      "tooLarge": "Image must be 5 MB or smaller"
+    }
   },
   "nav": {
     "home": "Home",
@@ -707,9 +719,10 @@
           "hint": "Leave blank if you're still on the road."
         },
         "coverImageUrl": {
-          "label": "Cover photo URL",
+          "label": "Cover photo",
+          "hint": "Upload a cover for this adventure.",
+          "hintCreate": "Optional — a gradient placeholder is used when no cover is set.",
           "placeholder": "https://images.unsplash.com/photo-…",
-          "hint": "Paste a link to an image — preview updates as you type.",
           "previewAlt": "Cover photo preview",
           "previewEmpty": "Your cover will appear here",
           "previewError": "Couldn't load this image — check the URL"
@@ -1209,8 +1222,9 @@
           "placeholder": "Optional"
         },
         "photos": {
-          "label": "Photos",
+          "label": "Photo",
           "hint": "Optional — attach images to any moment type.",
+          "hintSingle": "Optional — one photo per moment for now.",
           "urlPlaceholder": "Paste image URL…",
           "addUrl": "Add URL",
           "upload": "Upload",

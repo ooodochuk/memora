@@ -105,13 +105,13 @@ export function TripMomentFormScreen({
   const initialPhotos =
     mode === "edit" && eventId ? getEventPhotos(eventId) : [];
 
-  async function handleSubmit(payload: Parameters<typeof saveEvent>[0]) {
+  async function handleSubmit(payload: Parameters<typeof saveEvent>[0] & { photoUrl?: string }) {
     setSaveError(null);
     try {
       if (mockMode) {
         saveEvent(payload);
       } else {
-        const { event } = payload;
+        const { event, photoUrl = "" } = payload;
         const body: CreateMomentRequestDto = {
           type: event.type,
           title: event.title,
@@ -127,6 +127,11 @@ export function TripMomentFormScreen({
           ...(event.elevationGainM != null
             ? { elevationGainM: event.elevationGainM }
             : {}),
+          ...(photoUrl.trim()
+            ? { photoUrl: photoUrl.trim() }
+            : mode === "edit"
+              ? { clearPhoto: true }
+              : {}),
         };
 
         if (mode === "create") {
@@ -160,7 +165,7 @@ export function TripMomentFormScreen({
             type="button"
             variant="ghost"
             size="lg"
-            className="h-12 sm:h-10"
+            className="h-12 w-full sm:h-10 sm:w-auto"
             onClick={() => router.push(backHref)}
           >
             {t("actions.cancel")}
@@ -169,7 +174,7 @@ export function TripMomentFormScreen({
             type="button"
             variant="warm"
             size="lg"
-            className="h-12 min-w-[120px] sm:h-10"
+            className="h-12 w-full sm:h-10 sm:w-auto sm:min-w-[120px]"
             disabled={createMoment.isPending || updateMoment.isPending}
             onClick={submitForm}
           >

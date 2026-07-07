@@ -28,7 +28,6 @@ export interface TripFormMessages {
  regionRequired: string;
  startDateRequired: string;
  endDateBeforeStart: string;
- coverUrlRequired: string;
  coverUrlInvalid: string;
  adventureTypeRequired: string;
 }
@@ -51,8 +50,10 @@ export function createTripFormSchema(messages: TripFormMessages) {
  endDate: z.string().optional(),
  coverImageUrl: z
  .string()
- .min(1, messages.coverUrlRequired)
- .url(messages.coverUrlInvalid),
+ .optional()
+ .refine((value) => !value || z.string().url().safeParse(value).success, {
+ message: messages.coverUrlInvalid,
+ }),
  visibility: z.enum(TRIP_VISIBILITY_OPTIONS),
  status: z.enum(TRIP_STATUS_OPTIONS),
  adventureType: z
@@ -99,7 +100,7 @@ export function tripToFormValues(trip: Trip): TripFormValues {
  region: trip.region,
  startDate: trip.startDate,
  endDate: trip.endDate ?? "",
- coverImageUrl: trip.coverImageUrl,
+ coverImageUrl: trip.coverImageUrl ?? "",
  visibility: trip.visibility,
  status: trip.status,
  adventureType: trip.adventureType,

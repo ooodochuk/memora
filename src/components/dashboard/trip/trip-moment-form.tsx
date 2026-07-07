@@ -7,7 +7,8 @@ import { useTranslations } from "next-intl";
 import type { CloudLink, Photo, TripEvent } from "@/types";
 import { CloudLinkList } from "@/components/cloud-links";
 import { EventTypeQuickPicker } from "@/components/dashboard/trip/event-type-quick-picker";
-import { MomentLocationPicker, MomentPhotoPicker } from "@/components/moments";
+import { MomentLocationPicker } from "@/components/moments";
+import { ImageUploadField } from "@/components/design-system/image-upload-field";
 import {
   MEAL_TYPE_OPTIONS,
   createDefaultModalFormValues,
@@ -52,6 +53,7 @@ interface TripMomentFormProps {
     event: TripEvent;
     cloudLinks: CloudLink[];
     photos: Photo[];
+    photoUrl: string;
   }) => void | Promise<void>;
 }
 
@@ -69,7 +71,9 @@ export function TripMomentForm({
   const tMeals = useTranslations("event.mealTypes");
 
   const [cloudLinks, setCloudLinks] = useState(initialCloudLinks);
-  const [momentPhotos, setMomentPhotos] = useState<Photo[]>(initialPhotos);
+  const [photoUrl, setPhotoUrl] = useState(
+    () => initialPhotos[0]?.url ?? editingEvent?.photoUrl ?? "",
+  );
   const [draftEventId, setDraftEventId] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showValidationAlert, setShowValidationAlert] = useState(false);
@@ -111,7 +115,7 @@ export function TripMomentForm({
 
   useEffect(() => {
     setCloudLinks(initialCloudLinks);
-    setMomentPhotos(initialPhotos);
+    setPhotoUrl(initialPhotos[0]?.url ?? editingEvent?.photoUrl ?? "");
     setDraftEventId(editingEvent?.id ?? `event-${dayId}-${Date.now()}`);
 
     if (editingEvent) {
@@ -139,28 +143,40 @@ export function TripMomentForm({
   async function handleFormSubmit(values: TripEventModalFormValues) {
     setShowValidationAlert(false);
     const linkIds = cloudLinks.map((link) => link.id);
-    const event = formValuesToTripEvent(values, {
-      tripId,
-      dayId,
-      order: editingEvent?.order ?? nextOrder,
-      existingId: draftEventId,
-      cloudLinkIds:
-        showCloudLinks && cloudLinks.length > 0
-          ? linkIds
-          : (editingEvent?.cloudLinkIds ?? []),
-      photoIds: momentPhotos.map((photo) => photo.id),
-    });
+    const event: TripEvent = {
+      ...formValuesToTripEvent(values, {
+        tripId,
+        dayId,
+        order: editingEvent?.order ?? nextOrder,
+        existingId: draftEventId,
+        cloudLinkIds:
+          showCloudLinks && cloudLinks.length > 0
+            ? linkIds
+            : (editingEvent?.cloudLinkIds ?? []),
+        photoIds: photoUrl ? [draftEventId] : [],
+      }),
+      photoUrl: photoUrl || undefined,
+    };
+
+    const mockPhotos: Photo[] = photoUrl
+      ? [
+          {
+            id: `photo-${event.id}`,
+            tripId,
+            eventId: event.id,
+            url: photoUrl,
+            alt: event.title,
+          },
+        ]
+      : [];
 
     await onSubmit({
       event,
       cloudLinks: showCloudLinks
         ? cloudLinks.map((link) => ({ ...link, eventId: event.id, tripId }))
         : [],
-      photos: momentPhotos.map((photo) => ({
-        ...photo,
-        eventId: event.id,
-        tripId,
-      })),
+      photos: mockPhotos,
+      photoUrl,
     });
   }
 
@@ -205,7 +221,7 @@ export function TripMomentForm({
         />
       </FormField>
 
-      <div className="grid gap-5 lg:grid-cols-2 lg:gap-8 lg:items-start">
+      <div className="grid w-full grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-8 lg:items-start">
         <div className="space-y-4">
           <FormField
             label={t("fields.title.label")}
@@ -409,14 +425,15 @@ export function TripMomentForm({
             />
           </FormField>
 
-          {draftEventId && (
-            <MomentPhotoPicker
-              photos={momentPhotos}
-              onChange={setMomentPhotos}
-              tripId={tripId}
-              eventId={draftEventId}
-            />
-          )}
+          <ImageUploadField
+            id="moment-photo"
+            label={t("fields.photos.label")}
+            helperText={t("fields.photos.hintSingle")}
+            optional
+            aspectRatio="square"
+            value={photoUrl}
+            onChange={setPhotoUrl}
+          />
         </div>
       </div>
     </form>

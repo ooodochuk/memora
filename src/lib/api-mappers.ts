@@ -13,7 +13,10 @@ import type {
   TripVisibility,
 } from "@/types";
 import type { Equipment, EquipmentCategory } from "@/types";
-import type { CreateAdventureRequestDto } from "@/features/adventures/types";
+import type {
+  CreateAdventureRequestDto,
+  UpdateAdventureRequestDto,
+} from "@/features/adventures/types";
 import type { TripFormValues } from "@/lib/validations/trip-form";
 import type { TripDayFormValues } from "@/lib/validations/trip-day-form";
 import type { CreateDayRequestDto } from "@/features/days/types";
@@ -72,6 +75,7 @@ export function momentDtoToTripEvent(dto: MomentDto): TripEvent {
         }
       : undefined,
     photoIds: dto.photoIds ?? [],
+    photoUrl: dto.photoUrl,
     cloudLinkIds: dto.cloudLinkIds ?? [],
     participantIds: dto.participantIds ?? [],
     tags: dto.tags ?? [],
@@ -117,7 +121,9 @@ export function tripFormToCreateAdventure(
   return {
     title: values.title,
     description: values.description,
-    coverImageUrl: values.coverImageUrl,
+    ...(values.coverImageUrl?.trim()
+      ? { coverImageUrl: values.coverImageUrl.trim() }
+      : {}),
     country: values.country,
     region: values.region,
     startDate: values.startDate,
@@ -126,6 +132,15 @@ export function tripFormToCreateAdventure(
     visibility: values.visibility,
     adventureType: values.adventureType,
     tags: [],
+  };
+}
+
+export function tripFormToUpdateAdventure(
+  values: TripFormValues,
+): UpdateAdventureRequestDto {
+  return {
+    ...tripFormToCreateAdventure(values),
+    coverImageUrl: values.coverImageUrl?.trim() || "",
   };
 }
 

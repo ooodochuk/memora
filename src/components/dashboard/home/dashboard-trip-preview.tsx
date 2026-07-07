@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { CoverImage } from "@/components/design-system/cover-image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Trip } from "@/types";
@@ -29,13 +29,13 @@ export function DashboardTripPreview({ trip }: DashboardTripPreviewProps) {
  href={dashboardRoutes.trip(trip.id)}
  className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:border-border hover:shadow-md sm:flex-row"
  >
- <div className="relative aspect-[16/10] shrink-0 sm:w-44 md:w-52">
- <Image
+ <div className="relative aspect-[16/10] w-full shrink-0 sm:w-44 md:w-52">
+ <CoverImage
  src={trip.coverImageUrl}
  alt={trip.title}
- fill
- className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+ className="h-full w-full"
  sizes="208px"
+ imageClassName="transition-transform duration-700 group-hover:scale-[1.03]"
  />
  </div>
  <div className="flex flex-1 flex-col justify-center gap-2 p-5">

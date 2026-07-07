@@ -19,6 +19,7 @@ export interface MomentDto {
   placeId?: string;
   location?: MomentLocationDto;
   photoIds: string[];
+  photoUrl?: string;
   cloudLinkIds: string[];
   participantIds: string[];
   tags: string[];
@@ -39,6 +40,8 @@ export interface CreateMomentRequestDto {
   placeId?: string;
   location?: MomentLocationDto;
   photoIds?: string[];
+  photoUrl?: string;
+  clearPhoto?: boolean;
   cloudLinkIds?: string[];
   participantIds?: string[];
   tags?: string[];

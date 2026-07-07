@@ -48,8 +48,8 @@ function FormHeader({
 
 function FormFooter({ children }: { children: ReactNode }) {
   return (
-    <footer className="shrink-0 border-t border-border pt-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-      <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+    <footer className="sticky bottom-0 z-10 shrink-0 border-t border-border bg-background/95 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm supports-[backdrop-filter]:bg-background/80">
+      <div className="flex w-full flex-col-reverse gap-2 sm:flex-row sm:justify-end">
         {children}
       </div>
     </footer>
@@ -79,7 +79,7 @@ export function ResponsiveFormScreen({
   return (
     <div
       className={cn(
-        "mx-auto flex w-full min-h-[calc(100vh-4rem)] flex-col",
+        "mx-auto flex w-full min-h-[calc(100dvh-4rem)] flex-col overflow-x-hidden",
         pagePadding,
         "py-4 sm:py-6 lg:py-8",
         SIZE_CLASS[size],

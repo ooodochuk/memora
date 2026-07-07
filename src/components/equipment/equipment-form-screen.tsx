@@ -40,7 +40,7 @@ export function EquipmentFormScreen({
             type="button"
             variant="ghost"
             size="lg"
-            className="h-12 sm:h-10"
+            className="h-12 w-full sm:h-10 sm:w-auto"
             onClick={() => router.push(backHref)}
           >
             {cancelLabel}
@@ -50,7 +50,7 @@ export function EquipmentFormScreen({
             form={formId}
             variant="warm"
             size="lg"
-            className="h-12 min-w-[140px] sm:h-10"
+            className="h-12 w-full sm:h-10 sm:w-auto sm:min-w-[140px]"
           >
             {submitLabel}
           </Button>

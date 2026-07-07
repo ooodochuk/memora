@@ -16,7 +16,7 @@ export interface Trip {
  title: string;
  subtitle: string;
  description: string;
- coverImageUrl: string;
+ coverImageUrl?: string;
  country: string;
  region: string;
  startDate: string;
@@ -69,6 +69,7 @@ export interface TripEvent {
  /** Lightweight map pin — no separate Place entity required */
  location?: TripEventLocation;
  photoIds: string[];
+ photoUrl?: string;
  cloudLinkIds: string[];
  participantIds: string[];
  tags: string[];

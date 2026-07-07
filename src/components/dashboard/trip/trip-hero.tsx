@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CoverImage } from "@/components/design-system/cover-image";
 import type { Trip } from "@/types";
 import type { AppLocale } from "@/i18n/routing";
 import { formatDateRange } from "@/lib/format";
@@ -18,12 +18,11 @@ export function TripHero({ trip, locale }: TripHeroProps) {
  return (
  <section className="relative film-grain">
  <div className="relative h-[52vh] min-h-[320px] max-h-[640px] overflow-hidden">
- <Image
+ <CoverImage
  src={trip.coverImageUrl}
  alt={trip.title}
- fill
+ className="h-full w-full"
  priority
- className="object-cover"
  sizes="100vw"
  />
  <div className="photo-vignette absolute inset-0" />

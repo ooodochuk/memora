@@ -1,22 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
+import { useMemo, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
 import { isMockMode } from "@/api/config";
 import { useCreateAdventure, useUpdateAdventure, adventureKeys } from "@/features/adventures/hooks";
-import { useCurrentProfile } from "@/features/auth/hooks";
 import {
   attachEquipmentToAdventure,
   syncAdventureEquipment,
 } from "@/features/equipment/api";
 import { equipmentKeys } from "@/features/equipment/hooks";
-import { tripFormToCreateAdventure } from "@/lib/api-mappers";
+import { tripFormToCreateAdventure, tripFormToUpdateAdventure } from "@/lib/api-mappers";
 import {
  CalendarRange,
  Globe2,
@@ -29,13 +27,9 @@ import {
  type LucideIcon,
 } from "lucide-react";
 import { useAppToast } from "@/components/design-system/app-toast";
-import { useFormDraft } from "@/hooks/use-form-draft";
-import { buildFormDraftKey } from "@/lib/form-draft/storage";
-import type { CreateAdventureDraft } from "@/lib/form-draft/create-adventure-draft";
-import type { AppLocale } from "@/i18n/routing";
 import { dashboardRoutes } from "@/constants/routes";
 import { EquipmentSelector } from "@/components/equipment";
-import { EquipmentCreateSheet } from "@/components/equipment/equipment-create-sheet";
+import { EquipmentCreateNestedFlow } from "@/components/equipment/equipment-create-nested-flow";
 import { AdventureTypePicker } from "@/components/adventure-types";
 import type { Equipment, EquipmentCategory } from "@/types";
 import {
@@ -47,6 +41,7 @@ import {
 } from "@/lib/validations/trip-form";
 import { AdventureStatusSelect } from "@/components/dashboard/trip/adventure-status-select";
 import { FormField } from "@/components/design-system/form-field";
+import { ImageUploadField } from "@/components/design-system/image-upload-field";
 import { FormFieldsGrid } from "@/components/design-system/form-fields-grid";
 import {
  formControlClassName,
@@ -148,35 +143,17 @@ export function TripForm({
  const t = useTranslations("dashboard.tripForm");
  const tStatusHints = useTranslations("dashboard.tripForm.status");
  const tVisibility = useTranslations("designSystem.visibility");
- const locale = useLocale() as AppLocale;
  const router = useRouter();
  const queryClient = useQueryClient();
  const { showToast } = useAppToast();
- const profileQuery = useCurrentProfile();
  const mockMode = isMockMode();
  const createAdventure = useCreateAdventure();
  const updateAdventure = useUpdateAdventure(tripId ?? "");
  const [submitted, setSubmitted] = useState(false);
- const [coverPreviewError, setCoverPreviewError] = useState(false);
  const [createEquipmentOpen, setCreateEquipmentOpen] = useState(false);
  const [selectedEquipmentIds, setSelectedEquipmentIds] =
  useState<string[]>(defaultEquipmentIds);
- const draftReadyRef = useRef(false);
  const isCreate = mode === "create";
- const draftKey =
- isCreate && profileQuery.data
- ? buildFormDraftKey("create-adventure", profileQuery.data.id, locale)
- : "";
- const {
- restored: draftRestored,
- restoreDraft,
- saveDraft,
- clearDraft,
- markRestored,
- } = useFormDraft<CreateAdventureDraft>({
- key: draftKey || "create-adventure-pending",
- enabled: isCreate && Boolean(draftKey),
- });
 
  const schema = useMemo(
  () =>
@@ -190,7 +167,6 @@ export function TripForm({
  regionRequired: t("errors.regionRequired"),
  startDateRequired: t("errors.startDateRequired"),
  endDateBeforeStart: t("errors.endDateBeforeStart"),
- coverUrlRequired: t("errors.coverUrlRequired"),
  coverUrlInvalid: t("errors.coverUrlInvalid"),
  adventureTypeRequired: t("errors.adventureTypeRequired"),
  }),
@@ -202,49 +178,15 @@ export function TripForm({
  handleSubmit,
  control,
  watch,
- reset,
  formState: { errors, isSubmitting },
  } = useForm<TripFormInputValues>({
  resolver: zodResolver(schema),
  defaultValues: defaultValues ?? emptyTripFormValues,
  });
 
- const formValues = watch();
- const coverImageUrl = watch("coverImageUrl");
-
- useEffect(() => {
- if (!isCreate || !draftKey || draftReadyRef.current) return;
-
- const draft = restoreDraft();
- if (draft) {
- reset(draft.form);
- setSelectedEquipmentIds(draft.selectedEquipmentIds);
- markRestored();
- }
-
- draftReadyRef.current = true;
- }, [draftKey, isCreate, markRestored, reset, restoreDraft]);
-
- useEffect(() => {
- if (!isCreate || !draftKey || !draftReadyRef.current) return;
-
- saveDraft({
- form: formValues,
- selectedEquipmentIds,
- savedAt: new Date().toISOString(),
- });
- }, [draftKey, formValues, isCreate, saveDraft, selectedEquipmentIds]);
-
- function handleClearDraft() {
- clearDraft();
- reset(emptyTripFormValues);
- setSelectedEquipmentIds([]);
- draftReadyRef.current = true;
- showToast(t("draft.cleared"));
- }
-
- function handleEquipmentCreated(equipmentId: string) {
- void queryClient.invalidateQueries({ queryKey: equipmentKeys.inventory() });
+ async function handleEquipmentCreated(equipmentId: string) {
+ await queryClient.invalidateQueries({ queryKey: equipmentKeys.inventory() });
+ await queryClient.refetchQueries({ queryKey: equipmentKeys.inventory() });
  setSelectedEquipmentIds((current) =>
  current.includes(equipmentId) ? current : [...current, equipmentId],
  );
@@ -254,9 +196,6 @@ export function TripForm({
  async function onSubmit(values: TripFormInputValues) {
  if (mockMode) {
  await new Promise((resolve) => setTimeout(resolve, 900));
- if (isCreate) {
- clearDraft();
- }
  setSubmitted(true);
  window.setTimeout(() => {
  if (mode === "edit" && tripId) {
@@ -276,13 +215,12 @@ export function TripForm({
  for (const equipmentId of selectedEquipmentIds) {
  await attachEquipmentToAdventure(adventure.id, equipmentId);
  }
- clearDraft();
  router.push(dashboardRoutes.trip(adventure.id));
  return;
  }
 
  if (mode === "edit" && tripId) {
- await updateAdventure.mutateAsync(tripFormToCreateAdventure(values as TripFormValues));
+ await updateAdventure.mutateAsync(tripFormToUpdateAdventure(values as TripFormValues));
  await syncAdventureEquipment(tripId, selectedEquipmentIds, defaultEquipmentIds);
  await queryClient.invalidateQueries({
  queryKey: equipmentKeys.byAdventure(tripId),
@@ -304,17 +242,6 @@ export function TripForm({
  return (
  <>
  <form id={formId} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
- {isCreate && draftRestored && (
- <JournalCard
- padding="sm"
- className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
- >
- <p className="text-sm text-muted-foreground">{t("draft.restored")}</p>
- <Button type="button" variant="ghost" size="sm" onClick={handleClearDraft}>
- {t("draft.clear")}
- </Button>
- </JournalCard>
- )}
  <FormSection
  icon={PenLine}
  eyebrow={t("sections.story.eyebrow")}
@@ -371,7 +298,7 @@ export function TripForm({
  </div>
  </FormSection>
 
- <div className="grid gap-4 lg:grid-cols-2 lg:items-start">
+ <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 lg:items-start">
  <FormSection
  icon={MapPin}
  eyebrow={t("sections.place.eyebrow")}
@@ -462,51 +389,22 @@ export function TripForm({
  title={t("sections.cover.title")}
  description={isCreate ? undefined : t("sections.cover.description")}
  >
- <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_240px]">
- <FormField
- label={t("fields.coverImageUrl.label")}
- htmlFor="coverImageUrl"
- hint={isCreate ? undefined : t("fields.coverImageUrl.hint")}
- error={errors.coverImageUrl?.message}
- >
- <Input
+ <Controller
+ name="coverImageUrl"
+ control={control}
+ render={({ field }) => (
+ <ImageUploadField
  id="coverImageUrl"
- type="url"
- placeholder={t("fields.coverImageUrl.placeholder")}
- aria-invalid={!!errors.coverImageUrl}
- {...register("coverImageUrl", {
- onChange: () => setCoverPreviewError(false),
- })}
+ label={t("fields.coverImageUrl.label")}
+ helperText={isCreate ? t("fields.coverImageUrl.hintCreate") : t("fields.coverImageUrl.hint")}
+ optional
+ aspectRatio="4/3"
+ value={field.value ?? ""}
+ onChange={field.onChange}
+ error={errors.coverImageUrl?.message}
  />
- </FormField>
-
- <div
- className={cn(
- "relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-muted",
- !coverImageUrl && "flex items-center justify-center",
  )}
- >
- {coverImageUrl && !coverPreviewError ? (
- <Image
- src={coverImageUrl}
- alt={t("fields.coverImageUrl.previewAlt")}
- fill
- className="object-cover"
- sizes="240px"
- onError={() => setCoverPreviewError(true)}
  />
- ) : (
- <div className="flex flex-col items-center gap-2 px-4 text-center text-muted-foreground">
- <ImageIcon className="size-8 opacity-40" strokeWidth={1.25} />
- <p className="text-xs leading-relaxed">
- {coverPreviewError
- ? t("fields.coverImageUrl.previewError")
- : t("fields.coverImageUrl.previewEmpty")}
- </p>
- </div>
- )}
- </div>
- </div>
  </FormSection>
 
  <FormSection
@@ -691,10 +589,12 @@ export function TripForm({
  </form>
 
  {isCreate && (
- <EquipmentCreateSheet
+ <EquipmentCreateNestedFlow
  open={createEquipmentOpen}
  onOpenChange={setCreateEquipmentOpen}
- onCreated={handleEquipmentCreated}
+ onCreated={(equipmentId) => {
+ void handleEquipmentCreated(equipmentId);
+ }}
  />
  )}
  </>

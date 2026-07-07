@@ -9,6 +9,8 @@ export interface ApiRequestOptions {
   body?: unknown;
   headers?: Record<string, string>;
   signal?: AbortSignal;
+  /** When set, body is sent as-is (e.g. FormData) without JSON serialization. */
+  rawBody?: BodyInit;
 }
 
 /**
@@ -55,18 +57,22 @@ class ApiClient {
   }
 
   async request<T>(path: string, options: ApiRequestOptions = {}): Promise<T> {
-    const { method = "GET", body, headers, signal } = options;
+    const { method = "GET", body, headers, signal, rawBody } = options;
 
     const init: RequestInit = {
       method,
       headers: this.buildHeaders({
-        ...(body !== undefined ? { "Content-Type": "application/json" } : {}),
+        ...(body !== undefined && rawBody === undefined
+          ? { "Content-Type": "application/json" }
+          : {}),
         ...headers,
       }),
       signal,
     };
 
-    if (body !== undefined) {
+    if (rawBody !== undefined) {
+      init.body = rawBody;
+    } else if (body !== undefined) {
       init.body = JSON.stringify(body);
     }
 
@@ -101,6 +107,10 @@ class ApiClient {
 
   delete<T = void>(path: string, signal?: AbortSignal): Promise<T> {
     return this.request<T>(path, { method: "DELETE", signal });
+  }
+
+  upload<T>(path: string, formData: FormData, signal?: AbortSignal): Promise<T> {
+    return this.request<T>(path, { method: "POST", rawBody: formData, signal });
   }
 }
 

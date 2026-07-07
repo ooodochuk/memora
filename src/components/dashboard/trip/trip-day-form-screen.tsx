@@ -115,7 +115,7 @@ export function TripDayFormScreen({ mode, dayId }: TripDayFormScreenProps) {
             type="button"
             variant="ghost"
             size="lg"
-            className="h-12 sm:h-10"
+            className="h-12 w-full sm:h-10 sm:w-auto"
             onClick={() => router.push(backHref)}
           >
             {t("actions.cancel")}
@@ -125,7 +125,7 @@ export function TripDayFormScreen({ mode, dayId }: TripDayFormScreenProps) {
             form={FORM_ID}
             variant="warm"
             size="lg"
-            className="h-12 min-w-[120px] sm:h-10"
+            className="h-12 w-full sm:h-10 sm:w-auto sm:min-w-[120px]"
           >
             {mode === "edit" ? t("actions.save") : t("actions.add")}
           </Button>

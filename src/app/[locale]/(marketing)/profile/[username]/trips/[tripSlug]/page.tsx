@@ -92,7 +92,9 @@ export async function generateMetadata({
     openGraph: {
       title: data.trip.title,
       description: data.trip.description,
-      images: [{ url: data.trip.coverImageUrl }],
+      images: data.trip.coverImageUrl
+        ? [{ url: data.trip.coverImageUrl }]
+        : undefined,
     },
   };
 }

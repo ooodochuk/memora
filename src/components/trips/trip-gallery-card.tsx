@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { CoverImage } from "@/components/design-system/cover-image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import {
@@ -60,12 +60,12 @@ export function TripGalleryCard({
  COVER_ASPECT,
  )}
  >
- <Image
+ <CoverImage
  src={trip.coverImageUrl}
  alt={trip.title}
- fill
- className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
+ className="absolute inset-0 h-full w-full"
  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+ imageClassName="transition-transform duration-[1.2s] ease-out group-hover:scale-[1.04]"
  />
  <div className="photo-vignette absolute inset-0" />
  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />

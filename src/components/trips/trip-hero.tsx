@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { CoverImage } from "@/components/design-system/cover-image";
 import { getTranslations } from "next-intl/server";
 import type { Trip } from "@/types";
 import type { AppLocale } from "@/i18n/routing";
@@ -23,12 +23,11 @@ export async function TripHero({ trip, locale }: TripHeroProps) {
  return (
  <section className="relative">
  <div className="relative h-[52vh] min-h-[300px] max-h-[580px] overflow-hidden">
- <Image
+ <CoverImage
  src={trip.coverImageUrl}
  alt={trip.title}
- fill
+ className="h-full w-full"
  priority
- className="object-cover"
  sizes="100vw"
  />
  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />

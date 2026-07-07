@@ -14,7 +14,7 @@ export interface AdventureDto {
   title: string;
   subtitle: string;
   description: string;
-  coverImageUrl: string;
+  coverImageUrl?: string;
   country: string;
   region: string;
   startDate: string;
@@ -58,7 +58,7 @@ export interface CreateAdventureRequestDto {
   title: string;
   subtitle?: string;
   description: string;
-  coverImageUrl: string;
+  coverImageUrl?: string;
   country: string;
   region: string;
   startDate: string;
