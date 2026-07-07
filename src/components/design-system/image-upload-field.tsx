@@ -110,7 +110,7 @@ export function ImageUploadField({
       error={displayError ?? undefined}
       className={className}
     >
-      <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
+      <div className="grid w-full min-w-0 grid-cols-1 gap-4 md:grid-cols-2 md:items-start">
         <div
           className={cn(
             "relative w-full overflow-hidden rounded-xl border border-dashed border-border bg-muted/40 transition-colors",

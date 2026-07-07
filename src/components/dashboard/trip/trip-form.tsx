@@ -9,10 +9,6 @@ import { useRouter } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
 import { isMockMode } from "@/api/config";
 import { useCreateAdventure, useUpdateAdventure, adventureKeys } from "@/features/adventures/hooks";
-import {
-  attachEquipmentToAdventure,
-  syncAdventureEquipment,
-} from "@/features/equipment/api";
 import { equipmentKeys } from "@/features/equipment/hooks";
 import { tripFormToCreateAdventure, tripFormToUpdateAdventure } from "@/lib/api-mappers";
 import {
@@ -208,23 +204,21 @@ export function TripForm({
  }
 
  try {
- if (mode === "create") {
- const adventure = await createAdventure.mutateAsync(
- tripFormToCreateAdventure(values as TripFormValues),
- );
- for (const equipmentId of selectedEquipmentIds) {
- await attachEquipmentToAdventure(adventure.id, equipmentId);
- }
- router.push(dashboardRoutes.trip(adventure.id));
- return;
- }
+    if (mode === "create") {
+      const adventure = await createAdventure.mutateAsync(
+        tripFormToCreateAdventure(values as TripFormValues, selectedEquipmentIds),
+      );
+      router.push(dashboardRoutes.trip(adventure.id));
+      return;
+    }
 
- if (mode === "edit" && tripId) {
- await updateAdventure.mutateAsync(tripFormToUpdateAdventure(values as TripFormValues));
- await syncAdventureEquipment(tripId, selectedEquipmentIds, defaultEquipmentIds);
- await queryClient.invalidateQueries({
- queryKey: equipmentKeys.byAdventure(tripId),
- });
+    if (mode === "edit" && tripId) {
+      await updateAdventure.mutateAsync(
+        tripFormToUpdateAdventure(values as TripFormValues, selectedEquipmentIds),
+      );
+      await queryClient.invalidateQueries({
+        queryKey: equipmentKeys.byAdventure(tripId),
+      });
  await queryClient.refetchQueries({ queryKey: adventureKeys.detail(tripId) });
  router.refresh();
  router.push(dashboardRoutes.trip(tripId));

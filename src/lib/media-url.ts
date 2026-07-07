@@ -1,8 +1,23 @@
 import { getApiBaseUrl } from "@/api/config";
 
-/** Whether the URL points at media served by our backend upload API. */
+function normalizeBaseUrl(url: string): string {
+  return url.replace(/\/+$/, "");
+}
+
+function getConfiguredMediaBaseUrl(): string | null {
+  const raw = process.env.NEXT_PUBLIC_MEDIA_BASE_URL?.trim();
+  return raw ? normalizeBaseUrl(raw) : null;
+}
+
+/** Whether the URL points at media served by Memora (backend files API or object storage CDN). */
 export function isMemoraUploadedUrl(url: string): boolean {
   if (!url) return false;
+
+  const mediaBase = getConfiguredMediaBaseUrl();
+  if (mediaBase && url.startsWith(`${mediaBase}/`)) {
+    return true;
+  }
+
   try {
     const base = new URL(getApiBaseUrl());
     const target = new URL(url);

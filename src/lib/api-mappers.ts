@@ -117,6 +117,7 @@ export function categoryDtoToCategory(dto: EquipmentCategoryDto): EquipmentCateg
 
 export function tripFormToCreateAdventure(
   values: TripFormValues,
+  equipmentIds: string[] = [],
 ): CreateAdventureRequestDto {
   return {
     title: values.title,
@@ -132,15 +133,18 @@ export function tripFormToCreateAdventure(
     visibility: values.visibility,
     adventureType: values.adventureType,
     tags: [],
+    equipmentIds,
   };
 }
 
 export function tripFormToUpdateAdventure(
   values: TripFormValues,
+  equipmentIds: string[] = [],
 ): UpdateAdventureRequestDto {
   return {
-    ...tripFormToCreateAdventure(values),
+    ...tripFormToCreateAdventure(values, equipmentIds),
     coverImageUrl: values.coverImageUrl?.trim() || "",
+    equipmentIds,
   };
 }
 

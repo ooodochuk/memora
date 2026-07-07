@@ -22,6 +22,7 @@ import {
 } from "@/lib/public-equipment";
 import { publicProfileDtoToProfile } from "@/lib/profile/public-mappers";
 import { resolveEventRelations } from "@/lib/trip-timeline/utils";
+import type { MomentDto } from "@/features/moments/types";
 import type { CloudLink, Photo, Profile, Trip, TripDay, TripEventWithRelations } from "@/types";
 import type { Equipment } from "@/types";
 
@@ -36,6 +37,18 @@ function equipmentToPublicItem(item: Equipment): PublicTripEquipmentItem {
     photoUrl: item.photoUrl,
     notes: item.notes,
   };
+}
+
+function collectMomentPhotos(moments: MomentDto[], tripId: string): Photo[] {
+  return moments
+    .filter((moment) => moment.photoUrl)
+    .map((moment) => ({
+      id: `${moment.id}-photo`,
+      tripId,
+      url: moment.photoUrl!,
+      alt: moment.title,
+      eventId: moment.id,
+    }));
 }
 
 export interface PublicTripTimelineDay {
@@ -130,7 +143,7 @@ export async function getPublicTripPageData(
     profile,
     trip,
     timelineDays,
-    photos: [],
+    photos: collectMomentPhotos(detail.moments, trip.id),
     cloudLinks,
     mediaLinks,
     equipment: detail.equipment.map(publicEquipmentDtoToItem),

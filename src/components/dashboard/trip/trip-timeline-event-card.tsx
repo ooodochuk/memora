@@ -6,6 +6,7 @@ import type { Profile, TripEventWithRelations } from "@/types";
 import type { AppLocale } from "@/i18n/routing";
 import { formatTime } from "@/lib/format";
 import { resolveMomentLocationLabel } from "@/lib/event-display";
+import { isMemoraUploadedUrl } from "@/lib/media-url";
 import { eventTypeStyles } from "@/lib/design-system/tokens";
 import {
  EventTypeIcon,
@@ -198,13 +199,14 @@ export function TripTimelineEventCard({
  key={photo.id}
  className="relative aspect-[4/3] w-28 shrink-0 overflow-hidden rounded-lg border border-border sm:w-32"
  >
- <Image
- src={photo.url}
- alt={photo.alt}
- fill
- className="object-cover"
- sizes="128px"
- />
+                <Image
+                  src={photo.url}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover"
+                  sizes="128px"
+                  unoptimized={isMemoraUploadedUrl(photo.url)}
+                />
  {index === visiblePhotos.length - 1 &&
  hiddenPhotoCount > 0 && (
  <div className="absolute inset-0 flex items-center justify-center bg-black/45 text-xs font-medium text-white">

@@ -28,6 +28,28 @@ function apiMediaRemotePattern():
 
 const apiPattern = apiMediaRemotePattern();
 
+function mediaCdnRemotePattern():
+  | { protocol: "http" | "https"; hostname: string; pathname: string }
+  | null {
+  const raw = process.env.NEXT_PUBLIC_MEDIA_BASE_URL?.trim();
+  if (!raw) return null;
+
+  const candidate = raw.startsWith("http") ? raw : `https://${raw.replace(/^\/+/, "")}`;
+
+  try {
+    const url = new URL(candidate);
+    return {
+      protocol: url.protocol === "http:" ? "http" : "https",
+      hostname: url.hostname,
+      pathname: "/**",
+    };
+  } catch {
+    return null;
+  }
+}
+
+const mediaCdnPattern = mediaCdnRemotePattern();
+
 const RAILWAY_MEDIA_HOST = "memora-backend-production-4cff.up.railway.app";
 
 const nextConfig: NextConfig = {
@@ -45,6 +67,7 @@ const nextConfig: NextConfig = {
         pathname: "/api/media/files/**",
       },
       ...(apiPattern ? [apiPattern] : []),
+      ...(mediaCdnPattern ? [mediaCdnPattern] : []),
     ],
   },
 };

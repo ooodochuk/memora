@@ -67,6 +67,7 @@ export interface CreateAdventureRequestDto {
   visibility: TripVisibility;
   adventureType: AdventureType;
   tags?: string[];
+  equipmentIds?: string[];
 }
 
 export type UpdateAdventureRequestDto = Partial<CreateAdventureRequestDto>;

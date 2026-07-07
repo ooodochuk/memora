@@ -1,6 +1,7 @@
 /** Uploaded media file metadata from POST /media/upload */
 export interface MediaUploadResponseDto {
   url: string;
+  key: string;
   fileName: string;
   contentType: string;
   size: number;

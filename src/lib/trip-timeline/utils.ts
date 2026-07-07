@@ -35,12 +35,28 @@ export function resolveEventRelations(
  participants: Profile[] = [],
 ): TripEventWithRelations {
  const photoIdSet = new Set(event.photoIds);
+ const photosFromIds = allPhotos.filter((photo) => photoIdSet.has(photo.id));
+ const photos =
+  photosFromIds.length > 0
+   ? photosFromIds
+   : event.photoUrl
+    ? [
+      {
+       id: `${event.id}-photo`,
+       tripId: event.tripId,
+       url: event.photoUrl,
+       alt: event.title,
+       eventId: event.id,
+      },
+     ]
+    : [];
+
  return {
  ...event,
  place: event.placeId
  ? places.find((place) => place.id === event.placeId)
  : undefined,
- photos: allPhotos.filter((photo) => photoIdSet.has(photo.id)),
+ photos,
  cloudLinks: cloudLinks.filter((link) =>
  event.cloudLinkIds.includes(link.id),
  ),
