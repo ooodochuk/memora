@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ImageIcon } from "lucide-react";
 import { COVER_PLACEHOLDER_CLASS, isMemoraUploadedUrl } from "@/lib/media-url";
@@ -22,11 +23,17 @@ export function CoverImage({
   priority = false,
   sizes = "100vw",
 }: CoverImageProps) {
-  const hasImage = Boolean(src);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
+
+  const showImage = Boolean(src) && !failed;
 
   return (
     <div className={cn("relative overflow-hidden", className)}>
-      {hasImage ? (
+      {showImage ? (
         <Image
           src={src!}
           alt={alt}
@@ -35,6 +42,7 @@ export function CoverImage({
           className={cn("object-cover", imageClassName)}
           sizes={sizes}
           unoptimized={isMemoraUploadedUrl(src!)}
+          onError={() => setFailed(true)}
         />
       ) : (
         <div
@@ -42,7 +50,7 @@ export function CoverImage({
             "absolute inset-0 flex items-center justify-center",
             COVER_PLACEHOLDER_CLASS,
           )}
-          aria-hidden
+          aria-hidden={!src || failed}
         >
           <ImageIcon className="size-16 text-muted-foreground/30" strokeWidth={1} />
         </div>

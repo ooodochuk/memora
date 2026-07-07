@@ -28,6 +28,8 @@ function apiMediaRemotePattern():
 
 const apiPattern = apiMediaRemotePattern();
 
+const RAILWAY_MEDIA_HOST = "memora-backend-production-4cff.up.railway.app";
+
 const nextConfig: NextConfig = {
   output: "standalone",
   images: {
@@ -36,6 +38,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: IMAGE_REMOTE_HOST,
         pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: RAILWAY_MEDIA_HOST,
+        pathname: "/api/media/files/**",
       },
       ...(apiPattern ? [apiPattern] : []),
     ],
