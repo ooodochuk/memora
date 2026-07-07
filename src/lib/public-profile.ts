@@ -4,6 +4,7 @@ import type { PublicTravelStatsDto } from "@/features/public/types";
 import { getProfileByUsername, getTripsByOwnerId } from "@/lib/mock-data/accessors";
 import { publicProfileDtoToProfile } from "@/lib/profile/public-mappers";
 import { adventureDtoToTrip } from "@/lib/api-mappers";
+import { isPublicPortfolioAdventure } from "@/lib/public-portfolio";
 import { computeTravelModeDistances } from "@/lib/travel-mode-stats";
 import type { Profile, Trip } from "@/types";
 
@@ -11,7 +12,7 @@ export type PublicTravelStats = PublicTravelStatsDto;
 
 export function getPublicTripsForProfile(profileId: string): Trip[] {
   return getTripsByOwnerId(profileId)
-    .filter((trip) => trip.visibility === "public" && trip.status === "published")
+    .filter(isPublicPortfolioAdventure)
     .sort(
       (a, b) =>
         new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
@@ -64,7 +65,9 @@ export async function getPublicProfileByUsername(username: string): Promise<{
   if (!portfolio) return null;
 
   const profile = publicProfileDtoToProfile(portfolio.profile);
-  const publicTrips = portfolio.adventures.map(adventureDtoToTrip);
+  const publicTrips = portfolio.adventures
+    .map(adventureDtoToTrip)
+    .filter(isPublicPortfolioAdventure);
 
   return {
     profile,

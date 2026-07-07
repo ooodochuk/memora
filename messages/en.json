@@ -293,7 +293,7 @@
     "trips": {
       "title": "Adventures",
       "emptyTitle": "No public adventures yet",
-      "emptyDescription": "When journeys are published, they'll appear here as a travel portfolio."
+      "emptyDescription": "When adventures are set to Public visibility, they'll appear here as a travel portfolio."
     }
   },
   "publicTrip": {
@@ -583,7 +583,7 @@
         },
         "journal": {
           "title": "Public journal",
-          "description": "How others see your page — only adventures with visibility Public and status Published.",
+          "description": "How others see your page — adventures with Public visibility appear here (except archived).",
           "viewPublic": "Open public journal"
         },
         "session": {

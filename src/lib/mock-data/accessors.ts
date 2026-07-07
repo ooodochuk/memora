@@ -10,6 +10,7 @@ import type {
  User,
 } from "@/types";
 import { FEATURED_TRIPS_LIMIT } from "@/constants";
+import { isPublicPortfolioAdventure } from "@/lib/public-portfolio";
 
 import { users, currentUser } from "./users";
 import { profiles, currentProfile } from "./profiles";
@@ -81,14 +82,12 @@ export function getTripById(id: string): Trip | undefined {
 
 export function getFeaturedTrips(limit = FEATURED_TRIPS_LIMIT): Trip[] {
  return trips
- .filter((t) => t.visibility === "public" && t.status === "published")
+ .filter(isPublicPortfolioAdventure)
  .slice(0, limit);
 }
 
 export function getAllPublicTrips(): Trip[] {
- return trips.filter(
- (t) => t.visibility === "public" && t.status === "published",
- );
+ return trips.filter(isPublicPortfolioAdventure);
 }
 
 // --- Days & events ---

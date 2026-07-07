@@ -14,6 +14,7 @@ import {
   getProfileByUsername,
   getTripBySlug,
 } from "@/lib/mock-data/accessors";
+import { isPublicPortfolioAdventure } from "@/lib/public-portfolio";
 import { publicProfileDtoToProfile } from "@/lib/profile/public-mappers";
 import { resolveEventRelations } from "@/lib/trip-timeline/utils";
 import type { CloudLink, Photo, Profile, Trip, TripDay, TripEventWithRelations } from "@/types";
@@ -43,7 +44,7 @@ function getPublicTripPageDataMock(
     return null;
   }
 
-  if (trip.visibility !== "public" || trip.status !== "published") {
+  if (!isPublicPortfolioAdventure(trip)) {
     return null;
   }
 
