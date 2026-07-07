@@ -1,15 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
 import { isMockMode } from "@/api/config";
 import { useCreateAdventure, useUpdateAdventure, adventureKeys } from "@/features/adventures/hooks";
+import { useCurrentProfile } from "@/features/auth/hooks";
 import {
   attachEquipmentToAdventure,
   syncAdventureEquipment,
@@ -24,10 +25,17 @@ import {
  PenLine,
  Sparkles,
  Backpack,
+ Plus,
  type LucideIcon,
 } from "lucide-react";
+import { useAppToast } from "@/components/design-system/app-toast";
+import { useFormDraft } from "@/hooks/use-form-draft";
+import { buildFormDraftKey } from "@/lib/form-draft/storage";
+import type { CreateAdventureDraft } from "@/lib/form-draft/create-adventure-draft";
+import type { AppLocale } from "@/i18n/routing";
 import { dashboardRoutes } from "@/constants/routes";
 import { EquipmentSelector } from "@/components/equipment";
+import { EquipmentCreateSheet } from "@/components/equipment/equipment-create-sheet";
 import { AdventureTypePicker } from "@/components/adventure-types";
 import type { Equipment, EquipmentCategory } from "@/types";
 import {
@@ -133,15 +141,35 @@ export function TripForm({
  const t = useTranslations("dashboard.tripForm");
  const tStatusHints = useTranslations("dashboard.tripForm.status");
  const tVisibility = useTranslations("designSystem.visibility");
+ const locale = useLocale() as AppLocale;
  const router = useRouter();
  const queryClient = useQueryClient();
+ const { showToast } = useAppToast();
+ const profileQuery = useCurrentProfile();
  const mockMode = isMockMode();
  const createAdventure = useCreateAdventure();
  const updateAdventure = useUpdateAdventure(tripId ?? "");
  const [submitted, setSubmitted] = useState(false);
  const [coverPreviewError, setCoverPreviewError] = useState(false);
+ const [createEquipmentOpen, setCreateEquipmentOpen] = useState(false);
  const [selectedEquipmentIds, setSelectedEquipmentIds] =
  useState<string[]>(defaultEquipmentIds);
+ const draftReadyRef = useRef(false);
+ const isCreate = mode === "create";
+ const draftKey =
+ isCreate && profileQuery.data
+ ? buildFormDraftKey("create-adventure", profileQuery.data.id, locale)
+ : "";
+ const {
+ restored: draftRestored,
+ restoreDraft,
+ saveDraft,
+ clearDraft,
+ markRestored,
+ } = useFormDraft<CreateAdventureDraft>({
+ key: draftKey || "create-adventure-pending",
+ enabled: isCreate && Boolean(draftKey),
+ });
 
  const schema = useMemo(
  () =>
@@ -167,17 +195,61 @@ export function TripForm({
  handleSubmit,
  control,
  watch,
+ reset,
  formState: { errors, isSubmitting },
  } = useForm<TripFormInputValues>({
  resolver: zodResolver(schema),
  defaultValues: defaultValues ?? emptyTripFormValues,
  });
 
+ const formValues = watch();
  const coverImageUrl = watch("coverImageUrl");
+
+ useEffect(() => {
+ if (!isCreate || !draftKey || draftReadyRef.current) return;
+
+ const draft = restoreDraft();
+ if (draft) {
+ reset(draft.form);
+ setSelectedEquipmentIds(draft.selectedEquipmentIds);
+ markRestored();
+ }
+
+ draftReadyRef.current = true;
+ }, [draftKey, isCreate, markRestored, reset, restoreDraft]);
+
+ useEffect(() => {
+ if (!isCreate || !draftKey || !draftReadyRef.current) return;
+
+ saveDraft({
+ form: formValues,
+ selectedEquipmentIds,
+ savedAt: new Date().toISOString(),
+ });
+ }, [draftKey, formValues, isCreate, saveDraft, selectedEquipmentIds]);
+
+ function handleClearDraft() {
+ clearDraft();
+ reset(emptyTripFormValues);
+ setSelectedEquipmentIds([]);
+ draftReadyRef.current = true;
+ showToast(t("draft.cleared"));
+ }
+
+ function handleEquipmentCreated(equipmentId: string) {
+ void queryClient.invalidateQueries({ queryKey: equipmentKeys.inventory() });
+ setSelectedEquipmentIds((current) =>
+ current.includes(equipmentId) ? current : [...current, equipmentId],
+ );
+ showToast(t("sections.equipment.addedSuccess"));
+ }
 
  async function onSubmit(values: TripFormInputValues) {
  if (mockMode) {
  await new Promise((resolve) => setTimeout(resolve, 900));
+ if (isCreate) {
+ clearDraft();
+ }
  setSubmitted(true);
  window.setTimeout(() => {
  if (mode === "edit" && tripId) {
@@ -197,6 +269,7 @@ export function TripForm({
  for (const equipmentId of selectedEquipmentIds) {
  await attachEquipmentToAdventure(adventure.id, equipmentId);
  }
+ clearDraft();
  router.push(dashboardRoutes.trip(adventure.id));
  return;
  }
@@ -221,10 +294,20 @@ export function TripForm({
  ? dashboardRoutes.trip(tripId)
  : dashboardRoutes.trips();
 
- const isCreate = mode === "create";
-
  return (
+ <>
  <form id={formId} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+ {isCreate && draftRestored && (
+ <JournalCard
+ padding="sm"
+ className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+ >
+ <p className="text-sm text-muted-foreground">{t("draft.restored")}</p>
+ <Button type="button" variant="ghost" size="sm" onClick={handleClearDraft}>
+ {t("draft.clear")}
+ </Button>
+ </JournalCard>
+ )}
  <FormSection
  icon={PenLine}
  eyebrow={t("sections.story.eyebrow")}
@@ -497,22 +580,38 @@ export function TripForm({
  description={t("sections.equipment.description")}
  >
  {inventory.length > 0 ? (
+ <div className="space-y-4">
  <EquipmentSelector
  inventory={inventory}
  categories={equipmentCategories}
  selectedIds={selectedEquipmentIds}
  onChange={setSelectedEquipmentIds}
  />
- ) : (
- <p className="text-sm text-muted-foreground">
- {t("sections.equipment.emptyInventory")}{" "}
- <Link
- href={dashboardRoutes.newEquipment()}
- className="font-medium text-primary underline-offset-4 hover:underline"
+ <Button
+ type="button"
+ variant="outline"
+ className="w-full sm:w-auto"
+ onClick={() => setCreateEquipmentOpen(true)}
  >
- {t("sections.equipment.addToInventory")}
- </Link>
+ <Plus className="size-4" />
+ {t("sections.equipment.addMore")}
+ </Button>
+ </div>
+ ) : (
+ <div className="space-y-3">
+ <p className="text-sm text-muted-foreground">
+ {t("sections.equipment.emptyInventory")}
  </p>
+ <Button
+ type="button"
+ variant="outline"
+ className="w-full sm:w-auto"
+ onClick={() => setCreateEquipmentOpen(true)}
+ >
+ <Plus className="size-4" />
+ {t("sections.equipment.addToInventory")}
+ </Button>
+ </div>
  )}
  </FormSection>
  )}
@@ -574,5 +673,14 @@ export function TripForm({
  </p>
  )}
  </form>
+
+ {isCreate && (
+ <EquipmentCreateSheet
+ open={createEquipmentOpen}
+ onOpenChange={setCreateEquipmentOpen}
+ onCreated={handleEquipmentCreated}
+ />
+ )}
+ </>
  );
 }

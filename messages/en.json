@@ -663,8 +663,15 @@
           "title": "Adventure gear",
           "description": "Select gear from your inventory — items are reused across adventures, never duplicated.",
           "emptyInventory": "Your inventory is empty.",
-          "addToInventory": "Add your first item"
+          "addToInventory": "Add your first item",
+          "addMore": "Add equipment",
+          "addedSuccess": "Equipment added to your inventory"
         }
+      },
+      "draft": {
+        "restored": "Draft restored",
+        "clear": "Clear draft",
+        "cleared": "Draft cleared"
       },
       "fields": {
         "adventureType": {

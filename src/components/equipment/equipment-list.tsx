@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { Search, Package } from "lucide-react";
@@ -13,6 +13,7 @@ import { EquipmentEditSheet } from "@/components/equipment/equipment-edit-sheet"
 import { EquipmentDeleteDialog } from "@/components/equipment/equipment-delete-dialog";
 import { EmptyState } from "@/components/design-system/empty-state";
 import { useAppToast } from "@/components/design-system/app-toast";
+import { useIsDesktop } from "@/hooks/use-is-desktop";
 import {
   useDeleteEquipment,
   useSetEquipmentActive,
@@ -26,20 +27,6 @@ type EquipmentFilter = "all" | "active" | "inactive";
 interface EquipmentListProps {
   items: Equipment[];
   categories: EquipmentCategory[];
-}
-
-function useIsDesktop() {
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia("(min-width: 1024px)");
-    const update = () => setIsDesktop(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  return isDesktop;
 }
 
 export function EquipmentList({ items, categories }: EquipmentListProps) {

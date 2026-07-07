@@ -43,7 +43,7 @@ interface EquipmentFormProps {
  defaultValues?: EquipmentFormValues;
  equipmentId?: string;
  cancelHref?: string;
- onSuccess?: () => void;
+ onSuccess?: (result?: { id: string }) => void;
 }
 
 function FormSection({
@@ -141,11 +141,7 @@ export function EquipmentForm({
  await new Promise((resolve) => setTimeout(resolve, 900));
  setSubmitted(true);
  window.setTimeout(() => {
- if (onSuccess) {
- onSuccess();
- } else {
- router.push(dashboardRoutes.equipment());
- }
+ onSuccess?.();
  }, 1200);
  return;
  }
@@ -166,7 +162,11 @@ export function EquipmentForm({
  };
 
  if (mode === "create") {
- await createEquipment.mutateAsync(payload);
+ const created = await createEquipment.mutateAsync(payload);
+ if (onSuccess) {
+ onSuccess({ id: created.id });
+ return;
+ }
  } else if (equipmentId) {
  await updateEquipment.mutateAsync(payload);
  }
