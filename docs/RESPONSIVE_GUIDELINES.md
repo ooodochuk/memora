@@ -62,19 +62,33 @@ Cards use `auto-rows-fr` for equal height rows.
 
 Touch targets: minimum **44×44px** for icon buttons and primary actions.
 
+Disabled nav items (Places, Wishlist) show Soon badge — not tappable as primary destinations.
+
 ## Forms
 
 | Viewport | Layout |
 |----------|--------|
-| Mobile | Single column, sticky footer (Save/Cancel) |
+| Mobile | Single column, sticky footer (Save/Cancel), no horizontal overflow |
 | Desktop | Two columns when it reduces scrolling |
 
 No inner scroll traps — page scrolls as one surface (`ResponsiveFormScreen`).
 
+`ImageUploadField`: single column on mobile (`grid-cols-1`); preview + action buttons stack cleanly. Use `min-w-0` on form grids.
+
+## Create / edit flows
+
+| Viewport | Pattern |
+|----------|---------|
+| Mobile | Full-screen dedicated pages — **not centered modals** |
+| Desktop | Right side sheets for adventure, day, moment, equipment |
+| Nested equipment | Sheet (desktop) / full-screen child flow (mobile) |
+
+Dialogs reserved for delete confirmations only.
+
 ## Desktop
 
 - Sidebar + content area within `max-w-screen-2xl`
-- Side sheets for create/edit (planned migration from full pages on large screens)
+- Side sheets for create/edit
 - Stats row: horizontal flex, equal-width pills
 
 ## Tablet
@@ -89,6 +103,7 @@ No inner scroll traps — page scrolls as one surface (`ResponsiveFormScreen`).
 - Dedicated screens for create/edit (not modals)
 - Large footer buttons (`h-12` minimum)
 - Reduce typography one step — `text-2xl` titles, not `text-4xl`
+- Upload fields: full width, no fixed pixel widths
 
 ## Large monitors
 
@@ -100,16 +115,19 @@ No inner scroll traps — page scrolls as one surface (`ResponsiveFormScreen`).
 
 Common failures to fix in QA:
 
-- Huge hero void without cover image
+- Huge hero void without cover image (use gradient placeholder)
 - Stats bar floating far from profile header
 - Single narrow column on 1440px dashboard
 - Broken grid leaving one orphan card per row
+- Image upload field overflowing viewport at 320px
 
 ## Images
 
 - `object-cover` always
-- Hero: `min-h` with gradient fallback when no cover
+- Hero: `CoverImage` with gradient fallback when no cover
+- Moment photos: inline in timeline cards; single photo full-width on mobile when alone
 - Card covers: consistent aspect ratio (`aspect-video` or gallery card standard)
+- `unoptimized` for Memora upload and CDN URLs
 
 ## QA checklist
 
@@ -121,6 +139,8 @@ Before merging UI:
 - [ ] Container token matches page type
 - [ ] Dark mode readable
 - [ ] Both `en` and `uk` string lengths fit (Ukrainian often longer)
+- [ ] ImageUploadField works on mobile (pick, preview, replace, remove)
+- [ ] Nested equipment flow preserves adventure form state on back
 
 ## Related docs
 

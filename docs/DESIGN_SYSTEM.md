@@ -62,7 +62,7 @@ Shared patterns via `JournalCard`:
 - Consistent padding variants: `sm`, `md`, `lg`
 - Hover: subtle border or background shift — not aggressive lift
 
-Trip/adventure cards use `TripGalleryCard` / `TripCard` with cover image on top.
+Trip/adventure cards use `TripGalleryCard` / `TripCard` with optional cover image on top. Missing cover shows gradient placeholder via `CoverImage`.
 
 ## Buttons
 
@@ -84,6 +84,28 @@ Sizes: `sm` in dense UI, `default` standard, `lg` on mobile form footers (44px+ 
 - `ResponsiveFormScreen` for full-page forms with header + sticky footer
 - `react-hook-form` + `zod` resolvers in `src/lib/validations/`
 - Hints only when necessary — prefer optional field labels
+- Single column on mobile; `min-w-0` on grids to prevent overflow
+
+## Image components
+
+### `ImageUploadField`
+
+Reusable upload control (`components/design-system/image-upload-field.tsx`):
+
+| Feature | Behavior |
+|---------|----------|
+| Upload | Device file picker + drag-and-drop |
+| Preview | Shows uploaded image |
+| Replace / Remove | Actions without leaving form |
+| States | Loading spinner, validation error, upload failure |
+| Layout | Single column on mobile; preview + actions side-by-side from `md` |
+| Constraints | JPEG, PNG, GIF, WebP; max 5 MB |
+
+Used for adventure cover image and moment photo. Do not add manual URL inputs for these fields.
+
+### `CoverImage`
+
+Shared cover renderer with gradient placeholder fallback when `src` is missing or fails to load (`components/design-system/cover-image.tsx`). Uses `unoptimized` for Memora-hosted and object-storage URLs.
 
 ## Inputs
 
@@ -100,6 +122,7 @@ Event types map to colors via `eventTypeStyles()` and CSS variables `--event-*`.
 - `StatusBadge`, `VisibilityBadge` for adventure state
 - `EventTypeBadge` / `EventTypeIcon` for moment types
 - `IconBadge` for feature marketing cards
+- **Soon** / **Скоро** badge on disabled nav items (Places, Wishlist)
 
 ## Dark mode
 
@@ -126,6 +149,7 @@ From `containerSizes` in tokens:
 - Use `cn()` from `lib/utils` for conditional classes
 - Prefer semantic tokens over raw colors: `bg-background`, `text-muted-foreground`
 - `object-cover` on all photos
+- `unoptimized` on Next.js `Image` for Memora upload and CDN URLs (`isMemoraUploadedUrl`)
 - No inline styles except dynamic map/event colors from tokens
 
 ## shadcn/ui usage
@@ -144,3 +168,5 @@ Before shipping UI:
 - [ ] Works in dark mode
 - [ ] Strings from `messages/*.json`
 - [ ] Touch targets ≥ 44px on mobile actions
+- [ ] Image upload uses `ImageUploadField` — not URL paste
+- [ ] No horizontal overflow at 320px

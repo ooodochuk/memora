@@ -13,6 +13,8 @@ Memora stores configurable lookup values in **database tables**, not Java enums.
 
 Frontend may still use TypeScript union types for compile-time safety; backend validates against DB FKs.
 
+**Future Admin Panel** will manage reference rows without SQL access (Phase 6).
+
 ## Tables
 
 | Table | Entity | Used by |
@@ -23,7 +25,7 @@ Frontend may still use TypeScript union types for compile-time safety; backend v
 | `moment_types` | `MomentType` | Moment type picker |
 | `equipment_categories` | `EquipmentCategory` | Equipment inventory |
 | `cloud_link_providers` | `CloudLinkProvider` | Cloud link provider |
-| `place_categories` | `PlaceCategory` | Saved places |
+| `place_categories` | `PlaceCategory` | Saved places (future) |
 
 ## Schema pattern
 
@@ -75,18 +77,22 @@ Never store frontend codes in FK columns — always resolve to reference row IDs
 
 `equipment_categories` supports:
 
-- `is_default = true` — system categories (seeded in V5)
+- `is_default = true` — system categories (seeded in V5), including `DRONE` as **gear category**
 - `user_id` — future per-user custom categories
+
+Equipment category `DRONE` is **not** the same as a moment type — moment video/photo content uses `PHOTO_VIDEO`.
 
 ## Moment types (seeded codes)
 
 `SLEEP`, `FOOD`, `HIKE`, `BIKE`, `TRANSPORT`, `PLACE_VISIT`, `PHOTO_VIDEO`, `EXPENSE`, `NOTE`, `TIP`
 
+**`PHOTO_VIDEO`** covers drone videos, action camera footage, phone video, and camera photos. There is **no** `DRONE` moment type.
+
 Align with `TRIP_EVENT_MODAL_TYPE_OPTIONS` in frontend validation.
 
 ## Adventure status codes
 
-Includes planning, draft, in-progress (published), archived states. Public portfolio filters on **visibility PUBLIC** + **status IN_PROGRESS**.
+Includes planning, draft, in-progress (published), archived states. Public portfolio filters on **visibility PUBLIC** and **status not ARCHIVED**.
 
 ## Future admin panel (Phase 6)
 

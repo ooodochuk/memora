@@ -25,7 +25,9 @@ src/app/
         ├── page.tsx           # Home / adventure list
         ├── trips/[id]/...     # Adventure workspace
         ├── equipment/...
-        └── profile/ | settings/ | places/ | wishlist/
+        ├── places/            # Unfinished — redirects to dashboard
+        ├── wishlist/          # Unfinished — redirects to dashboard
+        └── profile/ | settings/
 ```
 
 `[locale]` is always present (`en`, `uk`) via `next-intl` with `localePrefix: "always"`.
@@ -48,7 +50,7 @@ features/adventures/
 └── types.ts    # DTOs aligned with backend
 ```
 
-Current modules: `auth`, `adventures`, `days`, `moments`, `equipment`, `profile`, `public`.
+Current modules: `auth`, `adventures`, `days`, `moments`, `equipment`, `media`, `profile`, `public`.
 
 **Rules:**
 
@@ -57,6 +59,21 @@ Current modules: `auth`, `adventures`, `days`, `moments`, `equipment`, `profile`
 - Components import hooks, not `api.ts` directly (except auth session bootstrap)
 
 Legacy mock data: `src/lib/mock-data/` — used when `NEXT_PUBLIC_USE_MOCKS=true`.
+
+## Media upload flow
+
+```
+ImageUploadField
+  → useUploadMedia() (features/media/hooks.ts)
+  → uploadMedia() (features/media/api.ts)
+  → POST /media/upload (multipart, field: file)
+  → returns { url, key, fileName, contentType, size }
+  → url saved on Adventure.coverImageUrl or Moment.photoUrl
+```
+
+- `apiClient.upload()` sends `FormData` with JWT
+- `isMemoraUploadedUrl()` in `lib/media-url.ts` detects backend file URLs and `NEXT_PUBLIC_MEDIA_BASE_URL` (R2 CDN)
+- `next.config.ts` `images.remotePatterns` includes API host and media CDN host
 
 ## State management
 
@@ -107,6 +124,8 @@ See [LOCALIZATION.md](./LOCALIZATION.md). Use `@/i18n/navigation` for `Link`, `r
 - Marketing: `SiteHeader` + full-width sections
 - Dashboard: `AppShell` with sidebar (desktop) / drawer (mobile)
 - Forms: `ResponsiveFormScreen` with sticky footer
+- Create/edit: side sheets on desktop; full-screen pages on mobile
+- Nested equipment: `EquipmentCreateNestedFlow` (sheet on desktop, full screen on mobile)
 
 See [RESPONSIVE_GUIDELINES.md](./RESPONSIVE_GUIDELINES.md).
 
@@ -114,7 +133,7 @@ See [RESPONSIVE_GUIDELINES.md](./RESPONSIVE_GUIDELINES.md).
 
 ```
 src/api/
-├── client.ts       # fetch wrapper, JWT header
+├── client.ts       # fetch wrapper, JWT header, FormData upload
 ├── config.ts       # base URL, mock mode
 ├── endpoints.ts    # path registry
 ├── errors.ts       # ApiError parsing
@@ -123,7 +142,7 @@ src/api/
 
 ### Request flow
 
-1. Feature `api.ts` calls `apiClient.get/post/patch/delete`
+1. Feature `api.ts` calls `apiClient.get/post/patch/delete/upload`
 2. Client attaches `Authorization: Bearer` when token set
 3. Responses unwrap `data` from `{ data: T }`
 4. Errors throw `ApiError` with `code`, `status`, `fieldErrors`
@@ -140,16 +159,33 @@ src/api/
 
 | Layer | Location |
 |-------|----------|
-| Design system | `components/design-system/` |
+| Design system | `components/design-system/` — includes `ImageUploadField`, `CoverImage` |
 | shadcn primitives | `components/ui/` |
 | Layout | `components/layout/` |
-| Domain | `components/dashboard/`, `components/trips/`, `components/moments/` |
+| Domain | `components/dashboard/`, `components/trips/`, `components/equipment/` |
+
+### Key domain components
+
+| Component | Purpose |
+|-----------|---------|
+| `ImageUploadField` | Device upload for cover + moment photo |
+| `CoverImage` | Hero/gallery cover with placeholder fallback |
+| `TripTimelineEventCard` | Private moment card with photo preview |
+| `TripEventCard` | Public/marketing moment card with photo preview |
+| `TripEquipmentSection` | Equipment on private adventure page |
+| `PublicTripEquipment` | Equipment on public adventure page |
+| `EquipmentCreateNestedFlow` | Add equipment without leaving adventure form |
+| `EquipmentSelector` | Multi-select from inventory |
 
 Avoid page-specific one-off components when a design-system primitive suffices.
 
 ## Mappers
 
 `src/lib/api-mappers.ts` converts backend DTOs to frontend `Trip`, `TripDay`, `TripEvent` types (legacy naming). New code should prefer DTO types in features and migrate UI terminology to Adventure/Moment over time.
+
+`resolveEventRelations()` in `lib/trip-timeline/utils.ts` bridges `photoUrl` into `event.photos[]` for timeline rendering in API mode.
+
+Adventure create/update mappers include `equipmentIds` in the request payload.
 
 ## Route constants
 
@@ -159,11 +195,25 @@ Avoid page-specific one-off components when a design-system primitive suffices.
 
 `DashboardAuthGuard` redirects unauthenticated users to `/login`. `GuestAuthRedirect` sends signed-in users away from login/register to dashboard.
 
+## Public portfolio
+
+`lib/public-trip.ts` loads adventure detail from `/public/profiles/{username}/adventures/{slug}` and builds timeline with moment photos and equipment.
+
+`isPublicPortfolioAdventure()` — visibility `public` and status not `archived`.
+
 ## Build and deploy
 
 - `output: "standalone"` in `next.config.ts` for Docker
 - `createNextIntlPlugin` for message loading
-- Image remote patterns for Unsplash (marketing mock covers)
+- Image remote patterns: Unsplash (mock), backend media files, `NEXT_PUBLIC_MEDIA_BASE_URL` (R2 CDN)
+
+### Environment variables
+
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_API_URL` | Backend API base |
+| `NEXT_PUBLIC_USE_MOCKS` | Mock vs live API |
+| `NEXT_PUBLIC_MEDIA_BASE_URL` | Public object-storage CDN base (production) |
 
 ## Related docs
 

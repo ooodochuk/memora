@@ -4,32 +4,40 @@ Phases are sequential themes — not fixed dates. Ship each phase completely eno
 
 ## Phase 1 — Personal Adventure Journal ✅ (current)
 
-**Goal:** One person can document adventures privately.
+**Goal:** One person can document adventures privately and share a public portfolio.
 
 - [x] Auth (register, login, JWT)
 - [x] Profile (display name, username, bio, tagline)
-- [x] Adventures CRUD (status, visibility, cover, dates)
+- [x] Adventures CRUD (status, visibility, optional cover, dates)
 - [x] Days CRUD with activity types
-- [x] Moments CRUD (types, optional time/location/metrics)
-- [x] Equipment inventory + link to adventures
+- [x] Moments CRUD (types, optional time/location/metrics, optional photo)
+- [x] Equipment inventory + link to adventures (`equipmentIds` on create/update)
+- [x] Equipment displayed on private and public adventure pages
+- [x] Nested equipment creation during adventure form
 - [x] Dashboard home with stats
 - [x] Public portfolio (`/profile/{username}`)
+- [x] Public adventure page (cover, days, moments, photos, equipment, cloud links)
 - [x] English + Ukrainian
-- [ ] Side sheets for desktop create/edit (UX migration)
-- [ ] Photo storage backend (currently URLs / local preview)
-- [ ] Places and wishlist backend
+- [x] Image upload (`ImageUploadField`) — device upload, not URL paste
+- [x] Object storage abstraction (`MediaStorageService`) — R2 for production
+- [x] Moment photo display on private/public timeline cards
+- [x] Responsive forms (mobile full-screen, desktop sheets)
+- [x] Places / Wishlist visible in nav with Soon badge (disabled)
+- [ ] Photo albums / galleries (multiple photos per moment)
+- [ ] Places and wishlist backend + UX
 
-**Success metric:** User completes one real adventure journal entirely in Memora.
+**Success metric:** User completes one real adventure journal entirely in Memora, with photos and equipment, and publishes it publicly.
 
-## Phase 2 — Cloud Media
+## Phase 2 — Cloud Media & Albums
 
-**Goal:** Large videos and albums live in the cloud; Memora links to them elegantly.
+**Goal:** Richer media storytelling without turning Memora into a CDN.
 
+- Photo albums / galleries per moment or adventure
 - Cloud link CRUD wired end-to-end in UI
 - Provider icons and embed previews
 - Attach links to moments and adventures
 - Optional oEmbed metadata fetch
-- Future: direct upload to object storage (S3/R2) for photos
+- Orphan file cleanup when URLs change
 
 ## Phase 3 — Map Improvements
 
@@ -40,6 +48,7 @@ Phases are sequential themes — not fixed dates. Ship each phase completely eno
 - Day route visualization
 - Public portfolio map section
 - Offline-friendly map tile caching
+- Saved Places feature (replace placeholder nav section)
 
 ## Phase 4 — Participants
 
@@ -86,6 +95,8 @@ Phases are sequential themes — not fixed dates. Ship each phase completely eno
 - Expense splitting / group payments
 - Real-time collaborative editing
 - AI itinerary generation as core product
+- Heavy Place entity creation as primary location UX
+- Manual image URL paste for covers and moment photos
 
 ## How to propose roadmap changes
 

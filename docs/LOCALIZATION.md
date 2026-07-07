@@ -25,7 +25,7 @@ URLs always include locale: `/en/dashboard`, `/uk/profile/username`.
 ### Rules
 
 1. **No hardcoded UI strings** in components — use `useTranslations` (client) or `getTranslations` (server)
-2. Namespace by feature: `dashboard.tripEventModal`, `publicProfile`, `auth`, etc.
+2. Namespace by feature: `dashboard.tripEventModal`, `publicProfile`, `auth`, `common.imageUpload`, etc.
 3. Add keys to **both** `en.json` and `uk.json` in the same PR
 4. Use ICU plurals where counts appear: `{count, plural, one {# day} other {# days}}`
 5. Metadata titles via `lib/i18n/page-metadata.ts` helpers
@@ -44,6 +44,10 @@ Paths in `routes.ts` are locale-relative.
 
 `LocaleSwitcher` in site header — preserves current path when switching language.
 
+### Disabled nav badges
+
+Unfinished sections (Places, Wishlist) use localized **Soon** / **Скоро** badges via `common.comingSoon` (or equivalent nav namespace). Both locales must be updated together.
+
 ## Translation keys
 
 Organize JSON hierarchically:
@@ -57,6 +61,13 @@ Organize JSON hierarchically:
           "addEvent": "Add moment"
         }
       }
+    }
+  },
+  "common": {
+    "imageUpload": {
+      "tapToUpload": "Tap to upload",
+      "replace": "Replace",
+      "remove": "Remove"
     }
   }
 }
@@ -72,7 +83,7 @@ Backend reference tables store **`name_en`** and **`name_uk`** per row.
 
 API resolves display name via `ReferenceLabels.resolveName(entity, locale)` based on `Accept-Language` or service locale parameter.
 
-Frontend maps stable **`code`** (e.g. `FOOD`) to icons/colors; display name comes from API reference fetch.
+Frontend maps stable **`code`** (e.g. `FOOD`, `PHOTO_VIDEO`) to icons/colors; display name comes from API reference fetch.
 
 Do not duplicate reference labels in JSON message files — single source in database seeds.
 

@@ -62,17 +62,17 @@ Format: **Decision** · **Context** · **Consequences**
 
 **Context:** Emotional recall is visual. Competing on forms and tables is a losing strategy.
 
-**Consequences:** Cover images on adventures, photo picker on moments, public portfolio hero treatment. Blob storage deferred — URLs and cloud links first ([ROADMAP.md](./ROADMAP.md) Phase 2).
+**Consequences:** Cover images on adventures, photo upload on moments, public portfolio hero treatment. MVP: one cover per adventure, one photo per moment. Albums deferred to Phase 2.
 
 ---
 
-## ADR-007: Cloud links instead of large uploads
+## ADR-007: Cloud links for large video; object storage for photos
 
-**Decision:** Store URLs to external providers (YouTube, Drive, etc.) with provider reference — not multi-GB video upload in v1.
+**Decision:** Store URLs to external providers (YouTube, Drive, etc.) for large video. Upload photos to **object storage** (Cloudflare R2) via `MediaStorageService`.
 
-**Context:** Video files are large; users already store in cloud services. Memora is a journal, not a CDN.
+**Context:** Video files are large; users already store in cloud services. Photos are small enough to host reliably and must display inline in the journal.
 
-**Consequences:** `CloudLink` entity; `PHOTO_VIDEO` moment type; Phase 2 expands previews. Photo upload may add object storage later without replacing links.
+**Consequences:** `CloudLink` entity for external video; `PHOTO_VIDEO` moment type; `POST /media/upload` for images; `photoUrl` / `coverImageUrl` on entities. No manual URL paste in UI for covers or moment photos.
 
 ---
 
@@ -153,6 +153,96 @@ Format: **Decision** · **Context** · **Consequences**
 **Context:** Nesting `backend/` inside the frontend project blurred ownership, complicated tooling (Node + Gradle in one tree), and made independent deploy/versioning harder.
 
 **Consequences:** Developers clone both repos side by side; `docker-compose.yml` is split per repo; docs reference `../memora-backend` for API work; Flyway migrations live only in `memora-backend`.
+
+---
+
+## ADR-016: Cloudflare R2 for production image storage
+
+**Decision:** Production uploads use **Cloudflare R2** via the S3-compatible API. Local disk is development-only.
+
+**Context:** Railway ephemeral filesystem loses files on redeploy. Memora needs durable, CDN-friendly photo hosting.
+
+**Consequences:** Env vars `STORAGE_PROVIDER=r2`, `S3_*`, `S3_PUBLIC_BASE_URL`. Frontend sets `NEXT_PUBLIC_MEDIA_BASE_URL`. Do not mount Railway volumes for photos in production.
+
+---
+
+## ADR-017: MediaStorageService abstraction
+
+**Decision:** All image uploads go through `MediaStorageService` with pluggable `LocalMediaStorageService` (dev) and `S3CompatibleMediaStorageService` (prod).
+
+**Context:** Swap storage backends without changing controllers or entity fields. Entities store public URL strings.
+
+**Consequences:** `upload(file, folder)` returns `{ url, key, fileName, contentType, size }`. `delete(key)` for future cleanup. `GET /api/media/files/**` only when `STORAGE_PROVIDER=local`.
+
+---
+
+## ADR-018: One photo per Moment (MVP)
+
+**Decision:** Each moment has at most **one** optional `photoUrl`. No gallery/album in MVP.
+
+**Context:** Ship reliable upload + display before multi-image complexity. Mock mode legacy `photoIds` bridged in frontend for timeline rendering.
+
+**Consequences:** `moments.photo_url` column (V10). `ImageUploadField` on moment form. `resolveEventRelations()` maps `photoUrl` → `event.photos[]` for cards. Albums in Phase 2.
+
+---
+
+## ADR-019: Optional adventure cover image
+
+**Decision:** `coverImageUrl` is optional on create and update. UI shows gradient placeholder when absent.
+
+**Context:** Friction blocks journal creation. Cover can be added later.
+
+**Consequences:** `CoverImage` component with fallback. Adventure create/update accepts blank/missing cover. Public and private heroes handle null cover gracefully.
+
+---
+
+## ADR-020: Equipment on public and private adventure pages
+
+**Decision:** Equipment attached to an adventure is shown on **both** the private detail page and the public adventure page.
+
+**Context:** Gear is part of the travel story — readers want to see what was used, not only the owner in edit mode.
+
+**Consequences:** `TripEquipmentSection` (private), `PublicTripEquipment` (public). Public API includes equipment in `PublicAdventureDetailDto`. Inventory remains profile-scoped; adventure links are not copies.
+
+---
+
+## ADR-021: Nested equipment creation during adventure form
+
+**Decision:** Adding equipment while creating an adventure opens a **nested flow** without losing form state: side sheet on desktop, full-screen on mobile.
+
+**Context:** Users discover missing gear mid-adventure setup. Navigating away loses progress.
+
+**Consequences:** `EquipmentCreateNestedFlow` + `EquipmentSelector` in trip form. New equipment auto-selected after create. `equipmentIds` sent in adventure create/update payload (transactional sync on backend).
+
+---
+
+## ADR-022: Disabled unfinished navigation (Places, Wishlist)
+
+**Decision:** Places and Wishlist appear in dashboard navigation with a **Soon** / **Скоро** badge but are not active product areas. Direct routes redirect to dashboard.
+
+**Context:** Signal roadmap without shipping broken empty flows.
+
+**Consequences:** Nav config marks items disabled; placeholder pages or redirects. No Place creation UX until Phase 3+. Wishlist deferred.
+
+---
+
+## ADR-023: PHOTO_VIDEO replaces DRONE as moment type
+
+**Decision:** There is **no** `DRONE` moment type. Use **`PHOTO_VIDEO`** for drone footage, action camera, phone video, and camera photos.
+
+**Context:** Drone content is a media format, not a separate activity category. Fewer types = simpler picker.
+
+**Consequences:** Reference seed uses `PHOTO_VIDEO`. Frontend validation excludes `DRONE` from moment types. Equipment category `DRONE` remains for classifying gear only.
+
+---
+
+## ADR-024: Lightweight location on Moment (not Place creation)
+
+**Decision:** Moment location is optional embedded metadata (name, latitude, longitude) via map pin UX — not a heavy **Place** entity creation flow.
+
+**Context:** Users want "where was this?" without maintaining a place catalog. Place tables exist for future features.
+
+**Consequences:** `MomentLocationDto` on API; map picker in moment form. No standalone Place create form in current product. Places nav section unfinished.
 
 ---
 

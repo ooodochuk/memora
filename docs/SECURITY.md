@@ -64,6 +64,7 @@ No role-based access in Phase 1. Authorization = **does this profile own the res
 - Adventures, equipment: `owner_id` = current profile
 - Days, moments: owned through parent adventure
 - Profile update: current user's profile only
+- Media upload: authenticated users only; files associated via entity URLs they control
 
 Violations → `AccessDeniedException` (403) or `ResourceNotFoundException` (404) to avoid leaking existence.
 
@@ -84,12 +85,21 @@ Design services to accept role checks without rewriting ownership logic.
 - `/public/**`
 - `/reference/**` (read-only lookup)
 - `/status`, `/actuator/health`, `/actuator/info`
+- `/media/files/**` (local storage file serving only — not upload)
 - Swagger UI paths
 - `OPTIONS /**`
 
-**All other routes:** `authenticated()`
+**Authenticated (examples):**
+
+- `/media/upload` — image upload
+- `/adventures/**`, `/moments/**`, `/equipment/**`
+- All other CRUD routes
 
 Restart backend after `SecurityConfig` changes — stale processes cause false 401 on new public paths.
+
+## Object storage credentials
+
+S3/R2 access keys (`S3_ACCESS_KEY`, `S3_SECRET_KEY`) are **server-side only** — never exposed to the frontend. The browser receives public CDN URLs after upload, not storage credentials.
 
 ## CORS
 
@@ -116,6 +126,7 @@ Never redirect to HTML login pages — API is JSON-only.
 - [ ] DTO validation with `@Valid`
 - [ ] Secrets only via environment variables in production
 - [ ] Integration test for auth required / public access
+- [ ] Upload endpoints validate content type and size
 
 ## Related docs
 

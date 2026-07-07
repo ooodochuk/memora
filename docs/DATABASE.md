@@ -18,12 +18,14 @@ JPA `ddl-auto: validate` — Hibernate never auto-alters schema. **All schema ch
 |---------|------|---------|
 | V1 | `V1__initial_schema.sql` | users, profiles |
 | V2 | `V2__reference_tables.sql` | Reference lookup tables |
-| V3 | `V3__seed_reference_data.sql` | Bilingual reference seeds |
+| V3 | `V3__seed_reference_data.sql` | Bilingual reference seeds (`PHOTO_VIDEO`, not `DRONE` moment type) |
 | V4 | `V4__domain_tables.sql` | adventures, days, moments, equipment, cloud_links, places |
-| V5 | `V5__seed_equipment_categories.sql` | Default equipment categories |
+| V5 | `V5__seed_equipment_categories.sql` | Default equipment categories (includes `DRONE` gear category) |
 | V6 | `V6__adventure_type_and_tags.sql` | adventure_type, tags[] |
 | V7 | `V7__reference_audit_columns.sql` | Audit columns on reference tables |
 | V8 | `V8__profile_tagline.sql` | profiles.tagline |
+| V9 | `V9__add_archived_adventure_status.sql` | Archived status |
+| V10 | `V10__moment_photo_url.sql` | moments.photo_url |
 
 ### Naming new migrations
 
@@ -55,6 +57,10 @@ Review query plans when lists grow — add indexes before pagination ships.
 Referential integrity via PostgreSQL FK constraints in Flyway SQL.
 
 **Cascade policy:** Prefer soft ownership checks in services; explicit `ON DELETE CASCADE` only where orphan rows are impossible to recover (document in migration comments).
+
+### Adventure equipment
+
+`adventure_equipment` join table links `adventures` ↔ `equipment_items`. Replaced atomically on adventure update when `equipmentIds` is sent. Equipment rows are never duplicated per adventure.
 
 ## Naming conventions
 
@@ -88,23 +94,32 @@ JVM and JDBC configured for **UTC**. Store instants as `timestamptz`. Display in
 ## JSON / arrays
 
 - `adventures.tags` — `TEXT[]`
-- Moment location may be stored as JSON or scalar columns per `V4` definition
+- Moment location stored as embedded columns / JSON per `V4` definition
+- `adventures.cover_image_url`, `moments.photo_url` — `VARCHAR(2048)` public object-storage URLs
+
+## Media storage (not in DB)
+
+Binary files live in **object storage** (Cloudflare R2 in production). Database stores URL strings only — not BLOBs. Upload metadata `key` returned from API; optional future migration to track storage keys for cleanup.
 
 ## Future migrations
 
 Planned schema work (see [ROADMAP.md](./ROADMAP.md)):
 
+- Photo albums / gallery tables (multiple photos per moment)
 - Participants table
-- Photo blob metadata / storage keys
+- Storage key cleanup / orphan file tracking
 - Social graph (follows)
 - Admin audit log
 - Full-text search indexes for public portfolios
+- Places / wishlist domain tables when product ships
 
 Each requires Flyway migration + entity update + API changelog.
 
 ## Backup and restore
 
 Production: schedule `pg_dump` on volume `memora_pg_data`. Test restore procedure before relying on backups.
+
+Object storage (R2): enable bucket versioning and lifecycle rules separately from Postgres backups.
 
 ## Related docs
 

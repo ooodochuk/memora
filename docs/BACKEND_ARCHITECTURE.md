@@ -41,7 +41,8 @@ com.memora.<feature>/
 | `day` | Days and day activities |
 | `moment` | Moments (events) |
 | `equipment` | Inventory and categories |
-| `media` | Cloud links, places |
+| `media` | Upload API, cloud links |
+| `media.storage` | `MediaStorageService` implementations |
 | `reference` | Read-only reference data API |
 | `publicportfolio` | Unauthenticated public reads |
 | `security` | JWT, filters, security config |
@@ -64,13 +65,38 @@ HTTP Request
 
 **Repositories** are Spring Data interfaces — query methods and `@Query` where needed.
 
+## Media storage
+
+Object storage is abstracted behind **`MediaStorageService`**:
+
+```java
+MediaUploadResponse upload(MultipartFile file, String folder);
+void delete(String key);
+```
+
+| Implementation | Active when | Notes |
+|----------------|-------------|-------|
+| `LocalMediaStorageService` | `STORAGE_PROVIDER=local` (default) | Dev only; serves files via `GET /api/media/files/**` |
+| `S3CompatibleMediaStorageService` | `STORAGE_PROVIDER=r2` or `s3` | **Production** — Cloudflare R2 via AWS SDK S3 client |
+
+Configuration via environment variables — never hardcoded credentials:
+
+- `STORAGE_PROVIDER`, `S3_ENDPOINT`, `S3_BUCKET`, `S3_REGION`, `S3_ACCESS_KEY`, `S3_SECRET_KEY`, `S3_PUBLIC_BASE_URL`
+- Local dev: `MEDIA_UPLOAD_DIR`, `MEDIA_PUBLIC_BASE_URL`
+
+`POST /api/media/upload` — authenticated, `multipart/form-data`, field `file`, images only, max 5 MB.
+
+Returns `{ url, key, fileName, contentType, size }`. Adventure `coverImageUrl` and moment `photoUrl` store the public `url` string.
+
+**Do not rely on local disk on Railway production** — use R2 with a public CDN URL.
+
 ## DTOs
 
 Request/response types are **Java records** in `dto/` subpackages:
 
-- `CreateAdventureRequest`, `UpdateAdventureRequest`
-- `CreateMomentRequest`, `MomentDto`
-- etc.
+- `CreateAdventureRequest`, `UpdateAdventureRequest` — includes optional `equipmentIds`
+- `CreateMomentRequest`, `MomentDto` — includes optional `photoUrl`
+- `MediaUploadResponse` — upload result with `key`
 
 Validation: Jakarta Bean Validation (`@NotBlank`, `@Size`, `@Valid` on controller parameters).
 
@@ -112,6 +138,8 @@ Stateless JWT — see [SECURITY.md](./SECURITY.md).
 
 `@Transactional` on service methods. Read-only for queries. Writes default to read-write. No `open-in-view` — lazy loading outside transactions is avoided.
 
+Adventure create/update syncs `equipmentIds` to `adventure_equipment` in the same transaction (replace-all on update).
+
 ## API documentation
 
 springdoc-openapi 2.x:
@@ -124,10 +152,11 @@ springdoc-openapi 2.x:
 
 | File | Purpose |
 |------|---------|
-| `application.yml` | Defaults (port 8080, context `/api`, JWT, CORS) |
+| `application.yml` | Defaults (port 8080, context `/api`, JWT, CORS, media) |
 | `application-dev.yml` | Postgres on 5433, SQL logging |
+| `application-prod.yml` | Production overrides, R2 env bindings |
 
-Environment variables for Docker: `SPRING_DATASOURCE_*`, `JWT_SECRET`, `CORS_ALLOWED_ORIGINS`.
+Environment variables for Docker/Railway: `SPRING_DATASOURCE_*`, `JWT_SECRET`, `CORS_ALLOWED_ORIGINS`, `STORAGE_PROVIDER`, `S3_*`.
 
 ## Testing
 

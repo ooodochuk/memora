@@ -131,6 +131,49 @@ Until then, do not assume pagination fields exist.
 
 Register/login return `{ data: { accessToken, user, profile } }`.
 
+## Media upload
+
+| Method | Path | Auth | Body |
+|--------|------|------|------|
+| POST | `/media/upload` | **Required** | `multipart/form-data`, field `file` |
+
+Constraints: image content types only (JPEG, PNG, GIF, WebP, SVG); max 5 MB.
+
+Response `201`:
+
+```json
+{
+  "data": {
+    "url": "https://media.example.com/images/uuid.jpg",
+    "key": "images/uuid.jpg",
+    "fileName": "uuid.jpg",
+    "contentType": "image/jpeg",
+    "size": 123456
+  }
+}
+```
+
+Store `url` on `Adventure.coverImageUrl` or `Moment.photoUrl`. Do not expose upload as a manual URL paste flow in the UI.
+
+Local dev only: `GET /api/media/files/**` serves uploaded files when `STORAGE_PROVIDER=local`. Disabled when using R2/S3.
+
+## Adventure endpoints (equipment)
+
+Create and update adventures accept optional `equipmentIds: string[]`:
+
+- **Create:** links equipment after adventure insert (same transaction)
+- **Update:** `equipmentIds` present → replace all links; `null` → leave unchanged; `[]` → clear all
+
+Equipment must belong to the adventure owner.
+
+Separate attach/detach endpoints on `/adventures/{id}/equipment` remain for inline management on the adventure detail page.
+
+## Moment endpoints (photo)
+
+Create/update moments accept optional `photoUrl` (string, max 2048). Update supports `clearPhoto: true` to remove.
+
+One photo per moment for MVP — no gallery array on the API.
+
 ## Public endpoints
 
 | Method | Path |
@@ -140,8 +183,11 @@ Register/login return `{ data: { accessToken, user, profile } }`.
 | GET | `/status` |
 | GET | `/reference/*` |
 | GET | `/actuator/health` |
+| GET | `/media/files/**` | Local storage only |
 
-Configured in `SecurityConfig` as `permitAll`.
+Configured in `SecurityConfig` as `permitAll` (upload requires auth).
+
+Public adventure detail returns: adventure, days, moments (with `photoUrl`), equipment, cloud links.
 
 ## Reference data endpoints
 
@@ -159,6 +205,7 @@ Read-only, locale via `Accept-Language` or query param per `ReferenceService` im
 2. Unwrap `response.data` in feature `api.ts`
 3. Throw `ApiError` on `!response.ok`
 4. Map error `code` to translated user strings in UI layer
+5. Use `apiClient.upload()` for `FormData` — not JSON
 
 ## Related docs
 

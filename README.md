@@ -11,6 +11,7 @@ Memora is a premium adventure memory platform — document adventures, days, mom
 - **Data:** TanStack Query, Zod, React Hook Form
 - **i18n:** next-intl (English, Ukrainian)
 - **API:** REST backend ([memora-backend](https://github.com/ooodochuk/memora-backend)) — Java 21, Spring Boot 3, PostgreSQL
+- **Media:** Cloudflare R2 (S3-compatible) for production photos
 
 ## Local development
 
@@ -58,6 +59,7 @@ With `NEXT_PUBLIC_USE_MOCKS=true` (default in `.env.example`), the app uses loca
 |----------|----------|-------------|
 | `NEXT_PUBLIC_API_URL` | Yes (API mode) | Backend base URL, e.g. `http://localhost:8080/api` |
 | `NEXT_PUBLIC_USE_MOCKS` | No | `true` = fixture data; `false` = HTTP API (default: `true`) |
+| `NEXT_PUBLIC_MEDIA_BASE_URL` | Prod (R2) | Public CDN base URL for uploaded images (must match backend `S3_PUBLIC_BASE_URL`) |
 | `NEXT_PUBLIC_MOCK_DELAY_MS` | No | Artificial delay in mock mode for loading UI tests |
 
 Copy `.env.example` to `.env.local` for development. See `.env.production.example` for production/Docker reference values.
@@ -68,7 +70,8 @@ Copy `.env.example` to `.env.local` for development. See `.env.production.exampl
 
 1. Set `NEXT_PUBLIC_API_URL` to your production API URL at **build time**.
 2. Set `NEXT_PUBLIC_USE_MOCKS=false`.
-3. Build: `npm run build` → `npm run start`.
+3. Set `NEXT_PUBLIC_MEDIA_BASE_URL` to your R2/CDN public URL.
+4. Build: `npm run build` → `npm run start`.
 
 ### Docker (frontend only)
 
@@ -76,7 +79,7 @@ Copy `.env.example` to `.env.local` for development. See `.env.production.exampl
 docker compose up --build
 ```
 
-Requires the API running separately (e.g. from [memora-backend](https://github.com/ooodochuk/memora-backend)). Pass `NEXT_PUBLIC_API_URL` as a build arg or in `.env` when building the image.
+Requires the API running separately (e.g. from [memora-backend](https://github.com/ooodochuk/memora-backend)). Pass `NEXT_PUBLIC_API_URL` and `NEXT_PUBLIC_MEDIA_BASE_URL` as build args or in `.env` when building the image.
 
 | Service | URL |
 |---------|-----|
@@ -93,3 +96,7 @@ npm run build    # production build
 npm run start    # serve production build
 npm run lint     # ESLint
 ```
+
+## Documentation
+
+Product and architecture docs live in [`docs/`](./docs/README.md) — start with [PRODUCT.md](./docs/PRODUCT.md) and [ARCHITECTURE_DECISIONS.md](./docs/ARCHITECTURE_DECISIONS.md).
