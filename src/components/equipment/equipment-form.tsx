@@ -17,9 +17,13 @@ import {
  emptyEquipmentFormValues,
  type EquipmentFormValues,
 } from "@/lib/validations/equipment-form";
-import { formatWeightGrams } from "@/lib/equipment/categories";
 import { EquipmentCategorySelector } from "@/components/equipment/equipment-category-selector";
 import { FormField } from "@/components/design-system/form-field";
+import { FormFieldsGrid } from "@/components/design-system/form-fields-grid";
+import {
+ formControlClassName,
+ formDateControlClassName,
+} from "@/lib/design-system/form-layout";
 import { JournalCard } from "@/components/design-system/journal-card";
 import { Eyebrow } from "@/components/design-system/typography";
 import { Button } from "@/components/ui/button";
@@ -33,6 +37,7 @@ import {
  SelectValue,
 } from "@/components/ui/select";
 import type { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface EquipmentFormProps {
  mode: "create" | "edit";
@@ -56,23 +61,25 @@ function FormSection({
  icon: LucideIcon;
  eyebrow: string;
  title: string;
- description: string;
+ description?: string;
  children: React.ReactNode;
 }) {
  return (
- <JournalCard padding="md" className="space-y-5">
+ <JournalCard padding="md" className="space-y-4">
  <div className="flex gap-3">
  <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted/70 text-primary">
  <Icon className="size-4" strokeWidth={1.75} />
  </div>
- <div className="space-y-1">
+ <div className="min-w-0 space-y-1">
  <Eyebrow>{eyebrow}</Eyebrow>
  <h2 className="font-heading text-lg font-medium tracking-tight">
  {title}
  </h2>
+ {description ? (
  <p className="text-sm leading-relaxed text-muted-foreground">
  {description}
  </p>
+ ) : null}
  </div>
  </div>
  {children}
@@ -134,7 +141,6 @@ export function EquipmentForm({
  });
 
  const photoUrl = watch("photoUrl");
- const weightGrams = watch("weightGrams");
 
  async function onSubmit(values: EquipmentFormValues) {
  if (mockMode) {
@@ -182,21 +188,26 @@ export function EquipmentForm({
  const cancelHref = cancelHrefProp ?? dashboardRoutes.equipment();
 
  return (
- <form id={formId} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+ <form id={formId} onSubmit={handleSubmit(onSubmit)} className="space-y-4">
  <FormSection
  icon={PenLine}
  eyebrow={t("sections.identity.eyebrow")}
  title={t("sections.identity.title")}
  description={t("sections.identity.description")}
  >
- <div className="grid gap-5 sm:grid-cols-2">
+ <FormFieldsGrid>
  <FormField
  label={t("fields.name.label")}
  htmlFor="name"
  hint={t("fields.name.hint")}
  error={errors.name?.message}
  >
- <Input id="name" {...register("name")} aria-invalid={!!errors.name} />
+ <Input
+ id="name"
+ className={formControlClassName}
+ {...register("name")}
+ aria-invalid={!!errors.name}
+ />
  </FormField>
 
  <FormField
@@ -227,7 +238,12 @@ export function EquipmentForm({
  htmlFor="brand"
  error={errors.brand?.message}
  >
- <Input id="brand" {...register("brand")} aria-invalid={!!errors.brand} />
+ <Input
+ id="brand"
+ className={formControlClassName}
+ {...register("brand")}
+ aria-invalid={!!errors.brand}
+ />
  </FormField>
 
  <FormField
@@ -235,32 +251,32 @@ export function EquipmentForm({
  htmlFor="model"
  error={errors.model?.message}
  >
- <Input id="model" {...register("model")} aria-invalid={!!errors.model} />
+ <Input
+ id="model"
+ className={formControlClassName}
+ {...register("model")}
+ aria-invalid={!!errors.model}
+ />
  </FormField>
- </div>
+ </FormFieldsGrid>
  </FormSection>
 
  <FormSection
  icon={Scale}
  eyebrow={t("sections.specs.eyebrow")}
  title={t("sections.specs.title")}
- description={t("sections.specs.description")}
  >
- <div className="grid gap-5 sm:grid-cols-3">
+ <FormFieldsGrid>
  <FormField
  label={t("fields.weightGrams.label")}
  htmlFor="weightGrams"
- hint={
- weightGrams > 0
- ? formatWeightGrams(weightGrams)
- : t("fields.weightGrams.hint")
- }
  error={errors.weightGrams?.message}
  >
  <Input
  id="weightGrams"
  type="number"
  min={1}
+ className={formControlClassName}
  {...register("weightGrams", { valueAsNumber: true })}
  aria-invalid={!!errors.weightGrams}
  />
@@ -269,15 +285,20 @@ export function EquipmentForm({
  <FormField
  label={t("fields.purchaseDate.label")}
  htmlFor="purchaseDate"
- hint={t("fields.purchaseDate.hint")}
+ optional
  >
- <Input id="purchaseDate" type="date" {...register("purchaseDate")} />
+ <Input
+ id="purchaseDate"
+ type="date"
+ className={formDateControlClassName}
+ {...register("purchaseDate")}
+ />
  </FormField>
 
  <FormField
  label={t("fields.purchasePrice.label")}
  htmlFor="purchasePrice"
- hint={t("fields.purchasePrice.hint")}
+ optional
  error={errors.purchasePrice?.message}
  >
  <Input
@@ -285,10 +306,11 @@ export function EquipmentForm({
  type="number"
  min={0}
  step={1}
+ className={formControlClassName}
  {...register("purchasePrice", { valueAsNumber: true })}
  />
  </FormField>
- </div>
+ </FormFieldsGrid>
  </FormSection>
 
  <FormSection
@@ -297,7 +319,7 @@ export function EquipmentForm({
  title={t("sections.details.title")}
  description={t("sections.details.description")}
  >
- <div className="space-y-5">
+ <div className="space-y-4">
  <FormField
  label={t("fields.notes.label")}
  htmlFor="notes"
@@ -309,7 +331,6 @@ export function EquipmentForm({
  <FormField
  label={t("fields.isActive.label")}
  htmlFor="isActive"
- hint={t("fields.isActive.hint")}
  >
  <Controller
  name="isActive"
@@ -319,7 +340,7 @@ export function EquipmentForm({
  value={field.value ? "active" : "inactive"}
  onValueChange={(value) => field.onChange(value === "active")}
  >
- <SelectTrigger id="isActive" className="w-full sm:max-w-xs">
+ <SelectTrigger id="isActive" className={cn(formControlClassName, "w-full md:max-w-xs")}>
  <SelectValue />
  </SelectTrigger>
  <SelectContent>
@@ -339,15 +360,14 @@ export function EquipmentForm({
  icon={ImageIcon}
  eyebrow={t("sections.photo.eyebrow")}
  title={t("sections.photo.title")}
- description={t("sections.photo.description")}
  >
  <FormField
  label={t("fields.photoUrl.label")}
  htmlFor="photoUrl"
- hint={t("fields.photoUrl.hint")}
+ optional
  error={errors.photoUrl?.message}
  >
- <Input id="photoUrl" {...register("photoUrl")} />
+ <Input id="photoUrl" className={formControlClassName} {...register("photoUrl")} />
  </FormField>
 
  <div className="mt-4 overflow-hidden rounded-xl border border-border bg-muted/40">

@@ -14,8 +14,13 @@ import {
 } from "@/lib/validations/trip-day-form";
 import { DayActivityPicker } from "@/components/day-activities";
 import { FormField } from "@/components/design-system/form-field";
+import {
+ formControlClassName,
+ formDateControlClassName,
+} from "@/lib/design-system/form-layout";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 
 interface TripDayFormProps {
   formId?: string;
@@ -82,7 +87,7 @@ export function TripDayForm({
     <form
       id={formId}
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="space-y-5"
+      className="space-y-4"
     >
       <FormField
         label={t("fields.date.label")}
@@ -92,7 +97,7 @@ export function TripDayForm({
         <Input
           id="date"
           type="date"
-          className="h-11"
+          className={formDateControlClassName}
           {...register("date")}
           aria-invalid={!!errors.date}
         />
@@ -106,7 +111,7 @@ export function TripDayForm({
         <Input
           id="title"
           placeholder={t("fields.title.placeholder")}
-          className="h-11 font-heading"
+          className={cn(formControlClassName, "font-heading")}
           {...register("title")}
           aria-invalid={!!errors.title}
         />

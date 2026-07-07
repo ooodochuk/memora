@@ -21,7 +21,8 @@
     "learnMore": "Дізнатись більше",
     "days": "{count, plural, one {# день} few {# дні} many {# днів} other {# днів}}",
     "events": "{count, plural, one {# момент} few {# моменти} many {# моментів} other {# моментів}}",
-    "comingSoon": "Незабаром"
+    "comingSoon": "Незабаром",
+    "optional": "Необов'язково"
   },
   "nav": {
     "home": "Головна",
@@ -1028,16 +1029,13 @@
           "label": "Модель"
         },
         "weightGrams": {
-          "label": "Вага (грами)",
-          "hint": "Зважено або за специфікацією."
+          "label": "Вага (г)"
         },
         "purchaseDate": {
-          "label": "Дата покупки",
-          "hint": "Необов'язково"
+          "label": "Дата покупки"
         },
         "purchasePrice": {
-          "label": "Ціна покупки (EUR)",
-          "hint": "Необов'язково"
+          "label": "Ціна (EUR)"
         },
         "notes": {
           "label": "Нотатки",

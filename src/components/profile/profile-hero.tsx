@@ -38,7 +38,7 @@ export async function ProfileHero({ profile, locale }: ProfileHeroProps) {
  </div>
 
  <div className="-mt-16 relative z-10 px-4 sm:-mt-20 sm:px-6 lg:px-8">
- <div className="mx-auto max-w-6xl">
+ <div className="mx-auto w-full max-w-screen-2xl">
  <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
  <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
  <Avatar className="size-24 border-4 border-background shadow-lg sm:size-28">

@@ -15,6 +15,7 @@ import {
  type CloudLinkFormValues,
 } from "@/lib/validations/cloud-link-form";
 import { FormField } from "@/components/design-system/form-field";
+import { formControlClassName } from "@/lib/design-system/form-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -86,7 +87,7 @@ export function CloudLinkForm({
  <Select value={field.value} onValueChange={field.onChange}>
  <SelectTrigger
  id="provider"
- className="h-11 w-full rounded-xl sm:h-10"
+ className={cn(formControlClassName, "rounded-xl")}
  aria-invalid={!!errors.provider}
  >
  <SelectValue placeholder={t("fields.provider.placeholder")} />
@@ -132,6 +133,7 @@ export function CloudLinkForm({
  <Input
  id="url"
  type="url"
+ className={formControlClassName}
  placeholder={t("fields.url.placeholder")}
  aria-invalid={!!errors.url}
  {...register("url")}
@@ -146,6 +148,7 @@ export function CloudLinkForm({
  >
  <Input
  id="cloud-link-title"
+ className={formControlClassName}
  placeholder={t("fields.title.placeholder")}
  aria-invalid={!!errors.title}
  {...register("title")}

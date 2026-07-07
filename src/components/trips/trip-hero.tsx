@@ -35,7 +35,7 @@ export async function TripHero({ trip, locale }: TripHeroProps) {
  </div>
 
  <div className="relative z-10 -mt-28 px-5 sm:-mt-32 sm:px-6 lg:px-10">
- <div className="mx-auto max-w-6xl space-y-6">
+ <div className="mx-auto w-full max-w-screen-2xl space-y-6">
  <div className="max-w-3xl space-y-5">
  <div className="flex flex-wrap items-center gap-2">
  {trip.status !== "published" && (

@@ -12,11 +12,19 @@ import { useCurrentProfile, useCurrentUser, useLogout } from "@/features/auth/ho
 
 function SettingsSkeleton() {
   return (
-    <div className="mx-auto max-w-2xl space-y-4">
+    <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
       <JournalCard padding="lg" className="space-y-3">
         <Skeleton className="h-6 w-40 rounded-md" />
-        <Skeleton className="h-4 w-full max-w-sm rounded-md" />
+        <Skeleton className="h-4 w-full rounded-md" />
         <Skeleton className="h-10 w-32 rounded-md" />
+      </JournalCard>
+      <JournalCard padding="lg" className="space-y-3">
+        <Skeleton className="h-6 w-36 rounded-md" />
+        <Skeleton className="h-10 w-40 rounded-md" />
+      </JournalCard>
+      <JournalCard padding="lg" className="space-y-3 lg:col-span-2 xl:col-span-1">
+        <Skeleton className="h-6 w-32 rounded-md" />
+        <Skeleton className="h-10 w-28 rounded-md" />
       </JournalCard>
     </div>
   );
@@ -63,7 +71,7 @@ export function SettingsPageClient() {
 
   return (
     <DashboardPageContent title={t("title")} subtitle={t("subtitle")}>
-      <div className="mx-auto max-w-2xl space-y-6">
+      <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
         <JournalCard padding="lg" className="space-y-4">
           <div>
             <h2 className="font-heading text-lg font-medium">{t("account.title")}</h2>

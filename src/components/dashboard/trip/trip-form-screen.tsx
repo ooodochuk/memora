@@ -24,7 +24,7 @@ export function TripFormScreen({
   formId,
   submitLabel,
   cancelLabel,
-  size = "default",
+  size = "wide",
   children,
 }: TripFormScreenProps) {
   const router = useRouter();

@@ -17,6 +17,7 @@ import {
 } from "@/lib/equipment/categories";
 import { createCustomEquipmentCategoryId } from "@/lib/equipment/category-accessors";
 import { FormField } from "@/components/design-system/form-field";
+import { formControlClassName } from "@/lib/design-system/form-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -80,6 +81,7 @@ export function EquipmentCustomCategoryForm({
  >
  <Input
  id="category-name"
+ className={formControlClassName}
  autoFocus
  {...register("name")}
  aria-invalid={!!errors.name}

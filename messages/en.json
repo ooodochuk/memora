@@ -21,7 +21,8 @@
     "learnMore": "Learn more",
     "days": "{count, plural, one {# day} other {# days}}",
     "events": "{count, plural, one {# moment} other {# moments}}",
-    "comingSoon": "Coming soon"
+    "comingSoon": "Coming soon",
+    "optional": "Optional"
   },
   "nav": {
     "home": "Home",
@@ -1028,16 +1029,13 @@
           "label": "Model"
         },
         "weightGrams": {
-          "label": "Weight (grams)",
-          "hint": "Weighed or manufacturer spec."
+          "label": "Weight (g)"
         },
         "purchaseDate": {
-          "label": "Purchase date",
-          "hint": "Optional"
+          "label": "Purchase date"
         },
         "purchasePrice": {
-          "label": "Purchase price (EUR)",
-          "hint": "Optional"
+          "label": "Price (EUR)"
         },
         "notes": {
           "label": "Notes",

@@ -47,6 +47,11 @@ import {
 } from "@/lib/validations/trip-form";
 import { AdventureStatusSelect } from "@/components/dashboard/trip/adventure-status-select";
 import { FormField } from "@/components/design-system/form-field";
+import { FormFieldsGrid } from "@/components/design-system/form-fields-grid";
+import {
+ formControlClassName,
+ formDateControlClassName,
+} from "@/lib/design-system/form-layout";
 import { JournalCard } from "@/components/design-system/journal-card";
 import { Eyebrow } from "@/components/design-system/typography";
 import { Button } from "@/components/ui/button";
@@ -95,6 +100,7 @@ interface FormSectionProps {
  icon: LucideIcon;
  children: React.ReactNode;
  className?: string;
+ compact?: boolean;
 }
 
 function FormSection({
@@ -104,10 +110,11 @@ function FormSection({
  icon: Icon,
  children,
  className,
+ compact = false,
 }: FormSectionProps) {
  return (
  <JournalCard padding="lg" className={className}>
- <div className="mb-6 flex items-start gap-4">
+ <div className={cn("flex items-start gap-4", compact ? "mb-4" : "mb-6")}>
  <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted/70 text-primary">
  <Icon className="size-4" strokeWidth={1.75} />
  </div>
@@ -364,14 +371,16 @@ export function TripForm({
  </div>
  </FormSection>
 
- <div className="grid gap-6 lg:grid-cols-2">
+ <div className="grid gap-4 lg:grid-cols-2 lg:items-start">
  <FormSection
  icon={MapPin}
  eyebrow={t("sections.place.eyebrow")}
  title={t("sections.place.title")}
  description={isCreate ? undefined : t("sections.place.description")}
+ compact={isCreate}
+ className="self-start"
  >
- <div className="space-y-5">
+ <FormFieldsGrid>
  <FormField
  label={t("fields.country.label")}
  htmlFor="country"
@@ -380,6 +389,7 @@ export function TripForm({
  >
  <Input
  id="country"
+ className={formControlClassName}
  placeholder={t("fields.country.placeholder")}
  aria-invalid={!!errors.country}
  {...register("country")}
@@ -394,12 +404,13 @@ export function TripForm({
  >
  <Input
  id="region"
+ className={formControlClassName}
  placeholder={t("fields.region.placeholder")}
  aria-invalid={!!errors.region}
  {...register("region")}
  />
  </FormField>
- </div>
+ </FormFieldsGrid>
  </FormSection>
 
  <FormSection
@@ -407,8 +418,10 @@ export function TripForm({
  eyebrow={t("sections.dates.eyebrow")}
  title={t("sections.dates.title")}
  description={isCreate ? undefined : t("sections.dates.description")}
+ compact={isCreate}
+ className="self-start"
  >
- <div className="grid gap-5 sm:grid-cols-2">
+ <FormFieldsGrid>
  <FormField
  label={t("fields.startDate.label")}
  htmlFor="startDate"
@@ -418,6 +431,7 @@ export function TripForm({
  <Input
  id="startDate"
  type="date"
+ className={formDateControlClassName}
  aria-invalid={!!errors.startDate}
  {...register("startDate")}
  />
@@ -428,15 +442,17 @@ export function TripForm({
  htmlFor="endDate"
  hint={isCreate ? undefined : t("fields.endDate.hint")}
  error={errors.endDate?.message}
+ optional={isCreate}
  >
  <Input
  id="endDate"
  type="date"
+ className={formDateControlClassName}
  aria-invalid={!!errors.endDate}
  {...register("endDate")}
  />
  </FormField>
- </div>
+ </FormFieldsGrid>
  </FormSection>
  </div>
 
@@ -446,7 +462,7 @@ export function TripForm({
  title={t("sections.cover.title")}
  description={isCreate ? undefined : t("sections.cover.description")}
  >
- <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_240px]">
+ <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_240px]">
  <FormField
  label={t("fields.coverImageUrl.label")}
  htmlFor="coverImageUrl"
@@ -499,7 +515,7 @@ export function TripForm({
  title={t("sections.sharing.title")}
  description={isCreate ? undefined : t("sections.sharing.description")}
  >
- <div className="grid gap-5 sm:grid-cols-2">
+ <FormFieldsGrid>
  <FormField
  label={t("fields.visibility.label")}
  htmlFor="visibility"
@@ -569,7 +585,7 @@ export function TripForm({
  />
  )}
  </FormField>
- </div>
+ </FormFieldsGrid>
  </FormSection>
 
  {(isCreate || inventory.length > 0) && (

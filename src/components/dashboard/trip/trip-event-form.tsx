@@ -18,6 +18,8 @@ import {
 import { TRIP_VISIBILITY_OPTIONS } from "@/lib/validations/trip-form";
 import { EventTypePicker } from "@/components/dashboard/trip/event-type-picker";
 import { FormField } from "@/components/design-system/form-field";
+import { FormFieldsGrid } from "@/components/design-system/form-fields-grid";
+import { formTimeControlClassName } from "@/lib/design-system/form-layout";
 import { JournalCard } from "@/components/design-system/journal-card";
 import { Eyebrow } from "@/components/design-system/typography";
 import { Button } from "@/components/ui/button";
@@ -52,6 +54,7 @@ interface FormSectionProps {
  description?: string;
  icon: LucideIcon;
  children: React.ReactNode;
+ className?: string;
 }
 
 function FormSection({
@@ -60,10 +63,11 @@ function FormSection({
  description,
  icon: Icon,
  children,
+ className,
 }: FormSectionProps) {
  return (
- <JournalCard padding="lg">
- <div className="mb-6 flex items-start gap-4">
+ <JournalCard padding="lg" className={className}>
+ <div className="mb-4 flex items-start gap-4">
  <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted/70 text-primary">
  <Icon className="size-4" strokeWidth={1.75} />
  </div>
@@ -193,23 +197,25 @@ export function TripEventForm({
  </div>
  </FormSection>
 
- <div className="grid gap-6 lg:grid-cols-2">
+ <div className="grid gap-4 lg:grid-cols-2 lg:items-start">
  <FormSection
  icon={Clock3}
  eyebrow={t("sections.time.eyebrow")}
  title={t("sections.time.title")}
  description={t("sections.time.description")}
+ className="self-start"
  >
- <div className="grid gap-5 sm:grid-cols-2">
+ <FormFieldsGrid>
  <FormField
  label={t("fields.startTime.label")}
  htmlFor="startTime"
- hint={t("fields.startTime.hint")}
+ optional
  error={errors.startTime?.message}
  >
  <Input
  id="startTime"
  type="time"
+ className={formTimeControlClassName}
  aria-invalid={!!errors.startTime}
  {...register("startTime")}
  />
@@ -218,17 +224,18 @@ export function TripEventForm({
  <FormField
  label={t("fields.endTime.label")}
  htmlFor="endTime"
- hint={t("fields.endTime.hint")}
+ optional
  error={errors.endTime?.message}
  >
  <Input
  id="endTime"
  type="time"
+ className={formTimeControlClassName}
  aria-invalid={!!errors.endTime}
  {...register("endTime")}
  />
  </FormField>
- </div>
+ </FormFieldsGrid>
  </FormSection>
 
  <FormSection
@@ -236,6 +243,7 @@ export function TripEventForm({
  eyebrow={t("sections.place.eyebrow")}
  title={t("sections.place.title")}
  description={t("sections.place.description")}
+ className="self-start"
  >
  <FormField
  label={t("fields.place.label")}
@@ -276,12 +284,13 @@ export function TripEventForm({
  </FormSection>
  </div>
 
- <div className="grid gap-6 lg:grid-cols-2">
+ <div className="grid gap-4 lg:grid-cols-2 lg:items-start">
  <FormSection
  icon={ListOrdered}
  eyebrow={t("sections.order.eyebrow")}
  title={t("sections.order.title")}
  description={t("sections.order.description")}
+ className="self-start"
  >
  <FormField
  label={t("fields.order.label")}
@@ -305,6 +314,7 @@ export function TripEventForm({
  eyebrow={t("sections.visibility.eyebrow")}
  title={t("sections.visibility.title")}
  description={t("sections.visibility.description")}
+ className="self-start"
  >
  <FormField
  label={t("fields.visibility.label")}

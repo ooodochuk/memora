@@ -23,6 +23,11 @@ import {
   type TripEventModalFormValues,
 } from "@/lib/validations/trip-event-modal-form";
 import { FormField } from "@/components/design-system/form-field";
+import { FormFieldsGrid } from "@/components/design-system/form-fields-grid";
+import {
+ formControlClassName,
+ formTimeControlClassName,
+} from "@/lib/design-system/form-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -244,7 +249,7 @@ export function TripMomentForm({
 
             {showAdvanced && (
               <div className="space-y-4 border-t border-border px-4 py-4">
-                <div className="grid gap-4 sm:grid-cols-2">
+                <FormFieldsGrid>
                   <FormField
                     label={
                       sleepLabels
@@ -252,11 +257,13 @@ export function TripMomentForm({
                         : t("fields.startTime.label")
                     }
                     htmlFor="event-start"
+                    optional
                     error={errors.startTime?.message}
                   >
                     <Input
                       id="event-start"
                       type="time"
+                      className={formTimeControlClassName}
                       {...register("startTime")}
                     />
                   </FormField>
@@ -267,18 +274,24 @@ export function TripMomentForm({
                         : t("fields.endTime.label")
                     }
                     htmlFor="event-end"
+                    optional
                     error={errors.endTime?.message}
                   >
-                    <Input id="event-end" type="time" {...register("endTime")} />
+                    <Input
+                      id="event-end"
+                      type="time"
+                      className={formTimeControlClassName}
+                      {...register("endTime")}
+                    />
                   </FormField>
-                </div>
+                </FormFieldsGrid>
 
                 {showDistance && (
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <FormFieldsGrid>
                     <FormField
                       label={t("fields.distance.label")}
                       htmlFor="event-distance"
-                      hint={t("fields.distance.hint")}
+                      optional
                       error={errors.distanceKm?.message}
                     >
                       <Controller
@@ -290,6 +303,7 @@ export function TripMomentForm({
                             type="number"
                             min={0}
                             step={0.1}
+                            className={formControlClassName}
                             placeholder={t("fields.distance.placeholder")}
                             value={field.value ?? ""}
                             onChange={(event) => {
@@ -305,7 +319,7 @@ export function TripMomentForm({
                     <FormField
                       label={t("fields.elevation.label")}
                       htmlFor="event-elevation"
-                      hint={t("fields.elevation.hint")}
+                      optional
                       error={errors.elevationGainM?.message}
                     >
                       <Controller
@@ -317,6 +331,7 @@ export function TripMomentForm({
                             type="number"
                             min={0}
                             step={1}
+                            className={formControlClassName}
                             placeholder={t("fields.elevation.placeholder")}
                             value={field.value ?? ""}
                             onChange={(event) => {
@@ -329,7 +344,7 @@ export function TripMomentForm({
                         )}
                       />
                     </FormField>
-                  </div>
+                  </FormFieldsGrid>
                 )}
 
                 {showMeal && (

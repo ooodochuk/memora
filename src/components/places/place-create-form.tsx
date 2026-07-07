@@ -13,6 +13,10 @@ import {
  type PlaceFormValues,
 } from "@/lib/validations/place-form";
 import { FormField } from "@/components/design-system/form-field";
+import { FormFieldsGrid } from "@/components/design-system/form-fields-grid";
+import {
+ formControlClassName,
+} from "@/lib/design-system/form-layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -113,50 +117,72 @@ export function PlaceCreateForm({
  />
  </FormField>
 
- <div className="grid gap-4 sm:grid-cols-2">
+ <FormFieldsGrid>
  <FormField
  label={t("fields.country.label")}
  htmlFor="place-country"
  error={errors.country?.message}
  >
- <Input id="place-country" {...register("country")} />
+ <Input
+ id="place-country"
+ className={formControlClassName}
+ {...register("country")}
+ />
  </FormField>
  <FormField
  label={t("fields.region.label")}
  htmlFor="place-region"
  error={errors.region?.message}
  >
- <Input id="place-region" {...register("region")} />
+ <Input
+ id="place-region"
+ className={formControlClassName}
+ {...register("region")}
+ />
  </FormField>
- </div>
+ </FormFieldsGrid>
 
  <FormField
  label={t("fields.address.label")}
  htmlFor="place-address"
- hint={t("fields.address.hint")}
+ optional
  error={errors.address?.message}
  >
- <Input id="place-address" {...register("address")} />
+ <Input
+ id="place-address"
+ className={formControlClassName}
+ {...register("address")}
+ />
  </FormField>
 
- <div className="grid gap-4 sm:grid-cols-2">
+ <FormFieldsGrid>
  <FormField
  label={t("fields.lat.label")}
  htmlFor="place-lat"
- hint={t("fields.lat.hint")}
+ optional
  error={errors.lat?.message}
  >
- <Input id="place-lat" inputMode="decimal" {...register("lat")} />
+ <Input
+ id="place-lat"
+ inputMode="decimal"
+ className={formControlClassName}
+ {...register("lat")}
+ />
  </FormField>
  <FormField
  label={t("fields.lng.label")}
  htmlFor="place-lng"
- hint={t("fields.lng.hint")}
+ optional
  error={errors.lng?.message}
  >
- <Input id="place-lng" inputMode="decimal" {...register("lng")} />
+ <Input
+ id="place-lng"
+ inputMode="decimal"
+ className={formControlClassName}
+ {...register("lng")}
+ />
  </FormField>
- </div>
+ </FormFieldsGrid>
 
  <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
  <Button type="button" variant="outline" size="sm" onClick={onCancel}>

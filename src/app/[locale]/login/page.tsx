@@ -13,7 +13,7 @@ export default async function LoginPage({ params }: LoginPageProps) {
 
   return (
     <GuestAuthRedirect>
-      <PageContainer className="flex min-h-[70vh] items-center py-12">
+      <PageContainer size="auth" className="flex min-h-[70vh] items-center py-12">
         <LoginForm />
       </PageContainer>
     </GuestAuthRedirect>

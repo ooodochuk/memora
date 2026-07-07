@@ -92,7 +92,7 @@ export function DashboardProfileClient() {
     <DashboardPageContent title={t("title")} subtitle={t("subtitle")}>
       <QueryState query={profileQuery} loading={<ProfileSkeleton />}>
         {(profile) => (
-          <div className="mx-auto max-w-3xl space-y-6">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-start">
             <ProfilePreview profile={profile} />
             <ProfileEditForm profile={profile} />
           </div>

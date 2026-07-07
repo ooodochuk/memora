@@ -25,4 +25,5 @@ export { IconBadge } from "./icon-badge";
 export { EventTypeBadge, EventTypeIcon } from "./event-type-badge";
 export { StatusBadge, VisibilityBadge } from "./status-badge";
 export { FormField } from "./form-field";
+export { FormFieldsGrid } from "./form-fields-grid";
 export { ResponsiveFormScreen } from "./responsive-form-screen";

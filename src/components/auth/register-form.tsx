@@ -8,6 +8,7 @@ import { useAuth } from "@/providers/auth-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormField } from "@/components/design-system/form-field";
+import { formControlClassName } from "@/lib/design-system/form-layout";
 import { JournalCard } from "@/components/design-system/journal-card";
 import { dashboardRoutes } from "@/constants/routes";
 
@@ -38,7 +39,7 @@ export function RegisterForm() {
   }
 
   return (
-    <JournalCard padding="lg" className="mx-auto w-full max-w-md">
+    <JournalCard padding="lg" className="w-full">
       <h1 className="font-heading mb-6 text-2xl font-medium">{t("registerTitle")}</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <FormField label={t("email")} htmlFor="email">
@@ -48,6 +49,7 @@ export function RegisterForm() {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className={formControlClassName}
             required
           />
         </FormField>
@@ -56,6 +58,7 @@ export function RegisterForm() {
             id="displayName"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
+            className={formControlClassName}
             required
           />
         </FormField>
@@ -64,6 +67,7 @@ export function RegisterForm() {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className={formControlClassName}
             required
             minLength={3}
             pattern="[a-zA-Z0-9][a-zA-Z0-9_-]*"
@@ -76,6 +80,7 @@ export function RegisterForm() {
             autoComplete="new-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className={formControlClassName}
             required
             minLength={8}
           />

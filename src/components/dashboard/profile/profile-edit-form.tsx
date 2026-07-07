@@ -12,6 +12,8 @@ import {
   type ProfileFormValues,
 } from "@/lib/validations/profile-form";
 import { FormField } from "@/components/design-system/form-field";
+import { FormFieldsGrid } from "@/components/design-system/form-fields-grid";
+import { formControlClassName } from "@/lib/design-system/form-layout";
 import { JournalCard } from "@/components/design-system/journal-card";
 import { Eyebrow } from "@/components/design-system/typography";
 import { Button } from "@/components/ui/button";
@@ -109,29 +111,34 @@ export function ProfileEditForm({ profile }: ProfileEditFormProps) {
           <Textarea id="bio" rows={4} {...register("bio")} />
         </FormField>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <FormFieldsGrid>
           <FormField
             label={t("fields.location.label")}
             htmlFor="location"
             error={errors.location?.message}
           >
-            <Input id="location" {...register("location")} />
+            <Input
+              id="location"
+              className={formControlClassName}
+              {...register("location")}
+            />
           </FormField>
 
           <FormField
             label={t("fields.website.label")}
             htmlFor="website"
-            hint={t("fields.website.hint")}
+            optional
             error={errors.website?.message}
           >
             <Input
               id="website"
               type="url"
+              className={formControlClassName}
               placeholder="https://"
               {...register("website")}
             />
           </FormField>
-        </div>
+        </FormFieldsGrid>
 
         <div className="flex justify-end">
           <Button

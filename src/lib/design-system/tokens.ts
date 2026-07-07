@@ -67,14 +67,18 @@ export const tripVisibilityStyles: Record<
 export const containerSizes = {
   /** Auth screens */
   auth: "max-w-md",
+  /** Auth screens with extra fields (e.g. register) */
+  authWide: "max-w-lg",
   /** Create/edit forms */
-  form: "max-w-3xl",
+  form: "max-w-6xl",
+  /** Wide multi-section forms */
+  formWide: "max-w-7xl",
   /** Dashboard, adventure detail, lists */
   dashboard: "max-w-screen-2xl",
   /** Long-form marketing copy */
   prose: "max-w-2xl",
   /** @deprecated Use `form` */
-  sm: "max-w-3xl",
+  sm: "max-w-6xl",
   /** @deprecated Use `dashboard` */
   md: "max-w-screen-2xl",
   /** @deprecated Use `dashboard` */

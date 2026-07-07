@@ -13,7 +13,7 @@ export default async function RegisterPage({ params }: RegisterPageProps) {
 
   return (
     <GuestAuthRedirect>
-      <PageContainer className="flex min-h-[70vh] items-center py-12">
+      <PageContainer size="authWide" className="flex min-h-[70vh] items-center py-12">
         <RegisterForm />
       </PageContainer>
     </GuestAuthRedirect>

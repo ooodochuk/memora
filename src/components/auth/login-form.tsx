@@ -8,6 +8,7 @@ import { useAuth } from "@/providers/auth-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormField } from "@/components/design-system/form-field";
+import { formControlClassName } from "@/lib/design-system/form-layout";
 import { JournalCard } from "@/components/design-system/journal-card";
 import { dashboardRoutes } from "@/constants/routes";
 
@@ -31,13 +32,14 @@ export function LoginForm() {
   }
 
   return (
-    <JournalCard padding="lg" className="mx-auto w-full max-w-md">
+    <JournalCard padding="lg" className="w-full">
       <h1 className="font-heading mb-6 text-2xl font-medium">{t("loginTitle")}</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <FormField label={t("email")} htmlFor="email">
           <Input
             id="email"
             type="email"
+            className={formControlClassName}
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -48,6 +50,7 @@ export function LoginForm() {
           <Input
             id="password"
             type="password"
+            className={formControlClassName}
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

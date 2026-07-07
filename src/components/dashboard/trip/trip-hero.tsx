@@ -31,7 +31,7 @@ export function TripHero({ trip, locale }: TripHeroProps) {
  </div>
 
  <div className="relative z-10 -mt-32 px-5 sm:-mt-36 sm:px-6 lg:px-10">
- <div className="mx-auto max-w-6xl space-y-5">
+ <div className="mx-auto w-full max-w-screen-2xl space-y-5">
  <div className="flex flex-wrap items-center gap-2">
  <StatusBadge status={trip.status} size="md" />
  <VisibilityBadge visibility={trip.visibility} size="md" />

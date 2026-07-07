@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FormField } from "@/components/design-system/form-field";
+import { formControlClassName } from "@/lib/design-system/form-layout";
 import { useState } from "react";
 
 export function ContactForm() {
@@ -44,6 +45,7 @@ export function ContactForm() {
  <FormField label={t("name")} htmlFor="name" error={errors.name?.message}>
  <Input
  id="name"
+ className={formControlClassName}
  placeholder={t("namePlaceholder")}
  aria-invalid={!!errors.name}
  {...register("name")}
@@ -58,6 +60,7 @@ export function ContactForm() {
  <Input
  id="email"
  type="email"
+ className={formControlClassName}
  placeholder={t("emailPlaceholder")}
  aria-invalid={!!errors.email}
  {...register("email")}
