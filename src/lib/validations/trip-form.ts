@@ -13,6 +13,8 @@ export const TRIP_STATUS_OPTIONS = [
  "planning",
  "draft",
  "published",
+ "in_progress",
+ "completed",
  "archived",
 ] as const satisfies readonly TripStatus[];
 

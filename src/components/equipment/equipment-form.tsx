@@ -42,6 +42,8 @@ interface EquipmentFormProps {
  categories: EquipmentCategory[];
  defaultValues?: EquipmentFormValues;
  equipmentId?: string;
+ cancelHref?: string;
+ onSuccess?: () => void;
 }
 
 function FormSection({
@@ -86,6 +88,8 @@ export function EquipmentForm({
  categories: initialCategories,
  defaultValues,
  equipmentId,
+ cancelHref: cancelHrefProp,
+ onSuccess,
 }: EquipmentFormProps) {
  const t = useTranslations("dashboard.equipmentForm");
  const router = useRouter();
@@ -137,7 +141,11 @@ export function EquipmentForm({
  await new Promise((resolve) => setTimeout(resolve, 900));
  setSubmitted(true);
  window.setTimeout(() => {
+ if (onSuccess) {
+ onSuccess();
+ } else {
  router.push(dashboardRoutes.equipment());
+ }
  }, 1200);
  return;
  }
@@ -162,10 +170,16 @@ export function EquipmentForm({
  } else if (equipmentId) {
  await updateEquipment.mutateAsync(payload);
  }
+
+ if (onSuccess) {
+ onSuccess();
+ return;
+ }
+
  router.push(dashboardRoutes.equipment());
  }
 
- const cancelHref = dashboardRoutes.equipment();
+ const cancelHref = cancelHrefProp ?? dashboardRoutes.equipment();
 
  return (
  <form id={formId} onSubmit={handleSubmit(onSubmit)} className="space-y-6">

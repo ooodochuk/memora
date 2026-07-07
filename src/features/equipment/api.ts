@@ -10,6 +10,10 @@ import {
   getEquipmentIdsByTripId,
 } from "@/lib/equipment/accessors";
 import { getEquipmentCategoriesForUser } from "@/lib/equipment/category-accessors";
+import {
+  removeEquipmentById,
+  setEquipmentActiveState,
+} from "@/lib/mock-data/equipment-mutations";
 import { getCurrentProfile } from "@/lib/mock-data";
 import type { Equipment, EquipmentCategory } from "@/types";
 import type {
@@ -142,10 +146,29 @@ export async function updateEquipment(
 export async function deleteEquipment(id: string): Promise<void> {
   if (isMockMode()) {
     await mockDelay();
+    removeEquipmentById(id);
     return;
   }
 
   await apiClient.delete(endpoints.equipment.delete(id));
+}
+
+export async function setEquipmentActive(
+  id: string,
+  active: boolean,
+): Promise<EquipmentDto> {
+  if (isMockMode()) {
+    await mockDelay();
+    const item = setEquipmentActiveState(id, active);
+    if (!item) throw new Error(`Equipment not found: ${id}`);
+    return toEquipmentDto(item);
+  }
+
+  const response = await apiClient.patch<ApiItemResponse<EquipmentDto>>(
+    endpoints.equipment.setActive(id),
+    { active },
+  );
+  return response.data;
 }
 
 export async function attachEquipmentToAdventure(

@@ -29,6 +29,8 @@ export const tripStatusTokenMap: Record<TripStatus, string> = {
  planning: "planning",
  draft: "draft",
  published: "published",
+ in_progress: "published",
+ completed: "archived",
  archived: "archived",
 };
 

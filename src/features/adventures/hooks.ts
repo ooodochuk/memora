@@ -2,11 +2,13 @@ import { useMutation, useQuery, useQueryClient, type QueryClient } from "@tansta
 import {
   createAdventure,
   deleteAdventure,
+  archiveAdventure,
   fetchAdventure,
   fetchAdventures,
   fetchAdventureSummaries,
   fetchDashboardHome,
   updateAdventure,
+  updateAdventureStatus,
 } from "./api";
 import type {
   AdventureDto,
@@ -14,7 +16,7 @@ import type {
   CreateAdventureRequestDto,
   UpdateAdventureRequestDto,
 } from "./types";
-import { upsertById } from "@/lib/query/list-cache";
+import { upsertById, removeById } from "@/lib/query/list-cache";
 
 export const adventureKeys = {
   all: ["adventures"] as const,
@@ -105,8 +107,40 @@ export function useDeleteAdventure() {
 
   return useMutation({
     mutationFn: (id: string) => deleteAdventure(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: adventureKeys.all });
+    onSuccess: (_data, id) => {
+      queryClient.removeQueries({ queryKey: adventureKeys.detail(id) });
+      queryClient.setQueryData(adventureKeys.list(), (current) =>
+        removeById(current as AdventureDto[] | undefined, id),
+      );
+      queryClient.setQueryData(adventureKeys.summaries(), (current) => {
+        const summaries = current as AdventureSummaryDto[] | undefined;
+        return summaries?.filter((summary) => summary.adventure.id !== id);
+      });
+      void queryClient.invalidateQueries({ queryKey: adventureKeys.dashboard() });
+    },
+  });
+}
+
+export function useArchiveAdventure() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: string) => archiveAdventure(id),
+    onSuccess: (data) => {
+      patchAdventureCaches(queryClient, data);
+      void queryClient.invalidateQueries({ queryKey: adventureKeys.dashboard() });
+    },
+  });
+}
+
+export function useUpdateAdventureStatus(id: string) {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (statusCode: string) => updateAdventureStatus(id, statusCode),
+    onSuccess: (data) => {
+      patchAdventureCaches(queryClient, data);
+      void queryClient.invalidateQueries({ queryKey: adventureKeys.dashboard() });
     },
   });
 }

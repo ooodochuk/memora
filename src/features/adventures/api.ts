@@ -10,6 +10,8 @@ import {
   getTripsByOwnerId,
 } from "@/lib/mock-data";
 import { getCurrentProfile } from "@/lib/mock-data";
+import { removeTripById, setTripStatus } from "@/lib/mock-data/trip-mutations";
+import { referenceCodeToTripStatus } from "@/lib/reference/adventure-status";
 import type { Trip } from "@/types";
 import type {
   AdventureDto,
@@ -129,8 +131,42 @@ export async function updateAdventure(
 export async function deleteAdventure(id: string): Promise<void> {
   if (isMockMode()) {
     await mockDelay();
+    removeTripById(id);
     return;
   }
 
   await apiClient.delete(endpoints.adventures.delete(id));
+}
+
+export async function archiveAdventure(id: string): Promise<AdventureDto> {
+  if (isMockMode()) {
+    await mockDelay();
+    const updated = setTripStatus(id, "archived");
+    if (!updated) throw new Error(`Adventure not found: ${id}`);
+    return toAdventureDto(updated);
+  }
+
+  const response = await apiClient.patch<ApiItemResponse<AdventureDto>>(
+    endpoints.adventures.archive(id),
+    {},
+  );
+  return response.data;
+}
+
+export async function updateAdventureStatus(
+  id: string,
+  statusCode: string,
+): Promise<AdventureDto> {
+  if (isMockMode()) {
+    await mockDelay();
+    const updated = setTripStatus(id, referenceCodeToTripStatus(statusCode));
+    if (!updated) throw new Error(`Adventure not found: ${id}`);
+    return toAdventureDto(updated);
+  }
+
+  const response = await apiClient.patch<ApiItemResponse<AdventureDto>>(
+    endpoints.adventures.updateStatus(id),
+    { status: statusCode },
+  );
+  return response.data;
 }

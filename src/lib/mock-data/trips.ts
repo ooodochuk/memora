@@ -134,4 +134,29 @@ export const trips: Trip[] = [
  placeCount: 4,
  },
  },
+ {
+ id: "trip-archive",
+ slug: "iceland-ring-road-archive",
+ ownerId: "profile-oksana",
+ title: "Iceland Ring Road",
+ subtitle: "Archived summer loop — kept for memory",
+ description:
+ "A completed ring-road journey archived from the active list. Still readable in the journal, tucked away from day-to-day planning.",
+ coverImageUrl:
+ "https://images.unsplash.com/photo-1504829857797-ddff29c27927?w=1600&h=900&fit=crop",
+ country: "Iceland",
+ region: "Ring Road",
+ startDate: "2023-07-10",
+ endDate: "2023-07-24",
+ status: "archived",
+ visibility: "private",
+ tags: ["road-trip", "archived"],
+ adventureType: "ROAD_TRIP",
+ stats: {
+ dayCount: 6,
+ eventCount: 20,
+ photoCount: 18,
+ placeCount: 10,
+ },
+ },
 ];

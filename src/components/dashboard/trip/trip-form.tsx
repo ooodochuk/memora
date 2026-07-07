@@ -33,11 +33,11 @@ import type { Equipment, EquipmentCategory } from "@/types";
 import {
  createTripFormSchema,
  emptyTripFormValues,
- TRIP_STATUS_OPTIONS,
  TRIP_VISIBILITY_OPTIONS,
  type TripFormInputValues,
  type TripFormValues,
 } from "@/lib/validations/trip-form";
+import { AdventureStatusSelect } from "@/components/dashboard/trip/adventure-status-select";
 import { FormField } from "@/components/design-system/form-field";
 import { JournalCard } from "@/components/design-system/journal-card";
 import { Eyebrow } from "@/components/design-system/typography";
@@ -52,6 +52,22 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import type { TripStatus } from "@/types";
+
+const STATUS_HINT_KEYS = [
+  "planning",
+  "draft",
+  "published",
+  "archived",
+  "in_progress",
+  "completed",
+] as const satisfies readonly TripStatus[];
+
+function statusHintKey(status: TripStatus): (typeof STATUS_HINT_KEYS)[number] {
+  return STATUS_HINT_KEYS.includes(status as (typeof STATUS_HINT_KEYS)[number])
+    ? (status as (typeof STATUS_HINT_KEYS)[number])
+    : "planning";
+}
 
 interface TripFormProps {
  mode: "create" | "edit";
@@ -115,7 +131,7 @@ export function TripForm({
  defaultEquipmentIds = [],
 }: TripFormProps) {
  const t = useTranslations("dashboard.tripForm");
- const tStatus = useTranslations("designSystem.status");
+ const tStatusHints = useTranslations("dashboard.tripForm.status");
  const tVisibility = useTranslations("designSystem.visibility");
  const router = useRouter();
  const queryClient = useQueryClient();
@@ -450,22 +466,12 @@ export function TripForm({
  name="status"
  control={control}
  render={({ field }) => (
- <Select value={field.value} onValueChange={field.onChange}>
- <SelectTrigger
+ <AdventureStatusSelect
  id="status"
- className="h-11 w-full rounded-xl sm:h-10"
+ value={field.value}
+ onValueChange={field.onChange}
  aria-invalid={!!errors.status}
- >
- <SelectValue placeholder={t("fields.status.placeholder")} />
- </SelectTrigger>
- <SelectContent>
- {TRIP_STATUS_OPTIONS.map((option) => (
- <SelectItem key={option} value={option}>
- {tStatus(option)}
- </SelectItem>
- ))}
- </SelectContent>
- </Select>
+ />
  )}
  />
  {!isCreate && (
@@ -474,7 +480,7 @@ export function TripForm({
  control={control}
  render={({ field }) => (
  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
- {t(`status.${field.value}.hint`)}
+ {tStatusHints(`${statusHintKey(field.value)}.hint`)}
  </p>
  )}
  />

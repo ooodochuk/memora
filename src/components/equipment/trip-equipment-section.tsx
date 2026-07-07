@@ -210,12 +210,9 @@ export function TripEquipmentSection({
                   <Icon className="size-4" strokeWidth={1.75} />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <Link
-                    href={dashboardRoutes.equipmentItem(item.id)}
-                    className="block truncate font-medium hover:text-primary"
-                  >
+                  <span className="block truncate font-medium text-foreground">
                     {item.name}
-                  </Link>
+                  </span>
                   <span className="block truncate text-xs text-muted-foreground">
                     {[categoryLabel, item.brand, item.model]
                       .filter(Boolean)

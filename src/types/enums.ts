@@ -1,6 +1,12 @@
 export type TripVisibility = "public" | "private" | "unlisted";
 
-export type TripStatus = "planning" | "draft" | "published" | "archived";
+export type TripStatus =
+  | "planning"
+  | "draft"
+  | "published"
+  | "in_progress"
+  | "completed"
+  | "archived";
 
 export type TripEventType =
  | "SLEEP"

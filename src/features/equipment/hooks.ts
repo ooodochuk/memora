@@ -8,6 +8,7 @@ import {
   fetchEquipmentInventory,
   fetchEquipmentItem,
   fetchEquipmentList,
+  setEquipmentActive,
   syncAdventureEquipment,
   updateEquipment,
 } from "./api";
@@ -98,6 +99,18 @@ export function useDeleteEquipment() {
 
   return useMutation({
     mutationFn: (id: string) => deleteEquipment(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: equipmentKeys.all });
+    },
+  });
+}
+
+export function useSetEquipmentActive() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ id, active }: { id: string; active: boolean }) =>
+      setEquipmentActive(id, active),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: equipmentKeys.all });
     },

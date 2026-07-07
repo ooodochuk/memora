@@ -7,7 +7,15 @@ export function getApiBaseUrl(): string {
   if (!url) {
     return "http://localhost:8080/api";
   }
-  return url.replace(/\/$/, "");
+
+  let normalized = url.replace(/\/$/, "");
+  // Without a protocol, fetch() treats the URL as relative to the current page
+  // (e.g. /uk/memora-backend... on Vercel instead of the Railway host).
+  if (!/^https?:\/\//i.test(normalized)) {
+    normalized = `https://${normalized.replace(/^\/+/, "")}`;
+  }
+
+  return normalized;
 }
 
 /** When true, feature API modules serve data from local mock accessors. */

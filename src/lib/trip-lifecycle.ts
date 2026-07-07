@@ -1,45 +1,61 @@
 import type { Trip } from "@/types";
+import { isArchivedTripStatus } from "@/lib/reference/adventure-status";
 
 export type TripLifecycle = "planning" | "in_progress" | "completed";
 
 export type TripLifecycleFilter = "all" | TripLifecycle;
 
 function startOfDay(date: Date): Date {
- const d = new Date(date);
- d.setHours(0, 0, 0, 0);
- return d;
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
 }
 
 export function getTripLifecycle(trip: Trip, now = new Date()): TripLifecycle {
- if (trip.status === "planning" || trip.status === "draft") {
- return "planning";
- }
+  if (trip.status === "planning" || trip.status === "draft") {
+    return "planning";
+  }
 
- if (trip.status === "archived") {
- return "completed";
- }
+  if (trip.status === "completed") {
+    return "completed";
+  }
 
- const today = startOfDay(now);
- const start = startOfDay(new Date(trip.startDate));
+  if (isArchivedTripStatus(trip.status)) {
+    return "completed";
+  }
 
- if (trip.endDate) {
- const end = startOfDay(new Date(trip.endDate));
- if (today > end) return "completed";
- if (today >= start) return "in_progress";
- } else if (today >= start) {
- return "in_progress";
- }
+  const today = startOfDay(now);
+  const start = startOfDay(new Date(trip.startDate));
 
- return "planning";
+  if (trip.status === "published" || trip.status === "in_progress") {
+    if (trip.endDate) {
+      const end = startOfDay(new Date(trip.endDate));
+      if (today > end) return "completed";
+      if (today >= start) return "in_progress";
+    } else if (today >= start) {
+      return "in_progress";
+    }
+    return "planning";
+  }
+
+  if (trip.endDate) {
+    const end = startOfDay(new Date(trip.endDate));
+    if (today > end) return "completed";
+    if (today >= start) return "in_progress";
+  } else if (today >= start) {
+    return "in_progress";
+  }
+
+  return "planning";
 }
 
 export function matchesTripLifecycleFilter(
- trip: Trip,
- filter: TripLifecycleFilter,
- now = new Date(),
+  trip: Trip,
+  filter: TripLifecycleFilter,
+  now = new Date(),
 ): boolean {
- if (filter === "all") return true;
- return getTripLifecycle(trip, now) === filter;
+  if (filter === "all") return true;
+  return getTripLifecycle(trip, now) === filter;
 }
 
 export function matchesTripSearch(trip: Trip, query: string): boolean {

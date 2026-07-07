@@ -1,9 +1,11 @@
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { DashboardSidebar } from "@/components/dashboard/dashboard-sidebar";
 import { DashboardMobileNav } from "@/components/dashboard/dashboard-mobile-nav";
+import { AppToastProvider } from "@/components/design-system/app-toast";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
  return (
+ <AppToastProvider>
  <div className="flex min-h-screen bg-background">
  <DashboardSidebar />
 
@@ -17,5 +19,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
  <DashboardMobileNav />
  </div>
+ </AppToastProvider>
  );
 }

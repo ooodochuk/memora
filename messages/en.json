@@ -235,6 +235,8 @@
       "planning": "Planning",
       "draft": "Draft",
       "published": "Published",
+      "in_progress": "In progress",
+      "completed": "Completed",
       "archived": "Archived"
     },
     "visibility": {
@@ -433,6 +435,14 @@
           "completed": {
             "title": "Completed"
           },
+          "tabs": {
+            "active": "Active",
+            "archived": "Archived"
+          },
+          "activeEmptyTitle": "No active adventures",
+          "activeEmptyDescription": "Everything is archived or you have not created an adventure yet.",
+          "archivedEmptyTitle": "No archived adventures",
+          "archivedEmptyDescription": "Archive adventures you want to keep without showing them in active lists.",
           "emptyTitle": "You don't have any adventures yet.",
           "emptyDescription": "Start your first adventure — every journal begins with a single day."
         },
@@ -593,7 +603,9 @@
           "allCategories": "All categories"
         },
         "noResults": "No equipment found",
-        "noResultsDescription": "Try a different search or filter."
+        "noResultsDescription": "Try a different search or filter.",
+        "emptyTitle": "Your equipment inventory is empty",
+        "emptyDescription": "Add the gear you travel with — tents, bikes, cameras, and everything in between."
       },
       "newEquipment": {
         "title": "Add equipment",
@@ -733,6 +745,14 @@
         "archived": {
           "label": "Archived",
           "hint": "Kept for memory, tucked away from active view."
+        },
+        "in_progress": {
+          "label": "In progress",
+          "hint": "You're on the road — this adventure is unfolding."
+        },
+        "completed": {
+          "label": "Completed",
+          "hint": "The journey is done — memories captured."
         }
       },
       "actions": {
@@ -764,6 +784,45 @@
         "coverUrlRequired": "Choose a cover photo for this chapter",
         "coverUrlInvalid": "Enter a valid image URL",
         "adventureTypeRequired": "Choose an adventure type"
+      }
+    },
+    "tripActions": {
+      "delete": {
+        "action": "Delete adventure",
+        "title": "Delete this adventure?",
+        "description": "“{title}” will be permanently removed, including its days and moments. This cannot be undone.",
+        "cancel": "Keep adventure",
+        "confirm": "Delete permanently",
+        "success": "Adventure deleted",
+        "error": "Could not delete adventure"
+      },
+      "archive": {
+        "action": "Archive adventure",
+        "title": "Archive this adventure?",
+        "description": "“{title}” will move to Archived and disappear from your active list. You can still open it later.",
+        "cancel": "Not now",
+        "confirm": "Archive adventure",
+        "success": "Adventure archived",
+        "error": "Could not archive adventure"
+      }
+    },
+    "equipmentActions": {
+      "menu": "Equipment actions",
+      "edit": "Edit",
+      "activate": "Mark active",
+      "deactivate": "Mark inactive",
+      "deleteLabel": "Delete",
+      "savedSuccess": "Equipment updated",
+      "activatedSuccess": "Equipment marked active",
+      "deactivatedSuccess": "Equipment marked inactive",
+      "toggleError": "Could not update equipment status",
+      "deleteSuccess": "Equipment deleted",
+      "deleteError": "Could not delete equipment",
+      "delete": {
+        "title": "Delete this item?",
+        "description": "“{name}” will be permanently removed from your inventory.",
+        "cancel": "Keep item",
+        "confirm": "Delete item"
       }
     },
     "tripEventForm": {
@@ -922,6 +981,7 @@
     },
     "equipmentForm": {
       "backToEquipment": "All equipment",
+      "backToList": "All equipment",
       "backToItem": "Back to item",
       "sections": {
         "identity": {

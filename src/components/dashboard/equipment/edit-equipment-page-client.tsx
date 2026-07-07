@@ -72,8 +72,8 @@ export function EditEquipmentPageClient({
     <EquipmentFormPage
       mode="edit"
       title={t("title")}
-      backHref={dashboardRoutes.equipmentItem(equipmentId)}
-      backLabel={tForm("backToItem")}
+      backHref={dashboardRoutes.equipment()}
+      backLabel={tForm("backToList")}
       ownerId={profileQuery.data.id}
       categories={categories}
       equipmentId={equipmentId}

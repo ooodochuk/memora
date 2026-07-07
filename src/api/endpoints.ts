@@ -32,6 +32,8 @@ export const endpoints = {
     create: () => "/adventures",
     update: (id: string) => `/adventures/${id}`,
     delete: (id: string) => `/adventures/${id}`,
+    updateStatus: (id: string) => `/adventures/${id}/status`,
+    archive: (id: string) => `/adventures/${id}/archive`,
   },
   days: {
     byAdventure: (adventureId: string) => `/adventures/${adventureId}/days`,
@@ -61,6 +63,7 @@ export const endpoints = {
     create: () => "/equipment",
     update: (id: string) => `/equipment/${id}`,
     delete: (id: string) => `/equipment/${id}`,
+    setActive: (id: string) => `/equipment/${id}/active`,
     byAdventure: (adventureId: string) => `/adventures/${adventureId}/equipment`,
     attach: (adventureId: string) => `/adventures/${adventureId}/equipment`,
     detach: (adventureId: string, equipmentId: string) =>
