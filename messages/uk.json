@@ -323,6 +323,12 @@
     "author": {
       "eyebrow": "Про мандрівника",
       "cta": "Повне portfolio"
+    },
+    "equipment": {
+      "eyebrow": "Спорядження",
+      "title": "Спорядження",
+      "subtitle": "{count, plural, one {# позиція · {weight}} few {# позиції · {weight}} many {# позицій · {weight}} other {# позицій · {weight}}}",
+      "subtitleCount": "{count, plural, one {# позиція} few {# позиції} many {# позицій} other {# позицій}}"
     }
   },
   "cloudLink": {

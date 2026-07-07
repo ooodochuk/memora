@@ -14,10 +14,29 @@ import {
   getProfileByUsername,
   getTripBySlug,
 } from "@/lib/mock-data/accessors";
+import { getEquipmentByTripId } from "@/lib/equipment/accessors";
 import { isPublicPortfolioAdventure } from "@/lib/public-portfolio";
+import {
+  publicEquipmentDtoToItem,
+  type PublicTripEquipmentItem,
+} from "@/lib/public-equipment";
 import { publicProfileDtoToProfile } from "@/lib/profile/public-mappers";
 import { resolveEventRelations } from "@/lib/trip-timeline/utils";
 import type { CloudLink, Photo, Profile, Trip, TripDay, TripEventWithRelations } from "@/types";
+import type { Equipment } from "@/types";
+
+function equipmentToPublicItem(item: Equipment): PublicTripEquipmentItem {
+  return {
+    id: item.id,
+    name: item.name,
+    categoryIcon: "Package",
+    brand: item.brand,
+    model: item.model,
+    weightGrams: item.weightGrams > 0 ? item.weightGrams : undefined,
+    photoUrl: item.photoUrl,
+    notes: item.notes,
+  };
+}
 
 export interface PublicTripTimelineDay {
   day: TripDay;
@@ -31,6 +50,7 @@ export interface PublicTripPageData {
   photos: Photo[];
   cloudLinks: CloudLink[];
   mediaLinks: CloudLink[];
+  equipment: PublicTripEquipmentItem[];
 }
 
 function getPublicTripPageDataMock(
@@ -69,6 +89,7 @@ function getPublicTripPageDataMock(
     photos,
     cloudLinks,
     mediaLinks,
+    equipment: getEquipmentByTripId(trip.id).map(equipmentToPublicItem),
   };
 }
 
@@ -112,6 +133,7 @@ export async function getPublicTripPageData(
     photos: [],
     cloudLinks,
     mediaLinks,
+    equipment: detail.equipment.map(publicEquipmentDtoToItem),
   };
 }
 

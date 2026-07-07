@@ -3,4 +3,5 @@ export { PublicTripStats } from "./public-trip-stats";
 export { PublicTripTimeline } from "./public-trip-timeline";
 export { PublicTripPhotoHighlights } from "./public-trip-photo-highlights";
 export { PublicTripCloudContent } from "./public-trip-cloud-content";
+export { PublicTripEquipment } from "./public-trip-equipment";
 export { PublicTripAuthorFooter } from "./public-trip-author-footer";

@@ -33,10 +33,22 @@ export interface PublicPortfolioDto {
   travelStats: PublicTravelStatsDto;
 }
 
+export interface PublicEquipmentDto {
+  id: string;
+  name: string;
+  category: string;
+  brand: string;
+  model: string;
+  weightGrams: number;
+  photoUrl?: string;
+  notes?: string;
+}
+
 export interface PublicAdventureDetailDto {
   profile: PublicProfileDto;
   adventure: AdventureDto;
   days: DayDto[];
   moments: MomentDto[];
   cloudLinks: CloudLinkDto[];
+  equipment: PublicEquipmentDto[];
 }

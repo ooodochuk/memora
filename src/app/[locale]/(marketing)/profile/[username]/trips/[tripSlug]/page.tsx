@@ -12,6 +12,7 @@ import { PageContainer } from "@/components/design-system/page-container";
 import {
   PublicTripAuthorFooter,
   PublicTripCloudContent,
+  PublicTripEquipment,
   PublicTripHero,
   PublicTripPhotoHighlights,
   PublicTripStats,
@@ -33,7 +34,8 @@ export default async function TripPage({ params }: TripPageProps) {
   const data = await getPublicTripPageData(username, tripSlug);
   if (!data) notFound();
 
-  const { profile, trip, timelineDays, photos, cloudLinks, mediaLinks } = data;
+  const { profile, trip, timelineDays, photos, cloudLinks, mediaLinks, equipment } =
+    data;
   const appLocale = locale as AppLocale;
 
   return (
@@ -56,6 +58,8 @@ export default async function TripPage({ params }: TripPageProps) {
         <PublicTripStats trip={trip} cloudLinkCount={cloudLinks.length} />
 
         <PublicTripTimeline days={timelineDays} locale={appLocale} />
+
+        <PublicTripEquipment equipment={equipment} />
 
         <PublicTripPhotoHighlights photos={photos} />
 

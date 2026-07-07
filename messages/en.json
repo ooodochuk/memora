@@ -323,6 +323,12 @@
     "author": {
       "eyebrow": "About the traveler",
       "cta": "View full portfolio"
+    },
+    "equipment": {
+      "eyebrow": "Gear",
+      "title": "Equipment",
+      "subtitle": "{count, plural, one {# item · {weight}} other {# items · {weight}}}",
+      "subtitleCount": "{count, plural, one {# item} other {# items}}"
     }
   },
   "cloudLink": {
