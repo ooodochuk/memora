@@ -30,8 +30,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files (templates are committed)
+.env
+.env.*
+!.env.example
+!.env.production.example
 
 # vercel
 .vercel
@@ -39,3 +42,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.cursor/
+
+# logs
+logs/
+*.log
+
+# legacy backend (moved to memora-backend repo)
+/backend/

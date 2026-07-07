@@ -1,0 +1,1279 @@
+{
+  "metadata": {
+    "title": "Memora — Твій travel-журнал",
+    "description": "Преміальне особисте travel-портфоліо. Документуй пригоди, дні та моменти — красиво.",
+    "pageTitle": "{title} · {appName}",
+    "profilePageTitle": "{name} · {appName}",
+    "tripPageTitle": "{tripTitle} · {authorName} · {appName}",
+    "profileFallback": "Профіль · {appName}",
+    "tripFallback": "Пригода · {appName}"
+  },
+  "common": {
+    "appName": "Memora",
+    "tagline": "Пригоди, що залишаються.",
+    "loading": "Завантаження…",
+    "loadError": "Не вдалося завантажити дані",
+    "retry": "Спробувати ще",
+    "notFound": "Не знайдено",
+    "close": "Закрити",
+    "back": "Назад",
+    "viewAll": "Дивитись усі",
+    "learnMore": "Дізнатись більше",
+    "days": "{count, plural, one {# день} few {# дні} many {# днів} other {# днів}}",
+    "events": "{count, plural, one {# момент} few {# моменти} many {# моментів} other {# моментів}}",
+    "comingSoon": "Незабаром"
+  },
+  "nav": {
+    "home": "Головна",
+    "explore": "Огляд",
+    "journal": "Журнал",
+    "profile": "Профіль",
+    "settings": "Налаштування",
+    "signIn": "Увійти",
+    "signUp": "Створити акаунт",
+    "dashboard": "Панель",
+    "menu": "Меню",
+    "openMenu": "Відкрити меню",
+    "closeMenu": "Закрити меню"
+  },
+  "auth": {
+    "loginTitle": "Увійти",
+    "registerTitle": "Створити акаунт",
+    "email": "Email",
+    "password": "Пароль",
+    "displayName": "Ім'я для відображення",
+    "username": "Ім'я користувача",
+    "login": "Увійти",
+    "register": "Створити акаунт",
+    "noAccount": "Ще немає акаунта?",
+    "hasAccount": "Вже є акаунт?",
+    "goRegister": "Створити",
+    "goLogin": "Увійти",
+    "loginError": "Невірний email або пароль",
+    "registerError": "Не вдалося створити акаунт"
+  },
+  "theme": {
+    "label": "Тема",
+    "light": "Світла",
+    "dark": "Темна",
+    "system": "Системна"
+  },
+  "locale": {
+    "label": "Мова",
+    "en": "English",
+    "uk": "Українська"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Особистий travel-журнал",
+      "title": "Кожна пригоду заслуговує на гарний архів",
+      "subtitle": "Документуй пригоди день за днем — місця, їжу, фото та дрібні моменти, що мають значення. Travel-портфоліо, схоже на журнал, а не на дашборд.",
+      "cta": "Мій журнал",
+      "secondaryCta": "Дослідити пригоди",
+      "ctaGuest": "Створити акаунт",
+      "signInCta": "Увійти"
+    },
+    "guest": {
+      "exploreTitle": "Почни свій travel-журнал",
+      "exploreDescription": "Створи акаунт, щоб вести пригоди день за днем і ділитися ними зі світом.",
+      "exploreCardTitle": "Твої пригоди чекають",
+      "exploreCardDescription": "Увійди або створи акаунт, щоб почати вести журнал і відкрити публічний профіль.",
+      "signUpCta": "Створити акаунт",
+      "signInCta": "Увійти"
+    },
+    "member": {
+      "exploreTitle": "Твій журнал",
+      "exploreDescription": "Переглянь публічний профіль або продовжуй додавати пригоди в панелі.",
+      "journalCta": "Мій журнал",
+      "dashboardCta": "Панель"
+    },
+    "featured": {
+      "title": "Обрані пригоди",
+      "subtitle": "Історії мандрівників, що занотовують світ день за днем"
+    },
+    "features": {
+      "title": "Створено для твого способу пригодуувати",
+      "journal": {
+        "title": "Журнал день за днем",
+        "description": "Організуй кожну пригоду на дні та моменти — нотатки, фото, місця та інше."
+      },
+      "visual": {
+        "title": "Візуальний та редакційний",
+        "description": "Макет для storytelling, а не для таблиць. Твої пригоди заслуговують на краще."
+      },
+      "portfolio": {
+        "title": "Твоє travel-портфоліо",
+        "description": "Особистий архів, що росте з кожною пригодужю — готовий до поширення, коли будеш готовий."
+      }
+    }
+  },
+  "profile": {
+    "trips": "Пригоди",
+    "memberSince": "Учасник з {date}",
+    "noTrips": "У тебе ще немає пригод",
+    "noTripsDescription": "Коли з'являться пригоди, вони будуть тут.",
+    "editProfile": "Редагувати профіль",
+    "contact": "Написати"
+  },
+  "trip": {
+    "overview": "Огляд",
+    "itinerary": "Маршрут",
+    "days": "Дні",
+    "timeline": "Хронологія",
+    "about": "Про цю пригоду",
+    "dates": "{start} — {end}",
+    "duration": "{count, plural, one {# день} few {# дні} many {# днів} other {# днів}}",
+    "countries": "Країни",
+    "cities": "Міста",
+    "tags": "Теги",
+    "viewDay": "Переглянути день",
+    "dayLabel": "День {number}",
+    "notFound": "Пригода не знайдена",
+    "notFoundDescription": "Цю пригоду могло бути переміщено або видалено."
+  },
+  "day": {
+    "backToTrip": "Назад до пригоди",
+    "moments": "Моменти",
+    "noEvents": "Моментів ще немає",
+    "noEventsDescription": "Цей день чекає на перший запис.",
+    "previousDay": "Попередній день",
+    "nextDay": "Наступний день",
+    "activitiesLabel": "Активності"
+  },
+  "adventureTypes": {
+    "pickerLabel": "Тип пригоди",
+    "types": {
+      "BIKEPACKING": "Байкпакінг",
+      "CYCLING": "Велосипед",
+      "HIKING": "Похід",
+      "TRAIL_RUNNING": "Трейлран",
+      "CAMPING": "Кемпінг",
+      "ROAD_TRIP": "Автоподорож",
+      "VIA_FERRATA": "Віа феррата",
+      "WATER_ADVENTURE": "Водна пригода",
+      "BACKPACKING": "Бекпекінг",
+      "MIXED": "Змішана пригода"
+    }
+  },
+  "dayActivities": {
+    "pickerLabel": "Активності дня",
+    "pickerHint": "Який це був день? Обери до 3 тегів.",
+    "pickerCount": "{count}/{max}",
+    "pickerLimit": "Зніми один тег, щоб обрати інший.",
+    "types": {
+      "WALKING": "Прогулянка",
+      "HIKING": "Похід",
+      "CYCLING": "Велосипед",
+      "DRIVING": "За кермом",
+      "CAMPING": "Кемпінг",
+      "CITY": "Місто",
+      "NATURE": "Природа",
+      "WATER_ACTIVITIES": "Водні активності",
+      "PHOTOGRAPHY": "Фотографія",
+      "FOOD_EXPERIENCE": "Гастрономія",
+      "CLIMBING": "Скелелазіння",
+      "OTHER": "Інше"
+    }
+  },
+  "event": {
+    "types": {
+      "label": "Тип моменту",
+      "SLEEP": "Ночівля",
+      "FOOD": "Їжа",
+      "HIKE": "Похід",
+      "BIKE": "Велопрогулянка",
+      "TRANSPORT": "Переїзд",
+      "PLACE_VISIT": "Візит",
+      "PHOTO_VIDEO": "Фото / відео",
+      "EXPENSE": "Витрата",
+      "NOTE": "Нотатка",
+      "TIP": "Порада"
+    },
+    "cloudLink": "Хмарне посилання",
+    "cloudLinks": "Хмарні посилання",
+    "distance": "{km} км",
+    "elevation": "+{m} м",
+    "expense": "{amount} {currency}",
+    "edit": "Редагувати подію",
+    "delete": "Видалити подію",
+    "participants": "Разом з {names}",
+    "morePhotos": "+{count} ще",
+    "mealTypes": {
+      "BREAKFAST": "Сніданок",
+      "LUNCH": "Обід",
+      "DINNER": "Вечеря",
+      "SNACK": "Перекус",
+      "OTHER": "Інше"
+    }
+  },
+  "momentLocation": {
+    "addLocation": "Позначити на мапі",
+    "label": "Локація",
+    "searchPlaceholder": "Пошук на мапі…",
+    "mapHint": "Клікни на мапу, щоб поставити мітку",
+    "clear": "Прибрати локацію"
+  },
+  "place": {
+    "categories": {
+      "HOSTEL": "Хостел",
+      "HOTEL": "Готель",
+      "APARTMENT": "Апартаменти",
+      "CAMPSITE": "Кемпінг",
+      "RESTAURANT": "Ресторан",
+      "CAFE": "Кафе",
+      "VIEWPOINT": "Оглядовий майданчик",
+      "TRAIL": "Маршрут",
+      "BEACH": "Пляж",
+      "AIRPORT": "Аеропорт",
+      "TRAIN_STATION": "Залізнична станція",
+      "PARKING": "Парковка",
+      "OTHER": "Інше"
+    }
+  },
+  "designSystem": {
+    "status": {
+      "planning": "Планування",
+      "draft": "Чернетка",
+      "published": "Опубліковано",
+      "archived": "В архіві"
+    },
+    "visibility": {
+      "public": "Публічна",
+      "private": "Приватна",
+      "unlisted": "За посиланням"
+    }
+  },
+  "contact": {
+    "title": "Надіслати повідомлення",
+    "description": "Напиши щодо співпраці, питань або просто привітатись.",
+    "name": "Ім'я",
+    "namePlaceholder": "Твоє ім'я",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "message": "Повідомлення",
+    "messagePlaceholder": "Напиши повідомлення…",
+    "submit": "Надіслати",
+    "submitting": "Надсилання…",
+    "success": "Повідомлення надіслано (демо)",
+    "errors": {
+      "nameRequired": "Ім'я обов'язкове",
+      "emailInvalid": "Введи коректний email",
+      "messageMin": "Повідомлення має містити щонайменше 10 символів"
+    }
+  },
+  "publicProfile": {
+    "eyebrow": "Travel portfolio",
+    "portfolioBadge": "Твій journal",
+    "stats": {
+      "adventures": "Пригоди",
+      "countries": "Країни",
+      "days": "Днів",
+      "hiking": "Пішки",
+      "cycling": "На вело",
+      "driving": "На авто",
+      "kmUnit": "км",
+      "moments": "Моменти",
+      "photos": "Фото"
+    },
+    "trips": {
+      "title": "Пригоди",
+      "emptyTitle": "Ще немає публічних пригод",
+      "emptyDescription": "Коли пригоди будуть опубліковані, вони з'являться тут."
+    }
+  },
+  "publicTrip": {
+    "stats": {
+      "days": "Дні",
+      "moments": "Моменти",
+      "photos": "Фото",
+      "cloudLinks": "Cloud links",
+      "places": "Місця",
+      "distance": "Відстань",
+      "elevation": "Набір висоти"
+    },
+    "timeline": {
+      "title": "День за днем"
+    },
+    "photos": {
+      "eyebrow": "Крізь об'єктив",
+      "title": "Фото-highlights",
+      "subtitle": "{count, plural, one {# кадр з пригоди} few {# кадри} many {# кадрів} other {# кадрів}}"
+    },
+    "cloudContent": {
+      "eyebrow": "Зовнішні медіа",
+      "title": "Drone та cloud footage",
+      "subtitle": "Великі файли зберігаються в хмарі — Memora зберігає посилання для перегляду.",
+      "moreLinks": "Більше файлів і ресурсів"
+    },
+    "author": {
+      "eyebrow": "Про мандрівника",
+      "cta": "Повне portfolio"
+    }
+  },
+  "cloudLink": {
+    "sectionTitle": "Зовнішній файл",
+    "sectionTitlePlural": "Зовнішні файли",
+    "sectionDescription": "Великі drone-відео та raw-матеріали зберігаються в хмарі — Memora зберігає лише посилання.",
+    "openLink": "Відкрити",
+    "addLink": "Додати cloud link",
+    "editLink": "Редагувати",
+    "deleteLink": "Видалити",
+    "emptyTitle": "Ще немає cloud links",
+    "emptyDescription": "Встав share-посилання з Google Drive, iCloud, Dropbox або OneDrive для великих файлів.",
+    "addDialogTitle": "Додати cloud link",
+    "editDialogTitle": "Редагувати cloud link",
+    "addDialogDescription": "Застосунок зберігає лише URL — файли залишаються у твоїй хмарі.",
+    "providers": {
+      "GOOGLE_DRIVE": "Google Drive",
+      "ICLOUD": "iCloud",
+      "DROPBOX": "Dropbox",
+      "ONEDRIVE": "OneDrive",
+      "OTHER": "Інше"
+    },
+    "form": {
+      "add": "Додати",
+      "save": "Зберегти",
+      "cancel": "Скасувати",
+      "providerNote": "Memora не завантажує твої файли — зберігається лише share-посилання.",
+      "fields": {
+        "provider": {
+          "label": "Хмарний провайдер",
+          "placeholder": "Обери провайдера",
+          "hint": "Де зберігається оригінальний файл."
+        },
+        "url": {
+          "label": "Share URL",
+          "placeholder": "https://drive.google.com/file/d/…",
+          "hint": "Публічне або share-посилання на файл чи папку."
+        },
+        "title": {
+          "label": "Назва посилання",
+          "placeholder": "Lago di Lei — 4K drone orbit (raw)",
+          "hint": "Назва, за якою ти згадаєш, що за посиланням."
+        },
+        "description": {
+          "label": "Нотатки",
+          "placeholder": "12 хв D-log footage. Найкраще світло після 17:00…",
+          "hint": "Необов'язково — кодек, тривалість, доступ або контекст."
+        }
+      },
+      "errors": {
+        "providerRequired": "Обери хмарного провайдера",
+        "urlRequired": "Встав share-посилання",
+        "urlInvalid": "Введи коректний URL",
+        "titleRequired": "Дай посиланню назву",
+        "titleMin": "Назва має містити щонайменше 2 символи",
+        "titleMax": "Назва має бути коротшою за 120 символів"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Memora. Створено для мандрівників.",
+    "privacy": "Конфіденційність",
+    "terms": "Умови",
+    "prototypeNote": "Frontend-прототип з тестовими даними"
+  },
+  "notFound": {
+    "title": "Сторінку не знайдено",
+    "description": "Сторінка, яку ти шукаєш, не існує або була переміщена.",
+    "backHome": "На головну"
+  },
+  "dashboard": {
+    "nav": {
+      "dashboard": "Огляд",
+      "trips": "Пригоди",
+      "equipment": "Спорядження",
+      "places": "Місця",
+      "wishlist": "Wishlist",
+      "profile": "Профіль",
+      "settings": "Налаштування"
+    },
+    "header": {
+      "createTrip": "Почати пригоду",
+      "viewJournal": "Публічний журнал",
+      "menuLabel": "Меню облікового запису",
+      "sidebarLabel": "Навігація dashboard"
+    },
+    "pages": {
+      "dashboard": {
+        "title": "Пригоди",
+        "subtitle": "Усі твої пригоди в одному місці"
+      },
+      "home": {
+        "greeting": "З поверненням, {name}",
+        "greetingEyebrow": "Де ти був",
+        "greetingNote": "Кожна вершина, захід сонця й вуличка — збережені для днів, коли захочеться відчути все знову.",
+        "statsEyebrow": "Статистика пригод",
+        "stats": {
+          "trips": "Пригоди",
+          "tripsDescription": "Створені тобою пригоди",
+          "days": "Дні",
+          "daysDescription": "Дні в дорозі за всіма пригодами",
+          "countries": "Країни",
+          "countriesDescription": "Унікальні відвідані країни",
+          "places": "Місця",
+          "placesDescription": "Збережені локації",
+          "hiking": "Пішки",
+          "hikingDescription": "Пішохідна відстань",
+          "cycling": "Велосипед",
+          "cyclingDescription": "Відстань на двох колесах",
+          "driving": "Авто",
+          "drivingDescription": "Відстань на дорогах",
+          "kmUnit": "км"
+        },
+        "tripSections": {
+          "eyebrow": "Пригоди",
+          "title": "Мої пригоди",
+          "inProgress": {
+            "title": "В процесі"
+          },
+          "planning": {
+            "title": "Заплановані"
+          },
+          "completed": {
+            "title": "Завершені"
+          },
+          "emptyTitle": "У тебе ще немає пригод",
+          "emptyDescription": "Почни першу пригоду — кожен журнал починається з одного дня."
+        },
+        "startTrip": "Почати пригоду"
+      },
+      "trips": {
+        "title": "Мої пригоди",
+        "subtitle": "Усі твої пригоди в одному місці",
+        "searchPlaceholder": "Пошук пригод…",
+        "filters": {
+          "all": "Усі",
+          "planning": "Планування",
+          "inProgress": "В процесі",
+          "completed": "Завершені"
+        },
+        "stats": {
+          "days": "Дні",
+          "events": "Моменти",
+          "photos": "Фото",
+          "cloudLinks": "Посилання"
+        },
+        "noResults": "Немає пригод за твоїм запитом",
+        "noResultsFilter": "Немає пригод у цій категорії",
+        "noResultsDescription": "Спробуй інший пошук або фільтр.",
+        "emptyTitle": "У тебе ще немає пригод",
+        "emptyDescription": "Почни першу пригоду — кожна велика історія починається з одного дня."
+      },
+      "newTrip": {
+        "title": "Почати пригоду",
+        "subtitle": "Дай наступній пригоді назву, місце та перший рядок історії."
+      },
+      "tripDetail": {
+        "title": "Деталі пригоди",
+        "subtitle": "Що сталося, день за днем",
+        "backToTrips": "Усі пригоди",
+        "timelineTitle": "День за днем",
+        "noDays": "Історія ще не почалась",
+        "noDaysDescription": "Додай перший день — потім фіксуй події, як вони відбувались.",
+        "noEventsInDay": "Тихий день — або чекає на першу подію.",
+        "eventCount": "{count, plural, one {# подія} few {# події} many {# подій} other {# подій}}",
+        "daySummaryLabel": "Підсумок активностей за день",
+        "photoCount": "{count, plural, one {# фото} few {# фото} many {# фото} other {# фото}}",
+        "addAnotherDay": "Додати ще один день",
+        "actions": {
+          "addDay": "Додати день",
+          "addEvent": "Додати подію"
+        },
+        "stats": {
+          "days": "Дні",
+          "events": "Події",
+          "photos": "Фото",
+          "cloudLinks": "Посилання",
+          "places": "Місця",
+          "distance": "Відстань",
+          "elevation": "Набір висоти"
+        }
+      },
+      "editTrip": {
+        "title": "Дописати історію",
+        "subtitle": "Онови деталі, що формують цю пригоду",
+        "subtitleNamed": "Редагування «{title}»"
+      },
+      "newEvent": {
+        "title": "Додати подію",
+        "subtitle": "Додай новий запис до timeline цієї пригоди",
+        "subtitleDay": "Додавання до дня {day} — {title}"
+      },
+      "editEvent": {
+        "title": "Редагувати подію",
+        "subtitle": "Онови деталі запису в timeline",
+        "subtitleNamed": "Редагування «{title}»"
+      },
+      "profile": {
+        "title": "Профіль",
+        "subtitle": "Твоє публічне travel-портфоліо",
+        "form": {
+          "eyebrow": "Редагування",
+          "title": "Про тебе",
+          "description": "Ці дані з’являються на головній панелі та в публічному портфоліо."
+        },
+        "fields": {
+          "displayName": {
+            "label": "Ім’я для відображення"
+          },
+          "tagline": {
+            "label": "Привітальний рядок",
+            "hint": "Коротка фраза під «З поверненням» на головній. Якщо порожньо — показується стандартний текст."
+          },
+          "bio": {
+            "label": "Про себе",
+            "hint": "Довший опис для публічного профілю."
+          },
+          "location": {
+            "label": "Локація"
+          },
+          "website": {
+            "label": "Вебсайт",
+            "hint": "Повне посилання, наприклад https://…"
+          }
+        },
+        "actions": {
+          "save": "Зберегти зміни",
+          "saving": "Зберігаємо…"
+        },
+        "errors": {
+          "displayNameRequired": "Вкажи ім’я для відображення",
+          "displayNameMax": "Ім’я має бути коротшим за 120 символів",
+          "bioMax": "Опис має бути коротшим за 2000 символів",
+          "taglineMax": "Привітальний рядок має бути коротшим за 500 символів",
+          "locationMax": "Локація має бути коротшою за 255 символів",
+          "websiteInvalid": "Вкажи коректне URL посилання"
+        },
+        "viewPublicJournal": "Відкрити публічний журнал"
+      },
+      "settings": {
+        "title": "Налаштування",
+        "subtitle": "Налаштування та обліковий запис",
+        "loadError": "Не вдалося завантажити дані облікового запису.",
+        "account": {
+          "title": "Обліковий запис",
+          "description": "Email і публічне ім'я користувача.",
+          "email": "Email",
+          "username": "Username",
+          "editProfile": "Редагувати профіль"
+        },
+        "journal": {
+          "title": "Публічний журнал",
+          "description": "Так твою сторінку бачать інші — лише пригоди з видимістю «Публічна» та статусом «Опубліковано».",
+          "viewPublic": "Відкрити публічний журнал"
+        },
+        "session": {
+          "title": "Сесія",
+          "description": "Вийти з облікового запису на цьому пристрої.",
+          "logout": "Вийти"
+        }
+      },
+      "places": {
+        "title": "Місця",
+        "subtitle": "Збережені локації з твоїх пригод",
+        "emptyTitle": "Місця з'являться тут",
+        "emptyDescription": "Коли ти додаватимеш місця до подій у пригодах, вони зберуться в цьому розділі."
+      },
+      "wishlist": {
+        "title": "Wishlist",
+        "subtitle": "Мрійливі напрямки та заплановані маршрути",
+        "emptyTitle": "Wishlist порожній",
+        "emptyDescription": "Скоро тут можна буде зберігати майбутні напрямки та маршрути мрій."
+      },
+      "equipment": {
+        "title": "Спорядження",
+        "subtitle": "Твій особистий інвентар спорядження",
+        "addEquipment": "Додати спорядження",
+        "searchPlaceholder": "Пошук спорядження…",
+        "filters": {
+          "all": "Усі",
+          "active": "Активне",
+          "inactive": "Неактивне",
+          "allCategories": "Усі категорії"
+        },
+        "noResults": "Спорядження не знайдено",
+        "noResultsDescription": "Спробуй інший пошук або фільтр."
+      },
+      "newEquipment": {
+        "title": "Додати спорядження",
+        "subtitle": "Додай новий предмет до інвентарю"
+      },
+      "equipmentDetail": {
+        "backToEquipment": "Усе спорядження",
+        "edit": "Редагувати",
+        "specsTitle": "Характеристики",
+        "weight": "Вага",
+        "purchaseDate": "Дата покупки",
+        "purchasePrice": "Ціна покупки",
+        "tripsUsed": "Пригод",
+        "nightsUsed": "Ночей у використанні",
+        "usedOnTrips": "Використовувалось у пригодуах",
+        "noTrips": "Ще не прив'язано до пригод."
+      },
+      "editEquipment": {
+        "title": "Редагувати спорядження",
+        "subtitleNamed": "Редагування «{name}»"
+      },
+      "placeholder": "Цей розділ незабаром з'явиться в автентифікованому застосунку."
+    },
+    "tripForm": {
+      "backToTrips": "Усі пригоди",
+      "backToTrip": "Назад до пригоди",
+      "sections": {
+        "story": {
+          "eyebrow": "Основне",
+          "title": "Назвати пригоду",
+          "description": "Почни з назви та кількох рядків про те, чому ця пригоду важлива."
+        },
+        "place": {
+          "eyebrow": "На карті",
+          "title": "Де все відбувалось",
+          "description": "Країна та регіон допомагають тобі і читачам знайти історію на мапі."
+        },
+        "dates": {
+          "eyebrow": "У часі",
+          "title": "Коли ти мандрував",
+          "description": "Приблизні дати — це нормально. Детальний маршрут можна додати пізніше."
+        },
+        "cover": {
+          "eyebrow": "Обкладинка",
+          "title": "Обрати cover-момент",
+          "description": "Фото, яке відчувається як перша сторінка цього розділу."
+        },
+        "sharing": {
+          "eyebrow": "Хто може читати",
+          "title": "Видимість і статус",
+          "description": "Виріши, хто бачить цю пригоду і де вона живе у твоєму журналі."
+        },
+        "equipment": {
+          "eyebrow": "Що ти носив",
+          "title": "Спорядження для пригоди",
+          "description": "Обери спорядження з інвентарю — предмети повторно використовуються між пригодами.",
+          "emptyInventory": "У інвентарі ще немає спорядження.",
+          "addToInventory": "Додай перший предмет"
+        }
+      },
+      "fields": {
+        "adventureType": {
+          "label": "Тип пригоди"
+        },
+        "title": {
+          "label": "Назва пригоди",
+          "placeholder": "Похід Чорногірським хребтом",
+          "hint": "Ім'я, під яким ти запам'ятаєш цю пригоду."
+        },
+        "description": {
+          "label": "Опис",
+          "placeholder": "Напиши кілька речень про свою пригоду…",
+          "hint": "Пиши як перша сторінка travel journal, а не короткий опис для форми."
+        },
+        "country": {
+          "label": "Країна",
+          "placeholder": "Україна",
+          "hint": "Одна країна або регіон на перетині кордонів."
+        },
+        "region": {
+          "label": "Місто / регіон",
+          "placeholder": "Івано-Франківщина · Чорногора · Говерла",
+          "hint": "Міста, долини, узбережжя — все, що тримає маршрут."
+        },
+        "startDate": {
+          "label": "Дата початку",
+          "hint": "Коли пригоду розпочалась."
+        },
+        "endDate": {
+          "label": "Дата завершення",
+          "hint": "Залиши порожнім, якщо ти ще в дорозі."
+        },
+        "coverImageUrl": {
+          "label": "URL обкладинки",
+          "placeholder": "https://images.unsplash.com/photo-…",
+          "hint": "Встав посилання на зображення — попередній перегляд оновлюється одразу.",
+          "previewAlt": "Попередній перегляд обкладинки",
+          "previewEmpty": "Тут з'явиться обкладинка",
+          "previewError": "Не вдалось завантажити зображення — перевір URL"
+        },
+        "visibility": {
+          "label": "Хто може бачити",
+          "placeholder": "Обери видимість"
+        },
+        "status": {
+          "label": "Статус пригоди",
+          "placeholder": "Обери статус"
+        }
+      },
+      "visibility": {
+        "public": {
+          "label": "Публічна",
+          "hint": "Будь-хто може знайти та прочитати цю пригоду."
+        },
+        "private": {
+          "label": "Приватна",
+          "hint": "Бачиш лише ти — твій особистий архів."
+        },
+        "unlisted": {
+          "label": "За посиланням",
+          "hint": "Прихована від пошуку, але доступна за прямим посиланням."
+        }
+      },
+      "status": {
+        "planning": {
+          "label": "Планування",
+          "hint": "Ще мрієш, досліджуєш або креслиш маршрут."
+        },
+        "draft": {
+          "label": "Чернетка",
+          "hint": "Пишеш — ще не готовий ділитись."
+        },
+        "published": {
+          "label": "Опублікована",
+          "hint": "Живе у журналі, готова для читачів."
+        },
+        "archived": {
+          "label": "В архіві",
+          "hint": "Збережена для пам'яті, схована з активного перегляду."
+        }
+      },
+      "actions": {
+        "create": "Почати цю пригоду",
+        "save": "Зберегти зміни",
+        "cancel": "Ще ні",
+        "creating": "Зберігаємо історію…",
+        "saving": "Оновлюємо…",
+        "saved": "Збережено"
+      },
+      "footer": {
+        "create": "Дні, моменти та фото можна додати після створення пригоди.",
+        "edit": "Тут оновлюється огляд пригоди — твій маршрут день за днем залишається."
+      },
+      "success": {
+        "create": "Пригода збережена — переходимо до списку…",
+        "edit": "Зміни збережені — повертаємось до пригоди…"
+      },
+      "errors": {
+        "titleRequired": "Кожній пригоди потрібна назва",
+        "titleMin": "Назва має містити щонайменше 2 символи",
+        "titleMax": "Назва має бути коротшою за 120 символів",
+        "descriptionRequired": "Розкажи трохи про цю пригоду",
+        "descriptionMin": "Ще кілька речень — мінімум 20 символів",
+        "countryRequired": "Де відбувалась ця пригоду?",
+        "regionRequired": "Додай місто або регіон для мапи",
+        "startDateRequired": "Коли почалась пригоду?",
+        "endDateBeforeStart": "Дата завершення не може бути раніше початку",
+        "coverUrlRequired": "Обери обкладинку для цього розділу",
+        "coverUrlInvalid": "Введи коректний URL зображення",
+        "adventureTypeRequired": "Обери тип пригоди"
+      }
+    },
+    "tripEventForm": {
+      "backToTrip": "Назад до пригоди",
+      "sections": {
+        "type": {
+          "eyebrow": "Що сталось",
+          "title": "Обери тип моменту",
+          "description": "Кожен тип формує, як запис виглядає у твоєму timeline."
+        },
+        "details": {
+          "eyebrow": "Історія",
+          "title": "Назвати момент",
+          "description": "Назва та кілька рядків — достатньо, щоб згадати пізніше."
+        },
+        "time": {
+          "eyebrow": "Коли",
+          "title": "Вказати час",
+          "description": "Необов'язково — корисно для насичених днів."
+        },
+        "place": {
+          "eyebrow": "Де",
+          "title": "Прив'язати місце",
+          "description": "Пов'яжи момент із збереженою локацією з цієї пригоди."
+        },
+        "order": {
+          "eyebrow": "Timeline",
+          "title": "Порядок у дні",
+          "description": "Менші числа з'являються раніше. Змінюй, якщо вставляєш між існуючими моментами."
+        },
+        "visibility": {
+          "eyebrow": "Аудиторія",
+          "title": "Хто може бачити",
+          "description": "Керуй видимістю цього моменту окремо від пригоди."
+        },
+        "cloudLinks": {
+          "eyebrow": "Зовнішні файли",
+          "title": "Cloud links",
+          "description": "Посилання на великі drone-відео, raw-матеріали або папки в Google Drive, iCloud та інших сервісах."
+        }
+      },
+      "fields": {
+        "title": {
+          "label": "Назва моменту",
+          "placeholder": "Кава на вершині перед спуском",
+          "hint": "Коротко й конкретно — як заголовок у журналі."
+        },
+        "description": {
+          "label": "Нотатки",
+          "placeholder": "Вітер з заходу, хмари розсіюються, ноги ще теплі після підйому…",
+          "hint": "Деталі, контекст або все, що хочеш запам'ятати."
+        },
+        "startTime": {
+          "label": "Час початку",
+          "hint": "Залиши порожнім, якщо час не важливий."
+        },
+        "endTime": {
+          "label": "Час завершення",
+          "hint": "Для відрізків — похід, обід, поїздка."
+        },
+        "place": {
+          "label": "Місце",
+          "placeholder": "Обери місце",
+          "none": "Без прив'язки до місця",
+          "hint": "Необов'язково — місця, збережені в цій пригоди."
+        },
+        "order": {
+          "label": "Індекс порядку",
+          "hint": "Позиція в timeline цього дня."
+        },
+        "visibility": {
+          "label": "Видимість",
+          "placeholder": "Обери видимість"
+        }
+      },
+      "eventTypes": {
+        "SLEEP": {
+          "description": "Де відпочивали — табір, притулок чи готель."
+        },
+        "FOOD": {
+          "description": "Страви, ринки та запам'ятовувані столики."
+        },
+        "HIKE": {
+          "description": "Стежки, вершини та кілометри пішки."
+        },
+        "BIKE": {
+          "description": "Поїздки, перевали та дорожні кілометри."
+        },
+        "TRANSPORT": {
+          "description": "Поїзди, пороми, автобуси та пересадки."
+        },
+        "PLACE_VISIT": {
+          "description": "Місто, музей або зупинка, варта згадки."
+        },
+        "PHOTO_VIDEO": {
+          "description": "Фото, відео, дрон і великі файли в хмарі."
+        },
+        "EXPENSE": {
+          "description": "Витрати, які варто відстежити в дорозі."
+        },
+        "NOTE": {
+          "description": "Спостереження, плани чи вільні думки."
+        },
+        "TIP": {
+          "description": "Порада для майбутнього мандрівника."
+        }
+      },
+      "visibility": {
+        "public": {
+          "label": "Публічна",
+          "hint": "Бачать усі, хто читає цю пригоду."
+        },
+        "private": {
+          "label": "Приватна",
+          "hint": "Лише ти — особиста нотатка в timeline."
+        },
+        "unlisted": {
+          "label": "За посиланням",
+          "hint": "Приховано від перегляду, доступно за посиланням."
+        }
+      },
+      "actions": {
+        "create": "Додати до timeline",
+        "save": "Зберегти момент",
+        "cancel": "Ще ні",
+        "creating": "Додаємо…",
+        "saving": "Зберігаємо…",
+        "saved": "Збережено"
+      },
+      "footer": {
+        "create": "Фото та cloud links можна додати після збереження моменту.",
+        "edit": "Тут оновлюється цей запис — решта timeline залишається без змін.",
+        "createWithCloud": "Cloud links зберігаються разом із моментом — файли залишаються у твоїй хмарі.",
+        "editWithCloud": "Зміни cloud links зберігаються разом із моментом — файли залишаються у твоїй хмарі."
+      },
+      "success": {
+        "create": "Момент додано — повертаємось до пригоди…",
+        "edit": "Момент оновлено — повертаємось до пригоди…"
+      },
+      "errors": {
+        "typeRequired": "Обери тип моменту",
+        "titleRequired": "Дай моменту назву",
+        "titleMin": "Назва має містити щонайменше 2 символи",
+        "titleMax": "Назва має бути коротшою за 120 символів",
+        "startTimeInvalid": "Формат 24 години (ГГ:ХХ)",
+        "endTimeInvalid": "Формат 24 години (ГГ:ХХ)",
+        "endTimeBeforeStart": "Час завершення не може бути раніше початку",
+        "orderMin": "Порядок має бути щонайменше 1"
+      }
+    },
+    "equipment": {
+      "status": {
+        "active": "Активне",
+        "inactive": "Неактивне"
+      }
+    },
+    "equipmentForm": {
+      "backToEquipment": "Усе спорядження",
+      "backToItem": "Назад до предмета",
+      "sections": {
+        "identity": {
+          "eyebrow": "Що це",
+          "title": "Ідентичність предмета",
+          "description": "Назва, категорія, бренд і модель — основа інвентарю."
+        },
+        "specs": {
+          "eyebrow": "На вагах",
+          "title": "Вага та покупка",
+          "description": "Грами для статистики базової ваги та опційні дані про покупку."
+        },
+        "details": {
+          "eyebrow": "Нотатки",
+          "title": "Статус і нотатки",
+          "description": "Познач застаріле спорядження неактивним і додай контекст."
+        },
+        "photo": {
+          "eyebrow": "Візуал",
+          "title": "Фото",
+          "description": "Необов'язкове URL-зображення для швидкого розпізнавання."
+        }
+      },
+      "fields": {
+        "name": {
+          "label": "Назва",
+          "hint": "Коротка мітка — Намет, Спальник, Дрон…"
+        },
+        "category": {
+          "label": "Категорія",
+          "placeholder": "Обери категорію"
+        },
+        "brand": {
+          "label": "Бренд"
+        },
+        "model": {
+          "label": "Модель"
+        },
+        "weightGrams": {
+          "label": "Вага (грами)",
+          "hint": "Зважено або за специфікацією."
+        },
+        "purchaseDate": {
+          "label": "Дата покупки",
+          "hint": "Необов'язково"
+        },
+        "purchasePrice": {
+          "label": "Ціна покупки (EUR)",
+          "hint": "Необов'язково"
+        },
+        "notes": {
+          "label": "Нотатки",
+          "hint": "Як використовуєш, умови, апгрейди…"
+        },
+        "isActive": {
+          "label": "Статус",
+          "hint": "Неактивні предмети залишаються в інвентарі, але не з'являються у селекторах.",
+          "active": "Активне",
+          "inactive": "Неактивне"
+        },
+        "photoUrl": {
+          "label": "URL фото",
+          "hint": "Встав посилання на зображення",
+          "previewEmpty": "Попередній перегляд з'явиться тут"
+        }
+      },
+      "actions": {
+        "create": "Додати в інвентар",
+        "save": "Зберегти зміни",
+        "cancel": "Скасувати",
+        "saved": "Збережено"
+      },
+      "errors": {
+        "nameRequired": "Назва обов'язкова",
+        "brandRequired": "Бренд обов'язковий",
+        "modelRequired": "Модель обов'язкова",
+        "categoryRequired": "Обери категорію",
+        "weightMin": "Вага має бути щонайменше 1 грам",
+        "weightMax": "Занадто велика вага — перевір значення",
+        "priceMin": "Ціна не може бути від'ємною",
+        "photoUrlInvalid": "Введи коректний URL зображення"
+      }
+    },
+    "equipmentCategorySelector": {
+      "searchPlaceholder": "Пошук категорій…",
+      "searchHint": "Шукай або створи власну категорію",
+      "addCustomCategory": "Додати власну категорію",
+      "customCategoryBadge": "Твоя категорія"
+    },
+    "equipmentCategoryForm": {
+      "fields": {
+        "name": {
+          "label": "Назва категорії",
+          "hint": "напр., GPS-годинник, Гамак, Гермомішок"
+        },
+        "icon": {
+          "label": "Іконка",
+          "hint": "Обери іконку для швидкого розпізнавання"
+        }
+      },
+      "actions": {
+        "save": "Зберегти категорію",
+        "cancel": "Скасувати"
+      },
+      "errors": {
+        "nameRequired": "Назва обов'язкова",
+        "nameMin": "Назва має містити щонайменше 2 символи",
+        "nameMax": "Назва має містити не більше 48 символів",
+        "iconRequired": "Обери іконку"
+      }
+    },
+    "equipmentSelector": {
+      "emptyInventory": "У інвентарі ще немає активного спорядження."
+    },
+    "tripDayForm": {
+      "addTitle": "Додати день",
+      "addDescription": "Згрупуй все, що сталося в одну календарну дату.",
+      "editTitle": "Редагувати день",
+      "editDescription": "Онови дату, назву або нотатки для цього дня.",
+      "fields": {
+        "date": {
+          "label": "Дата",
+          "hint": "Коли відбувся цей день"
+        },
+        "title": {
+          "label": "Назва",
+          "hint": "Необов’язково — короткий заголовок дня",
+          "placeholder": "напр., Сінтра та узбережжя"
+        },
+        "description": {
+          "label": "Опис",
+          "hint": "Необов’язкові нотатки або підсумок",
+          "placeholder": "Що сталося, які враження, що хочете зберегти…"
+        },
+        "activities": {
+          "label": "Активності",
+          "hint": "Опиши день у до 3 тегів.",
+          "sectionLabel": "Активності дня"
+        }
+      },
+      "actions": {
+        "add": "Додати день",
+        "save": "Зберегти зміни",
+        "cancel": "Скасувати",
+        "editDay": "Редагувати день",
+        "deleteDay": "Видалити день"
+      },
+      "delete": {
+        "title": "Видалити цей день?",
+        "description": "«{label}» буде прибрано з маршруту разом із усіма подіями. Цю дію не можна скасувати.",
+        "confirm": "Видалити день"
+      },
+      "errors": {
+        "dateRequired": "Дата обов’язкова",
+        "titleMax": "Назва має містити не більше 120 символів",
+        "descriptionMax": "Опис має містити не більше 500 символів",
+        "activitiesMax": "Обери не більше 3 тегів активностей"
+      }
+    },
+    "tripEventModal": {
+      "addTitle": "Додати подію",
+      "addDescription": "Зафіксуй подію, яка сталася цього дня.",
+      "addDescriptionShort": "Обери тип, назви, збережи — деталі можна пізніше.",
+      "editTitle": "Редагувати подію",
+      "editDescription": "Онови деталі цієї події.",
+      "moreDetails": "Час і додаткові деталі",
+      "moreDetailsHint": "Необов’язково — більшість мандрівників це пропускають.",
+      "sections": {
+        "cloudLinks": "Хмарні посилання",
+        "cloudLinksHint": "Посилання на великі відеофайли в хмарі."
+      },
+      "fields": {
+        "type": {
+          "label": "Тип події",
+          "placeholder": "Обери тип"
+        },
+        "title": {
+          "label": "Назва",
+          "hint": "Коротко і конкретно — як заголовок у щоденнику.",
+          "placeholder": "Сніданок, Велопрогулянка, Заселення…",
+          "placeholderShort": "Велопрогулянка, Обід, Хостел…"
+        },
+        "description": {
+          "label": "Нотатки",
+          "hint": "Необов’язково — показуються в timeline під назвою події.",
+          "optionalHint": "Необов’язково",
+          "placeholder": "Маршрут, настрій, що запам’яталося…",
+          "placeholderShort": "Короткий опис або враження…"
+        },
+        "startTime": {
+          "label": "Початок",
+          "hint": "Необов’язково"
+        },
+        "endTime": {
+          "label": "Кінець",
+          "hint": "Необов’язково"
+        },
+        "checkIn": {
+          "label": "Заїзд",
+          "hint": "Коли прибули"
+        },
+        "checkOut": {
+          "label": "Виїзд",
+          "hint": "Коли пішли"
+        },
+        "mealType": {
+          "label": "Тип прийому їжі",
+          "hint": "Який це був прийом їжі?",
+          "placeholder": "Обери тип"
+        },
+        "distance": {
+          "label": "Відстань (км)",
+          "hint": "Необов’язково",
+          "placeholder": "За бажанням"
+        },
+        "elevation": {
+          "label": "Набір висоти (м)",
+          "hint": "Необов’язково",
+          "placeholder": "За бажанням"
+        },
+        "photos": {
+          "label": "Фото",
+          "hint": "Необов’язково — можна додати до будь-якого типу моменту.",
+          "urlPlaceholder": "Встав посилання на зображення…",
+          "addUrl": "Додати URL",
+          "upload": "Завантажити",
+          "empty": "Ще немає фото — встав посилання або завантаж з пристрою.",
+          "remove": "Видалити фото",
+          "previewAlt": "Фото моменту",
+          "previewError": "Не вдалося завантажити зображення",
+          "urlInvalid": "Введи коректне посилання http або https"
+        },
+        "gpx": {
+          "label": "GPX-трек",
+          "hint": "Незабаром — завантаження файлу маршруту.",
+          "placeholder": "Завантаження GPX незабаром"
+        },
+        "place": {
+          "label": "Місце",
+          "hint": "Шукай збережені місця або створи нове тут же.",
+          "optionalHint": "Необов’язково — можна пропустити."
+        }
+      },
+      "actions": {
+        "add": "Додати подію",
+        "save": "Зберегти зміни",
+        "cancel": "Скасувати"
+      },
+      "delete": {
+        "title": "Видалити цю подію?",
+        "description": "«{title}» буде прибрано з маршруту. Цю дію не можна скасувати.",
+        "confirm": "Видалити подію"
+      },
+      "errors": {
+        "typeRequired": "Тип події обов’язковий",
+        "titleRequired": "Назва обов’язкова",
+        "titleMin": "Назва має містити щонайменше 2 символи",
+        "titleMax": "Назва має містити не більше 120 символів",
+        "startTimeInvalid": "Невірний час початку",
+        "endTimeInvalid": "Невірний час закінчення",
+        "endTimeBeforeStart": "Час закінчення має бути після початку",
+        "distanceMin": "Відстань має бути не менше 0",
+        "elevationMin": "Набір висоти має бути не менше 0",
+        "formInvalid": "Перевір поля форми — деякі дані заповнені некоректно.",
+        "saveError": "Не вдалося зберегти подію. Спробуй ще раз."
+      }
+    },
+    "placeForm": {
+      "inlineTitle": "Нове місце",
+      "fields": {
+        "name": {
+          "label": "Назва"
+        },
+        "category": {
+          "label": "Категорія",
+          "placeholder": "Обери категорію"
+        },
+        "country": {
+          "label": "Країна"
+        },
+        "region": {
+          "label": "Місто / регіон"
+        },
+        "address": {
+          "label": "Адреса",
+          "hint": "Необов’язково"
+        },
+        "lat": {
+          "label": "Широта",
+          "hint": "Необов’язково"
+        },
+        "lng": {
+          "label": "Довгота",
+          "hint": "Необов’язково"
+        }
+      },
+      "actions": {
+        "create": "Створити місце",
+        "cancel": "Скасувати"
+      },
+      "errors": {
+        "nameRequired": "Назва обов’язкова",
+        "nameMin": "Назва має містити щонайменше 2 символи",
+        "nameMax": "Назва має містити не більше 120 символів",
+        "categoryRequired": "Категорія обов’язкова",
+        "countryRequired": "Країна обов’язкова",
+        "regionRequired": "Місто або регіон обов’язкові",
+        "addressMax": "Адреса має містити не більше 200 символів",
+        "latInvalid": "Невірна широта",
+        "lngInvalid": "Невірна довгота"
+      }
+    },
+    "placeSelector": {
+      "searchPlaceholder": "Пошук місць…",
+      "resultsLabel": "Знайдені місця",
+      "noResults": "Жодне місце не відповідає пошуку.",
+      "createNew": "Створити нове місце",
+      "clearSelection": "Скасувати вибір місця"
+    },
+    "tripEquipment": {
+      "eyebrow": "У рюкзаку",
+      "title": "Спорядження для пригоди",
+      "subtitle": "{count, plural, one {# предмет} few {# предмети} many {# предметів} other {# предметів}} · базова вага {weight}",
+      "edit": "Редагувати",
+      "add": "Додати спорядження",
+      "manage": "Керувати",
+      "save": "Зберегти",
+      "saving": "Зберігаємо…",
+      "cancel": "Скасувати",
+      "createInventory": "Додати в інвентар",
+      "empty": "До цієї пригоди ще не прив'язано спорядження."
+    }
+  },
+  "equipment": {
+    "defaultCategories": {
+      "ecat-tent": "Намет",
+      "ecat-sleeping-bag": "Спальний мішок",
+      "ecat-sleeping-pad": "Каремат",
+      "ecat-backpack": "Рюкзак",
+      "ecat-bike": "Велосипед",
+      "ecat-helmet": "Шолом",
+      "ecat-stove": "Пальник",
+      "ecat-drone": "Дрон",
+      "ecat-action-camera": "Екшн-камера",
+      "ecat-camera": "Камера",
+      "ecat-shoes": "Взуття",
+      "ecat-jacket": "Куртка",
+      "ecat-power-bank": "Power Bank",
+      "ecat-water-filter": "Фільтр для води",
+      "ecat-trekking-poles": "Трекінгові палки",
+      "ecat-first-aid-kit": "Аптечка",
+      "ecat-other": "Інше"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# Frontend only. Run Postgres + API from the sibling memora-backend repo:
+#   cd ../memora-backend && docker compose up -d
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8080/api}
+        NEXT_PUBLIC_USE_MOCKS: "false"
+    container_name: memora-frontend
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8080/api}
+      NEXT_PUBLIC_USE_MOCKS: "false"
+    ports:
+      - "3000:3000"

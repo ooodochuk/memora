@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Memora
 
-## Getting Started
+Memora is a premium adventure memory platform — document adventures, days, moments, and equipment. Share a public portfolio when you're ready.
 
-First, run the development server:
+**Documentation:** [`docs/README.md`](./docs/README.md)
+
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router), React 19, TypeScript
+- **Styling:** Tailwind CSS 4, shadcn/ui
+- **Data:** TanStack Query, Zod, React Hook Form
+- **i18n:** next-intl (English, Ukrainian)
+- **API:** REST backend ([memora-backend](https://github.com/ooodochuk/memora-backend)) — Java 21, Spring Boot 3, PostgreSQL
+
+## Local development
+
+### Prerequisites
+
+- Node.js 22+
+- [memora-backend](https://github.com/ooodochuk/memora-backend) cloned as a sibling directory (for real API mode)
+
+### Setup
 
 ```bash
+cp .env.example .env.local
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### With the real API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Start Postgres and the API from `memora-backend`:
 
-## Learn More
+```bash
+cd ../memora-backend
+docker compose up -d
+./gradlew bootRun
+```
 
-To learn more about Next.js, take a look at the following resources:
+2. Set in `.env.local`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8080/api
+NEXT_PUBLIC_USE_MOCKS=false
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Register at `/en/register`, then sign in at `/en/login`.
 
-## Deploy on Vercel
+### Mock mode
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+With `NEXT_PUBLIC_USE_MOCKS=true` (default in `.env.example`), the app uses local fixture data — no backend required.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXT_PUBLIC_API_URL` | Yes (API mode) | Backend base URL, e.g. `http://localhost:8080/api` |
+| `NEXT_PUBLIC_USE_MOCKS` | No | `true` = fixture data; `false` = HTTP API (default: `true`) |
+| `NEXT_PUBLIC_MOCK_DELAY_MS` | No | Artificial delay in mock mode for loading UI tests |
+
+Copy `.env.example` to `.env.local` for development. See `.env.production.example` for production/Docker reference values.
+
+## Deployment notes
+
+### Vercel / Node hosting
+
+1. Set `NEXT_PUBLIC_API_URL` to your production API URL at **build time**.
+2. Set `NEXT_PUBLIC_USE_MOCKS=false`.
+3. Build: `npm run build` → `npm run start`.
+
+### Docker (frontend only)
+
+```bash
+docker compose up --build
+```
+
+Requires the API running separately (e.g. from [memora-backend](https://github.com/ooodochuk/memora-backend)). Pass `NEXT_PUBLIC_API_URL` as a build arg or in `.env` when building the image.
+
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:3000 |
+| Backend API | http://localhost:8080/api (memora-backend) |
+
+For HTTPS, put a reverse proxy (nginx, Caddy) in front of both services.
+
+## Scripts
+
+```bash
+npm run dev      # development server
+npm run build    # production build
+npm run start    # serve production build
+npm run lint     # ESLint
+```

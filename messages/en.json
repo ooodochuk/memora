@@ -1,0 +1,1280 @@
+{
+  "metadata": {
+    "title": "Memora — Your travel journal",
+    "description": "A premium personal travel portfolio. Document journeys, days, and moments — beautifully.",
+    "pageTitle": "{title} · {appName}",
+    "profilePageTitle": "{name} · {appName}",
+    "tripPageTitle": "{tripTitle} · {authorName} · {appName}",
+    "profileFallback": "Profile · {appName}",
+    "tripFallback": "Adventure · {appName}"
+  },
+  "common": {
+    "appName": "Memora",
+    "tagline": "Travel, remembered.",
+    "loading": "Loading…",
+    "loadError": "Could not load data",
+    "retry": "Try again",
+    "notFound": "Not found",
+    "close": "Close",
+    "back": "Back",
+    "viewAll": "View all",
+    "learnMore": "Learn more",
+    "days": "{count, plural, one {# day} other {# days}}",
+    "events": "{count, plural, one {# moment} other {# moments}}",
+    "comingSoon": "Coming soon"
+  },
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "journal": "Journal",
+    "profile": "Profile",
+    "settings": "Settings",
+    "signIn": "Sign in",
+    "signUp": "Create account",
+    "dashboard": "Dashboard",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "auth": {
+    "loginTitle": "Sign in",
+    "registerTitle": "Create your account",
+    "email": "Email",
+    "password": "Password",
+    "displayName": "Display name",
+    "username": "Username",
+    "login": "Sign in",
+    "register": "Create account",
+    "noAccount": "No account yet?",
+    "hasAccount": "Already have an account?",
+    "goRegister": "Create one",
+    "goLogin": "Sign in",
+    "loginError": "Invalid email or password",
+    "registerError": "Could not create account"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "locale": {
+    "label": "Language",
+    "en": "English",
+    "uk": "Ukrainian"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Personal travel journal",
+      "title": "Every journey deserves a beautiful archive",
+      "subtitle": "Document your adventures day by day — places, meals, photos, and the small moments that matter. A travel portfolio that feels like a journal, not a dashboard.",
+      "cta": "View my journal",
+      "secondaryCta": "Explore journeys",
+      "ctaGuest": "Create account",
+      "signInCta": "Sign in"
+    },
+    "guest": {
+      "exploreTitle": "Start your travel journal",
+      "exploreDescription": "Create an account to document adventures day by day and share them when you're ready.",
+      "exploreCardTitle": "Your adventures are waiting",
+      "exploreCardDescription": "Sign in or create an account to start your journal and open your public profile.",
+      "signUpCta": "Create account",
+      "signInCta": "Sign in"
+    },
+    "member": {
+      "exploreTitle": "Your journal",
+      "exploreDescription": "View your public profile or keep adding adventures from the dashboard.",
+      "journalCta": "My journal",
+      "dashboardCta": "Dashboard"
+    },
+    "featured": {
+      "title": "Featured journeys",
+      "subtitle": "Stories from travelers mapping the world one day at a time"
+    },
+    "features": {
+      "title": "Built for the way you travel",
+      "journal": {
+        "title": "Day-by-day journal",
+        "description": "Organize every adventure into days and moments — notes, photos, places, and more."
+      },
+      "visual": {
+        "title": "Visual & editorial",
+        "description": "A layout designed for storytelling, not spreadsheets. Your travels deserve better."
+      },
+      "portfolio": {
+        "title": "Your travel portfolio",
+        "description": "A personal archive that grows with every journey — ready to share when you are."
+      }
+    }
+  },
+  "profile": {
+    "trips": "Adventures",
+    "memberSince": "Member since {date}",
+    "noTrips": "You don't have any adventures yet.",
+    "noTripsDescription": "When journeys are added, they'll appear here.",
+    "editProfile": "Edit profile",
+    "contact": "Get in touch"
+  },
+  "trip": {
+    "overview": "Overview",
+    "itinerary": "Itinerary",
+    "days": "Days",
+    "timeline": "Timeline",
+    "about": "About this adventure",
+    "dates": "{start} — {end}",
+    "duration": "{count, plural, one {# day} other {# days}}",
+    "countries": "Countries",
+    "cities": "Cities",
+    "tags": "Tags",
+    "viewDay": "View day",
+    "dayLabel": "Day {number}",
+    "notFound": "Adventure not found",
+    "notFoundDescription": "This journey may have been moved or removed."
+  },
+  "day": {
+    "backToTrip": "Back to adventure",
+    "moments": "Moments",
+    "noEvents": "No moments recorded",
+    "noEventsDescription": "This day is waiting for its first entry.",
+    "previousDay": "Previous day",
+    "nextDay": "Next day",
+    "activitiesLabel": "Activities"
+  },
+  "adventureTypes": {
+    "pickerLabel": "Adventure type",
+    "types": {
+      "BIKEPACKING": "Bikepacking",
+      "CYCLING": "Cycling",
+      "HIKING": "Hiking",
+      "TRAIL_RUNNING": "Trail running",
+      "CAMPING": "Camping",
+      "ROAD_TRIP": "Road trip",
+      "VIA_FERRATA": "Via ferrata",
+      "WATER_ADVENTURE": "Water adventure",
+      "BACKPACKING": "Backpacking",
+      "MIXED": "Mixed adventure"
+    }
+  },
+  "dayActivities": {
+    "pickerLabel": "Day activities",
+    "pickerHint": "What kind of day was it? Tap up to 3 tags.",
+    "pickerCount": "{count}/{max}",
+    "pickerLimit": "Deselect a tag to choose a different one.",
+    "types": {
+      "WALKING": "Walking",
+      "HIKING": "Hiking",
+      "CYCLING": "Cycling",
+      "DRIVING": "Driving",
+      "CAMPING": "Camping",
+      "CITY": "City",
+      "NATURE": "Nature",
+      "WATER_ACTIVITIES": "Water activities",
+      "PHOTOGRAPHY": "Photography",
+      "FOOD_EXPERIENCE": "Food experience",
+      "CLIMBING": "Climbing",
+      "OTHER": "Other"
+    }
+  },
+  "event": {
+    "types": {
+      "label": "Moment type",
+      "SLEEP": "Overnight",
+      "FOOD": "Meal",
+      "HIKE": "Hike",
+      "BIKE": "Bike ride",
+      "TRANSPORT": "Transfer",
+      "PLACE_VISIT": "Place visit",
+      "PHOTO_VIDEO": "Photo & Video",
+      "EXPENSE": "Expense",
+      "NOTE": "Note",
+      "TIP": "Tip"
+    },
+    "cloudLink": "Cloud link",
+    "cloudLinks": "Cloud links",
+    "distance": "{km} km",
+    "elevation": "{m} m gain",
+    "expense": "{amount} {currency}",
+    "edit": "Edit moment",
+    "delete": "Delete moment",
+    "participants": "With {names}",
+    "morePhotos": "+{count} more",
+    "mealTypes": {
+      "BREAKFAST": "Breakfast",
+      "LUNCH": "Lunch",
+      "DINNER": "Dinner",
+      "SNACK": "Snack",
+      "OTHER": "Other"
+    }
+  },
+  "momentLocation": {
+    "addLocation": "Mark where it happened",
+    "label": "Location",
+    "searchPlaceholder": "Search on map…",
+    "mapHint": "Click the map to drop a pin",
+    "clear": "Remove location"
+  },
+  "place": {
+    "categories": {
+      "HOSTEL": "Hostel",
+      "HOTEL": "Hotel",
+      "APARTMENT": "Apartment",
+      "CAMPSITE": "Campsite",
+      "RESTAURANT": "Restaurant",
+      "CAFE": "Café",
+      "VIEWPOINT": "Viewpoint",
+      "TRAIL": "Trail",
+      "BEACH": "Beach",
+      "AIRPORT": "Airport",
+      "TRAIN_STATION": "Train station",
+      "PARKING": "Parking",
+      "OTHER": "Other"
+    }
+  },
+  "designSystem": {
+    "status": {
+      "planning": "Planning",
+      "draft": "Draft",
+      "published": "Published",
+      "archived": "Archived"
+    },
+    "visibility": {
+      "public": "Public",
+      "private": "Private",
+      "unlisted": "Unlisted"
+    }
+  },
+  "contact": {
+    "title": "Send a message",
+    "description": "Reach out about collaborations, questions, or just to say hello.",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "message": "Message",
+    "messagePlaceholder": "Write your message…",
+    "submit": "Send message",
+    "submitting": "Sending…",
+    "success": "Message sent (demo)",
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailInvalid": "Enter a valid email",
+      "messageMin": "Message must be at least 10 characters"
+    }
+  },
+  "publicProfile": {
+    "eyebrow": "Travel portfolio",
+    "portfolioBadge": "Your journal",
+    "stats": {
+      "adventures": "Adventures",
+      "countries": "Countries",
+      "days": "Days",
+      "hiking": "On foot",
+      "cycling": "By bike",
+      "driving": "By car",
+      "kmUnit": "km",
+      "moments": "Moments",
+      "photos": "Photos"
+    },
+    "trips": {
+      "title": "Adventures",
+      "emptyTitle": "No public adventures yet",
+      "emptyDescription": "When journeys are published, they'll appear here as a travel portfolio."
+    }
+  },
+  "publicTrip": {
+    "stats": {
+      "days": "Days",
+      "moments": "Moments",
+      "photos": "Photos",
+      "cloudLinks": "Cloud links",
+      "places": "Places",
+      "distance": "Distance",
+      "elevation": "Elevation"
+    },
+    "timeline": {
+      "title": "Day by day"
+    },
+    "photos": {
+      "eyebrow": "Through the lens",
+      "title": "Photo highlights",
+      "subtitle": "{count, plural, one {# frame from the adventure} other {# frames from the adventure}}"
+    },
+    "cloudContent": {
+      "eyebrow": "External media",
+      "title": "Drone & cloud footage",
+      "subtitle": "Large files live in cloud storage — Memora keeps the links so you can watch anytime.",
+      "moreLinks": "More files & resources"
+    },
+    "author": {
+      "eyebrow": "About the traveler",
+      "cta": "View full portfolio"
+    }
+  },
+  "cloudLink": {
+    "sectionTitle": "External file",
+    "sectionTitlePlural": "External files",
+    "sectionDescription": "Large drone videos and raw travel content live in cloud storage — Memora stores only the link.",
+    "openLink": "Open link",
+    "addLink": "Add cloud link",
+    "editLink": "Edit link",
+    "deleteLink": "Remove link",
+    "emptyTitle": "No cloud links yet",
+    "emptyDescription": "Paste a share link from Google Drive, iCloud, Dropbox, or OneDrive for large files you don't host here.",
+    "addDialogTitle": "Add cloud link",
+    "editDialogTitle": "Edit cloud link",
+    "addDialogDescription": "The app stores only the URL — your files stay in your cloud service.",
+    "providers": {
+      "GOOGLE_DRIVE": "Google Drive",
+      "ICLOUD": "iCloud",
+      "DROPBOX": "Dropbox",
+      "ONEDRIVE": "OneDrive",
+      "OTHER": "Other"
+    },
+    "form": {
+      "add": "Add link",
+      "save": "Save link",
+      "cancel": "Cancel",
+      "providerNote": "Memora never uploads your files — only the share link is saved.",
+      "fields": {
+        "provider": {
+          "label": "Cloud provider",
+          "placeholder": "Choose provider",
+          "hint": "Where the original file is stored."
+        },
+        "url": {
+          "label": "Share URL",
+          "placeholder": "https://drive.google.com/file/d/…",
+          "hint": "Paste the public or shareable link to the file or folder."
+        },
+        "title": {
+          "label": "Link title",
+          "placeholder": "Lago di Lei — 4K drone orbit (raw)",
+          "hint": "A name that tells you what's behind the link."
+        },
+        "description": {
+          "label": "Notes",
+          "placeholder": "12 min of D-log footage. Best light after 17:00…",
+          "hint": "Optional — codec, duration, permissions, or context."
+        }
+      },
+      "errors": {
+        "providerRequired": "Choose a cloud provider",
+        "urlRequired": "Paste a share link",
+        "urlInvalid": "Enter a valid URL",
+        "titleRequired": "Give this link a title",
+        "titleMin": "Title should be at least 2 characters",
+        "titleMax": "Title must be under 120 characters"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Memora. Crafted for travelers.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "prototypeNote": "Frontend prototype with mock data"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Back to home"
+  },
+  "dashboard": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "trips": "Adventures",
+      "equipment": "Equipment",
+      "places": "Places",
+      "wishlist": "Wishlist",
+      "profile": "Profile",
+      "settings": "Settings"
+    },
+    "header": {
+      "createTrip": "Start adventure",
+      "viewJournal": "View public journal",
+      "menuLabel": "Account menu",
+      "sidebarLabel": "Dashboard navigation"
+    },
+    "pages": {
+      "dashboard": {
+        "title": "Adventures",
+        "subtitle": "All your adventures in one place"
+      },
+      "home": {
+        "greeting": "Welcome back, {name}",
+        "greetingEyebrow": "Where you've been",
+        "greetingNote": "Every summit, sunset, and side street — preserved for the days you want to feel it all again.",
+        "statsEyebrow": "Adventure statistics",
+        "stats": {
+          "trips": "Adventures",
+          "tripsDescription": "Adventures you've created",
+          "days": "Days",
+          "daysDescription": "Travel days across all adventures",
+          "countries": "Countries",
+          "countriesDescription": "Unique countries visited",
+          "places": "Places",
+          "placesDescription": "Saved locations visited",
+          "hiking": "Hiking",
+          "hikingDescription": "Walking & trail distance",
+          "cycling": "Cycling",
+          "cyclingDescription": "Distance on two wheels",
+          "driving": "Driving",
+          "drivingDescription": "Road & transfer distance",
+          "kmUnit": "km"
+        },
+        "tripSections": {
+          "eyebrow": "Adventures",
+          "title": "My adventures",
+          "inProgress": {
+            "title": "In progress"
+          },
+          "planning": {
+            "title": "Planned"
+          },
+          "completed": {
+            "title": "Completed"
+          },
+          "emptyTitle": "You don't have any adventures yet.",
+          "emptyDescription": "Start your first adventure — every journal begins with a single day."
+        },
+        "startTrip": "Start an adventure"
+      },
+      "trips": {
+        "title": "My Adventures",
+        "subtitle": "All your adventures in one place",
+        "searchPlaceholder": "Search adventures…",
+        "filters": {
+          "all": "All",
+          "planning": "Planning",
+          "inProgress": "In Progress",
+          "completed": "Completed"
+        },
+        "stats": {
+          "days": "Days",
+          "events": "Moments",
+          "photos": "Photos",
+          "cloudLinks": "Links"
+        },
+        "noResults": "No adventures match your search",
+        "noResultsFilter": "No adventures in this category",
+        "noResultsDescription": "Try a different search or filter.",
+        "emptyTitle": "You don't have any adventures yet.",
+        "emptyDescription": "Start your first adventure — every great story begins with a single day."
+      },
+      "newTrip": {
+        "title": "Start a new adventure",
+        "subtitle": "Give your next adventure a name, a place, and an opening line."
+      },
+      "tripDetail": {
+        "title": "Adventure details",
+        "subtitle": "What happened, day by day",
+        "backToTrips": "All adventures",
+        "timelineTitle": "Day by day",
+        "noDays": "The story hasn't started yet",
+        "noDaysDescription": "Add your first day — then capture the moments as they happened.",
+        "noEventsInDay": "A quiet day — or waiting for its first moment.",
+        "eventCount": "{count, plural, one {# moment} other {# moments}}",
+        "daySummaryLabel": "Activity summary for this day",
+        "photoCount": "{count, plural, one {# photo} other {# photos}}",
+        "addAnotherDay": "Add another day",
+        "actions": {
+          "addDay": "Add day",
+          "addEvent": "Add moment"
+        },
+        "stats": {
+          "days": "Days",
+          "events": "Moments",
+          "photos": "Photos",
+          "cloudLinks": "Links",
+          "places": "Places",
+          "distance": "Distance",
+          "elevation": "Elevation"
+        }
+      },
+      "editTrip": {
+        "title": "Continue story",
+        "subtitle": "Update the details that frame this journey",
+        "subtitleNamed": "Editing “{title}”"
+      },
+      "newEvent": {
+        "title": "Capture a moment",
+        "subtitle": "Add a new entry to this journey's timeline",
+        "subtitleDay": "Adding to Day {day} — {title}"
+      },
+      "editEvent": {
+        "title": "Continue moment",
+        "subtitle": "Update the details of a timeline entry",
+        "subtitleNamed": "Editing “{title}”"
+      },
+      "profile": {
+        "title": "Profile",
+        "subtitle": "Your public travel portfolio",
+        "form": {
+          "eyebrow": "Edit",
+          "title": "About you",
+          "description": "This appears on your dashboard home and public portfolio."
+        },
+        "fields": {
+          "displayName": {
+            "label": "Display name"
+          },
+          "tagline": {
+            "label": "Greeting line",
+            "hint": "Short phrase under “Welcome back” on the home dashboard. Leave empty for the default text."
+          },
+          "bio": {
+            "label": "Bio",
+            "hint": "Longer description for your public profile."
+          },
+          "location": {
+            "label": "Location"
+          },
+          "website": {
+            "label": "Website",
+            "hint": "Full URL, e.g. https://…"
+          }
+        },
+        "actions": {
+          "save": "Save changes",
+          "saving": "Saving…"
+        },
+        "errors": {
+          "displayNameRequired": "Enter a display name",
+          "displayNameMax": "Display name must be under 120 characters",
+          "bioMax": "Bio must be under 2000 characters",
+          "taglineMax": "Greeting line must be under 500 characters",
+          "locationMax": "Location must be under 255 characters",
+          "websiteInvalid": "Enter a valid URL"
+        },
+        "viewPublicJournal": "Open public journal"
+      },
+      "settings": {
+        "title": "Settings",
+        "subtitle": "Preferences and account",
+        "loadError": "Could not load account details.",
+        "account": {
+          "title": "Account",
+          "description": "Email and public username.",
+          "email": "Email",
+          "username": "Username",
+          "editProfile": "Edit profile"
+        },
+        "journal": {
+          "title": "Public journal",
+          "description": "How others see your page — only adventures with visibility Public and status Published.",
+          "viewPublic": "Open public journal"
+        },
+        "session": {
+          "title": "Session",
+          "description": "Sign out of your account on this device.",
+          "logout": "Sign out"
+        }
+      },
+      "places": {
+        "title": "Places",
+        "subtitle": "Saved locations from your adventures",
+        "emptyTitle": "Places will appear here",
+        "emptyDescription": "When you add places to events in your adventures, they will be collected in this section."
+      },
+      "wishlist": {
+        "title": "Wishlist",
+        "subtitle": "Dream destinations and planned routes",
+        "emptyTitle": "Wishlist is empty",
+        "emptyDescription": "Soon you'll be able to save future destinations and dream routes here."
+      },
+      "equipment": {
+        "title": "Equipment",
+        "subtitle": "Your personal gear inventory",
+        "addEquipment": "Add equipment",
+        "searchPlaceholder": "Search equipment…",
+        "filters": {
+          "all": "All",
+          "active": "Active",
+          "inactive": "Inactive",
+          "allCategories": "All categories"
+        },
+        "noResults": "No equipment found",
+        "noResultsDescription": "Try a different search or filter."
+      },
+      "newEquipment": {
+        "title": "Add equipment",
+        "subtitle": "Track a new item in your gear inventory"
+      },
+      "equipmentDetail": {
+        "backToEquipment": "All equipment",
+        "edit": "Edit",
+        "specsTitle": "Specifications",
+        "weight": "Weight",
+        "purchaseDate": "Purchase date",
+        "purchasePrice": "Purchase price",
+        "tripsUsed": "Adventures used",
+        "nightsUsed": "Nights used",
+        "usedOnTrips": "Used on adventures",
+        "noTrips": "Not linked to any adventures yet."
+      },
+      "editEquipment": {
+        "title": "Edit equipment",
+        "subtitleNamed": "Editing “{name}”"
+      },
+      "placeholder": "This section is coming soon in the authenticated app."
+    },
+    "tripForm": {
+      "backToTrips": "All adventures",
+      "backToTrip": "Back to adventure",
+      "sections": {
+        "story": {
+          "eyebrow": "Essentials",
+          "title": "Name your journey",
+          "description": "Start with a title and a few lines that capture why this adventure matters."
+        },
+        "place": {
+          "eyebrow": "On the map",
+          "title": "Where it unfolds",
+          "description": "Country and region help you — and readers — place the story in the world."
+        },
+        "dates": {
+          "eyebrow": "In time",
+          "title": "When you traveled",
+          "description": "Rough dates are fine. You can refine the day-by-day timeline later."
+        },
+        "cover": {
+          "eyebrow": "Opening image",
+          "title": "Choose a cover moment",
+          "description": "Pick a photo that feels like the first page of this chapter."
+        },
+        "sharing": {
+          "eyebrow": "Who can read it",
+          "title": "Visibility & status",
+          "description": "Decide who sees this journey and where it sits in your journal."
+        },
+        "equipment": {
+          "eyebrow": "What you carried",
+          "title": "Adventure gear",
+          "description": "Select gear from your inventory — items are reused across adventures, never duplicated.",
+          "emptyInventory": "Your inventory is empty.",
+          "addToInventory": "Add your first item"
+        }
+      },
+      "fields": {
+        "adventureType": {
+          "label": "Adventure type"
+        },
+        "title": {
+          "label": "Journey title",
+          "placeholder": "Alpine Passes by Bike",
+          "hint": "The name you'll remember this adventure by."
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "A self-supported loop through mountain passes — cold lakes, hut nights, and long climbs…",
+          "hint": "Write it like the first page of a travel journal, not a summary for a form."
+        },
+        "country": {
+          "label": "Country",
+          "placeholder": "Switzerland",
+          "hint": "One country or a region that spans borders."
+        },
+        "region": {
+          "label": "City / region",
+          "placeholder": "Graubünden · Engadin · Albula",
+          "hint": "Cities, valleys, coastlines — whatever anchors the route."
+        },
+        "startDate": {
+          "label": "Start date",
+          "hint": "When the journey began."
+        },
+        "endDate": {
+          "label": "End date",
+          "hint": "Leave blank if you're still on the road."
+        },
+        "coverImageUrl": {
+          "label": "Cover photo URL",
+          "placeholder": "https://images.unsplash.com/photo-…",
+          "hint": "Paste a link to an image — preview updates as you type.",
+          "previewAlt": "Cover photo preview",
+          "previewEmpty": "Your cover will appear here",
+          "previewError": "Couldn't load this image — check the URL"
+        },
+        "visibility": {
+          "label": "Who can see this",
+          "placeholder": "Choose visibility"
+        },
+        "status": {
+          "label": "Journey status",
+          "placeholder": "Choose status"
+        }
+      },
+      "visibility": {
+        "public": {
+          "label": "Public",
+          "hint": "Anyone can discover and read this journey."
+        },
+        "private": {
+          "label": "Private",
+          "hint": "Only you can see it — your personal archive."
+        },
+        "unlisted": {
+          "label": "Unlisted",
+          "hint": "Hidden from search, but shareable with a direct link."
+        }
+      },
+      "status": {
+        "planning": {
+          "label": "Planning",
+          "hint": "Still dreaming, researching, or sketching the route."
+        },
+        "draft": {
+          "label": "Draft",
+          "hint": "Writing in progress — not ready to share yet."
+        },
+        "published": {
+          "label": "Published",
+          "hint": "Live in your journal, ready for readers."
+        },
+        "archived": {
+          "label": "Archived",
+          "hint": "Kept for memory, tucked away from active view."
+        }
+      },
+      "actions": {
+        "create": "Begin this journey",
+        "save": "Save changes",
+        "cancel": "Not yet",
+        "creating": "Saving your story…",
+        "saving": "Updating…",
+        "saved": "Saved"
+      },
+      "footer": {
+        "create": "You can add days, moments, and photos once the journey exists.",
+        "edit": "Changes here update the adventure overview — your day-by-day timeline stays intact."
+      },
+      "success": {
+        "create": "Your adventure is saved — taking you there…",
+        "edit": "Changes saved — back to your adventure…"
+      },
+      "errors": {
+        "titleRequired": "Every journey needs a name",
+        "titleMin": "Title should be at least 2 characters",
+        "titleMax": "Title must be under 120 characters",
+        "descriptionRequired": "Tell us a little about this adventure",
+        "descriptionMin": "A few more sentences — aim for at least 20 characters",
+        "countryRequired": "Where did this journey take place?",
+        "regionRequired": "Add a city or region to anchor the map",
+        "startDateRequired": "When did the journey begin?",
+        "endDateBeforeStart": "End date can't be before the start",
+        "coverUrlRequired": "Choose a cover photo for this chapter",
+        "coverUrlInvalid": "Enter a valid image URL",
+        "adventureTypeRequired": "Choose an adventure type"
+      }
+    },
+    "tripEventForm": {
+      "backToTrip": "Back to adventure",
+      "sections": {
+        "type": {
+          "eyebrow": "What happened",
+          "title": "Choose the moment type",
+          "description": "Each type shapes how this entry appears in your timeline."
+        },
+        "details": {
+          "eyebrow": "The story",
+          "title": "Name this moment",
+          "description": "A title and a few lines — enough to remember it clearly later."
+        },
+        "time": {
+          "eyebrow": "When",
+          "title": "Set the time",
+          "description": "Optional — useful for days with many moments."
+        },
+        "place": {
+          "eyebrow": "Where",
+          "title": "Link a place",
+          "description": "Connect this moment to a saved location from the adventure."
+        },
+        "order": {
+          "eyebrow": "Timeline",
+          "title": "Order in the day",
+          "description": "Lower numbers appear first. Adjust if you're inserting between existing moments."
+        },
+        "visibility": {
+          "eyebrow": "Audience",
+          "title": "Who can see this",
+          "description": "Control visibility for this moment independently of the adventure."
+        },
+        "cloudLinks": {
+          "eyebrow": "External files",
+          "title": "Cloud links",
+          "description": "Link to large drone footage, raw video, or folders stored in Google Drive, iCloud, and other services."
+        }
+      },
+      "fields": {
+        "title": {
+          "label": "Moment title",
+          "placeholder": "Summit coffee before the descent",
+          "hint": "Short and specific — like a journal heading."
+        },
+        "description": {
+          "label": "Notes",
+          "placeholder": "Wind from the west, clouds lifting, legs still warm from the climb…",
+          "hint": "Sensory details, context, or anything you'd want to remember."
+        },
+        "startTime": {
+          "label": "Start time",
+          "hint": "Leave blank if the time doesn't matter."
+        },
+        "endTime": {
+          "label": "End time",
+          "hint": "For stretches — a hike, a meal, a ride."
+        },
+        "place": {
+          "label": "Place",
+          "placeholder": "Choose a place",
+          "none": "No linked place",
+          "hint": "Optional — pick from places saved on this adventure."
+        },
+        "order": {
+          "label": "Order index",
+          "hint": "Position within the day's timeline."
+        },
+        "visibility": {
+          "label": "Visibility",
+          "placeholder": "Choose visibility"
+        }
+      },
+      "eventTypes": {
+        "SLEEP": {
+          "description": "Where you rested — camp, hut, or hotel."
+        },
+        "FOOD": {
+          "description": "Meals, markets, and memorable tables."
+        },
+        "HIKE": {
+          "description": "Trails, summits, and miles on foot."
+        },
+        "BIKE": {
+          "description": "Rides, passes, and road miles."
+        },
+        "TRANSPORT": {
+          "description": "Trains, ferries, buses, and transfers."
+        },
+        "PLACE_VISIT": {
+          "description": "A town, museum, or stop worth noting."
+        },
+        "PHOTO_VIDEO": {
+          "description": "Photos, videos, drone clips, and cloud media."
+        },
+        "EXPENSE": {
+          "description": "Costs worth tracking on the road."
+        },
+        "NOTE": {
+          "description": "Observations, plans, or free-form thoughts."
+        },
+        "TIP": {
+          "description": "Advice you'd give a future traveler."
+        }
+      },
+      "visibility": {
+        "public": {
+          "label": "Public",
+          "hint": "Visible to anyone reading this journey."
+        },
+        "private": {
+          "label": "Private",
+          "hint": "Only you — a personal note in the timeline."
+        },
+        "unlisted": {
+          "label": "Unlisted",
+          "hint": "Hidden from browse, shareable by link."
+        }
+      },
+      "actions": {
+        "create": "Add to timeline",
+        "save": "Save moment",
+        "cancel": "Not yet",
+        "creating": "Adding…",
+        "saving": "Saving…",
+        "saved": "Saved"
+      },
+      "footer": {
+        "create": "Photos and cloud links can be attached after the moment is saved.",
+        "edit": "Updates here change this entry — the rest of your timeline stays as is.",
+        "createWithCloud": "Cloud links are saved with this moment — files stay in your cloud service.",
+        "editWithCloud": "Cloud link changes are saved with this moment — files stay in your cloud service."
+      },
+      "success": {
+        "create": "Moment saved — back to your adventure…",
+        "edit": "Moment updated — back to your adventure…"
+      },
+      "errors": {
+        "typeRequired": "Choose what kind of moment this is",
+        "titleRequired": "Give this moment a title",
+        "titleMin": "Title should be at least 2 characters",
+        "titleMax": "Title must be under 120 characters",
+        "startTimeInvalid": "Use 24-hour format (HH:MM)",
+        "endTimeInvalid": "Use 24-hour format (HH:MM)",
+        "endTimeBeforeStart": "End time can't be before start",
+        "orderMin": "Order must be at least 1"
+      }
+    },
+    "equipment": {
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      }
+    },
+    "equipmentForm": {
+      "backToEquipment": "All equipment",
+      "backToItem": "Back to item",
+      "sections": {
+        "identity": {
+          "eyebrow": "What is it",
+          "title": "Item identity",
+          "description": "Name, category, brand, and model — the basics for your inventory."
+        },
+        "specs": {
+          "eyebrow": "On the scale",
+          "title": "Weight & purchase",
+          "description": "Track grams for base-weight stats and optional purchase details."
+        },
+        "details": {
+          "eyebrow": "Notes",
+          "title": "Status & notes",
+          "description": "Mark retired gear inactive and add context you'll want later."
+        },
+        "photo": {
+          "eyebrow": "Visual",
+          "title": "Photo",
+          "description": "Optional image URL for quick recognition in your gear list."
+        }
+      },
+      "fields": {
+        "name": {
+          "label": "Name",
+          "hint": "Short label — Tent, Sleeping Bag, Drone…"
+        },
+        "category": {
+          "label": "Category",
+          "placeholder": "Choose category"
+        },
+        "brand": {
+          "label": "Brand"
+        },
+        "model": {
+          "label": "Model"
+        },
+        "weightGrams": {
+          "label": "Weight (grams)",
+          "hint": "Weighed or manufacturer spec."
+        },
+        "purchaseDate": {
+          "label": "Purchase date",
+          "hint": "Optional"
+        },
+        "purchasePrice": {
+          "label": "Purchase price (EUR)",
+          "hint": "Optional"
+        },
+        "notes": {
+          "label": "Notes",
+          "hint": "How you use it, conditions, upgrades…"
+        },
+        "isActive": {
+          "label": "Status",
+          "hint": "Inactive items stay in inventory but won't appear in selectors.",
+          "active": "Active",
+          "inactive": "Inactive"
+        },
+        "photoUrl": {
+          "label": "Photo URL",
+          "hint": "Paste a link to an image",
+          "previewEmpty": "Photo preview will appear here"
+        }
+      },
+      "actions": {
+        "create": "Add to inventory",
+        "save": "Save changes",
+        "cancel": "Cancel",
+        "saved": "Saved"
+      },
+      "errors": {
+        "nameRequired": "Name is required",
+        "brandRequired": "Brand is required",
+        "modelRequired": "Model is required",
+        "categoryRequired": "Choose a category",
+        "weightMin": "Weight must be at least 1 gram",
+        "weightMax": "Weight seems too high — check the value",
+        "priceMin": "Price can't be negative",
+        "photoUrlInvalid": "Enter a valid image URL"
+      }
+    },
+    "equipmentCategorySelector": {
+      "searchPlaceholder": "Search categories…",
+      "searchHint": "Search or add your own category",
+      "addCustomCategory": "Add custom category",
+      "customCategoryBadge": "Your category"
+    },
+    "equipmentCategoryForm": {
+      "fields": {
+        "name": {
+          "label": "Category name",
+          "hint": "e.g. GPS Watch, Hammock, Dry Bag"
+        },
+        "icon": {
+          "label": "Icon",
+          "hint": "Pick an icon for quick recognition"
+        }
+      },
+      "actions": {
+        "save": "Save category",
+        "cancel": "Cancel"
+      },
+      "errors": {
+        "nameRequired": "Name is required",
+        "nameMin": "Name must be at least 2 characters",
+        "nameMax": "Name must be at most 48 characters",
+        "iconRequired": "Choose an icon"
+      }
+    },
+    "equipmentSelector": {
+      "emptyInventory": "No active equipment in your inventory yet."
+    },
+    "tripDayForm": {
+      "addTitle": "Add a day",
+      "addDescription": "Group everything that happened on one calendar date.",
+      "editTitle": "Edit day",
+      "editDescription": "Update the date, title, or notes for this day.",
+      "fields": {
+        "date": {
+          "label": "Date",
+          "hint": "When this day took place"
+        },
+        "title": {
+          "label": "Title",
+          "hint": "Optional — a short headline for the day",
+          "placeholder": "e.g. Sintra & the coast"
+        },
+        "description": {
+          "label": "Description",
+          "hint": "Optional notes or summary",
+          "placeholder": "What happened, how it felt, what you want to remember…"
+        },
+        "activities": {
+          "label": "Activities",
+          "hint": "Describe the day in up to 3 tags.",
+          "sectionLabel": "Day activities"
+        }
+      },
+      "actions": {
+        "add": "Add day",
+        "save": "Save changes",
+        "cancel": "Cancel",
+        "editDay": "Edit day",
+        "deleteDay": "Delete day"
+      },
+      "delete": {
+        "title": "Delete this day?",
+        "description": "{label} will be removed from the timeline along with its events. This cannot be undone.",
+        "confirm": "Delete day"
+      },
+      "errors": {
+        "dateRequired": "Date is required",
+        "titleMax": "Title must be at most 120 characters",
+        "descriptionMax": "Description must be at most 500 characters",
+        "activitiesMax": "Choose up to 3 activity tags"
+      }
+    },
+    "tripEventModal": {
+      "addTitle": "Add moment",
+      "addDescription": "Capture a moment that happened on this day.",
+      "addDescriptionShort": "Pick a type, name it, save — details can wait.",
+      "editTitle": "Edit moment",
+      "editDescription": "Update the details of this moment.",
+      "addNote": "Add a note",
+      "moreDetails": "Time & extra details",
+      "moreDetailsHint": "Optional — most travellers skip this.",
+      "sections": {
+        "cloudLinks": "Cloud links",
+        "cloudLinksHint": "Link to large video files stored externally."
+      },
+      "fields": {
+        "type": {
+          "label": "Moment type",
+          "placeholder": "Choose a type"
+        },
+        "title": {
+          "label": "Title",
+          "hint": "Short and specific — like a journal heading.",
+          "placeholder": "Breakfast, Bike ride, Hostel check-in…",
+          "placeholderShort": "Bike ride, Lunch, Hostel…"
+        },
+        "description": {
+          "label": "Note",
+          "hint": "Optional context or notes.",
+          "optionalHint": "Optional",
+          "placeholder": "Route details, mood, what stood out…",
+          "placeholderShort": "Anything worth remembering…"
+        },
+        "startTime": {
+          "label": "Start time",
+          "hint": "Optional"
+        },
+        "endTime": {
+          "label": "End time",
+          "hint": "Optional"
+        },
+        "checkIn": {
+          "label": "Check-in",
+          "hint": "When you arrived"
+        },
+        "checkOut": {
+          "label": "Check-out",
+          "hint": "When you left"
+        },
+        "mealType": {
+          "label": "Meal type",
+          "hint": "What kind of meal was this?",
+          "placeholder": "Choose meal type"
+        },
+        "distance": {
+          "label": "Distance (km)",
+          "hint": "Optional",
+          "placeholder": "Optional"
+        },
+        "elevation": {
+          "label": "Elevation gain (m)",
+          "hint": "Optional",
+          "placeholder": "Optional"
+        },
+        "photos": {
+          "label": "Photos",
+          "hint": "Optional — attach images to any moment type.",
+          "urlPlaceholder": "Paste image URL…",
+          "addUrl": "Add URL",
+          "upload": "Upload",
+          "empty": "No photos yet — paste a link or upload from your device.",
+          "remove": "Remove photo",
+          "previewAlt": "Moment photo",
+          "previewError": "Could not load image",
+          "urlInvalid": "Enter a valid http or https URL"
+        },
+        "gpx": {
+          "label": "GPX track",
+          "hint": "Coming soon — upload a route file.",
+          "placeholder": "GPX upload coming soon"
+        },
+        "place": {
+          "label": "Place",
+          "hint": "Search saved places or create a new one inline.",
+          "optionalHint": "Optional — skip if you don't remember the name."
+        }
+      },
+      "actions": {
+        "add": "Add moment",
+        "save": "Save changes",
+        "cancel": "Cancel"
+      },
+      "delete": {
+        "title": "Delete this moment?",
+        "description": "“{title}” will be removed from the timeline. This cannot be undone.",
+        "confirm": "Delete moment"
+      },
+      "errors": {
+        "typeRequired": "Moment type is required",
+        "titleRequired": "Title is required",
+        "titleMin": "Title must be at least 2 characters",
+        "titleMax": "Title must be at most 120 characters",
+        "startTimeInvalid": "Invalid start time",
+        "endTimeInvalid": "Invalid end time",
+        "endTimeBeforeStart": "End time must be after start time",
+        "distanceMin": "Distance must be zero or greater",
+        "elevationMin": "Elevation must be zero or greater",
+        "formInvalid": "Check the form — some fields are invalid.",
+        "saveError": "Could not save the event. Please try again."
+      }
+    },
+    "placeForm": {
+      "inlineTitle": "New place",
+      "fields": {
+        "name": {
+          "label": "Name"
+        },
+        "category": {
+          "label": "Category",
+          "placeholder": "Choose category"
+        },
+        "country": {
+          "label": "Country"
+        },
+        "region": {
+          "label": "City / region"
+        },
+        "address": {
+          "label": "Address",
+          "hint": "Optional"
+        },
+        "lat": {
+          "label": "Latitude",
+          "hint": "Optional"
+        },
+        "lng": {
+          "label": "Longitude",
+          "hint": "Optional"
+        }
+      },
+      "actions": {
+        "create": "Create place",
+        "cancel": "Cancel"
+      },
+      "errors": {
+        "nameRequired": "Name is required",
+        "nameMin": "Name must be at least 2 characters",
+        "nameMax": "Name must be at most 120 characters",
+        "categoryRequired": "Category is required",
+        "countryRequired": "Country is required",
+        "regionRequired": "City or region is required",
+        "addressMax": "Address must be at most 200 characters",
+        "latInvalid": "Invalid latitude",
+        "lngInvalid": "Invalid longitude"
+      }
+    },
+    "placeSelector": {
+      "searchPlaceholder": "Search places…",
+      "resultsLabel": "Matching places",
+      "noResults": "No places match your search.",
+      "createNew": "Create new place",
+      "clearSelection": "Clear selected place"
+    },
+    "tripEquipment": {
+      "eyebrow": "Gear packed",
+      "title": "Equipment used",
+      "subtitle": "{count, plural, one {# item} other {# items}} · {weight} base weight",
+      "edit": "Edit gear",
+      "add": "Add equipment",
+      "manage": "Manage",
+      "save": "Save",
+      "saving": "Saving…",
+      "cancel": "Cancel",
+      "createInventory": "Add to inventory",
+      "empty": "No equipment linked to this adventure yet."
+    }
+  },
+  "equipment": {
+    "defaultCategories": {
+      "ecat-tent": "Tent",
+      "ecat-sleeping-bag": "Sleeping Bag",
+      "ecat-sleeping-pad": "Sleeping Pad",
+      "ecat-backpack": "Backpack",
+      "ecat-bike": "Bike",
+      "ecat-helmet": "Helmet",
+      "ecat-stove": "Stove",
+      "ecat-drone": "Drone",
+      "ecat-action-camera": "Action Camera",
+      "ecat-camera": "Camera",
+      "ecat-shoes": "Shoes",
+      "ecat-jacket": "Jacket",
+      "ecat-power-bank": "Power Bank",
+      "ecat-water-filter": "Water Filter",
+      "ecat-trekking-poles": "Trekking Poles",
+      "ecat-first-aid-kit": "First Aid Kit",
+      "ecat-other": "Other"
+    }
+  }
+}
