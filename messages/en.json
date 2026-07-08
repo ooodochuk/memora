@@ -44,7 +44,12 @@
     "settings": "Settings",
     "signIn": "Sign in",
     "signUp": "Create account",
+    "logIn": "Log in",
+    "startAdventure": "Start Adventure",
     "dashboard": "Dashboard",
+    "myProfile": "My profile",
+    "logOut": "Log out",
+    "logoutSuccess": "Signed out successfully",
     "menu": "Menu",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"

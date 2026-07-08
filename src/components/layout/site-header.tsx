@@ -1,14 +1,25 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { routes, dashboardRoutes } from "@/constants/routes";
-import { useCurrentProfile } from "@/features/auth/hooks";
+import { useCurrentProfile, useLogout } from "@/features/auth/hooks";
 import { useAuth } from "@/providers/auth-provider";
 import { Container } from "@/components/layout/container";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { Button } from "@/components/ui/button";
+import { useAppToast } from "@/components/design-system/app-toast";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getProfileInitials } from "@/lib/profile/display";
 import {
   Sheet,
   SheetContent,
@@ -23,7 +34,11 @@ export function SiteHeader() {
   const t = useTranslations("nav");
   const tCommon = useTranslations("common");
   const { isReady, isAuthenticated } = useAuth();
-  const { data: profile } = useCurrentProfile();
+  const profileQuery = useCurrentProfile();
+  const profile = profileQuery.data;
+  const router = useRouter();
+  const logout = useLogout();
+  const { showToast } = useAppToast();
   const [open, setOpen] = useState(false);
 
   const journalHref = !isAuthenticated
@@ -38,15 +53,103 @@ export function SiteHeader() {
     { href: "/#explore", label: t("explore") },
   ];
 
-  const authActions = isAuthenticated ? (
-    <Button
-      variant="outline"
-      size="sm"
-      className="hidden sm:inline-flex"
-      render={<Link href={dashboardRoutes.home()} />}
-    >
-      {t("dashboard")}
-    </Button>
+  const initials = profile
+    ? getProfileInitials(profile.displayName)
+    : "?";
+
+  async function handleLogout() {
+    await logout.mutateAsync();
+    showToast(t("logoutSuccess"));
+    router.replace("/");
+  }
+
+  const authArea = !isReady ? (
+    <Skeleton className="size-8 rounded-full" aria-hidden />
+  ) : isAuthenticated ? (
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        aria-label={t("menu")}
+        render={
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 rounded-full px-2 py-0"
+          />
+        }
+      >
+        <div className="flex items-center gap-2">
+          <Avatar className="size-7">
+            {profile?.avatarUrl ? (
+              <AvatarImage
+                src={profile.avatarUrl}
+                alt={profile.displayName}
+              />
+            ) : null}
+            <AvatarFallback className="text-xs">{initials}</AvatarFallback>
+          </Avatar>
+          <div className="hidden min-w-0 sm:block">
+            <p className="max-w-[10rem] truncate text-sm font-medium">
+              {profile?.displayName ?? profile?.username ?? tCommon("loading")}
+            </p>
+            <p className="max-w-[10rem] truncate text-xs text-muted-foreground">
+              {profile?.username ? `@${profile.username}` : ""}
+            </p>
+          </div>
+        </div>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent align="end" className="w-56">
+        <div className="flex items-center gap-3 px-2 py-2">
+          <Avatar className="size-10">
+            {profile?.avatarUrl ? (
+              <AvatarImage src={profile.avatarUrl} alt="" />
+            ) : null}
+            <AvatarFallback className="text-xs">{initials}</AvatarFallback>
+          </Avatar>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-medium">
+              {profile?.displayName ?? profile?.username ?? tCommon("loading")}
+            </p>
+            <p className="truncate text-xs text-muted-foreground">
+              {profile?.username ? `@${profile.username}` : ""}
+            </p>
+          </div>
+        </div>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem
+          render={
+            <Link
+              href={
+                profile?.username
+                  ? routes.profile(profile.username)
+                  : dashboardRoutes.profile()
+              }
+            />
+          }
+        >
+          {t("myProfile")}
+        </DropdownMenuItem>
+
+        <DropdownMenuItem render={<Link href={dashboardRoutes.home()} />}>
+          {t("dashboard")}
+        </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem
+          variant="destructive"
+          disabled={logout.isPending}
+          onClick={async () => {
+            if (logout.isPending) return;
+            await handleLogout();
+          }}
+        >
+          {t("logOut")}
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   ) : (
     <>
       <Button
@@ -55,7 +158,7 @@ export function SiteHeader() {
         className="hidden sm:inline-flex"
         render={<Link href="/login" />}
       >
-        {t("signIn")}
+        {t("logIn")}
       </Button>
       <Button
         variant="warm"
@@ -63,7 +166,7 @@ export function SiteHeader() {
         className="hidden sm:inline-flex"
         render={<Link href="/register" />}
       >
-        {t("signUp")}
+        {t("startAdventure")}
       </Button>
     </>
   );
@@ -94,7 +197,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-1">
-          {isReady ? authActions : null}
+          {authArea}
           <LocaleSwitcher />
           <ThemeToggle />
 
@@ -124,41 +227,34 @@ export function SiteHeader() {
                     {link.label}
                   </Button>
                 ))}
-                {isAuthenticated ? (
-                  <Button
-                    variant="ghost"
-                    className="justify-start"
-                    render={
-                      <Link
-                        href={dashboardRoutes.home()}
-                        onClick={() => setOpen(false)}
-                      />
-                    }
-                  >
-                    {t("dashboard")}
-                  </Button>
-                ) : (
+                {!isAuthenticated ? (
                   <>
                     <Button
                       variant="ghost"
                       className="justify-start"
                       render={
-                        <Link href="/login" onClick={() => setOpen(false)} />
+                        <Link
+                          href="/login"
+                          onClick={() => setOpen(false)}
+                        />
                       }
                     >
-                      {t("signIn")}
+                      {t("logIn")}
                     </Button>
                     <Button
                       variant="ghost"
                       className="justify-start"
                       render={
-                        <Link href="/register" onClick={() => setOpen(false)} />
+                        <Link
+                          href="/register"
+                          onClick={() => setOpen(false)}
+                        />
                       }
                     >
-                      {t("signUp")}
+                      {t("startAdventure")}
                     </Button>
                   </>
-                )}
+                ) : null}
               </nav>
             </SheetContent>
           </Sheet>

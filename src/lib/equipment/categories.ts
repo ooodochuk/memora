@@ -96,9 +96,10 @@ export function getEquipmentCategoryLabel(
  category: { id: string; name: string; isDefault: boolean },
  tDefault: (id: string) => string,
 ): string {
- if (category.isDefault) {
+ // Mock data uses stable ecat-* ids; API reference data uses UUIDs with localized name.
+ if (category.isDefault && category.id.startsWith("ecat-")) {
  const translated = tDefault(category.id);
- if (translated !== category.id && !translated.includes(category.id)) {
+ if (translated !== category.id) {
  return translated;
  }
  }

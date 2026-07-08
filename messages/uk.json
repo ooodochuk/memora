@@ -44,7 +44,12 @@
     "settings": "Налаштування",
     "signIn": "Увійти",
     "signUp": "Створити акаунт",
+    "logIn": "Увійти",
+    "startAdventure": "Почни пригоду",
     "dashboard": "Панель",
+    "myProfile": "Мій профіль",
+    "logOut": "Вийти",
+    "logoutSuccess": "Ти вийшов з акаунта",
     "menu": "Меню",
     "openMenu": "Відкрити меню",
     "closeMenu": "Закрити меню"

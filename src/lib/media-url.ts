@@ -9,12 +9,24 @@ function getConfiguredMediaBaseUrl(): string | null {
   return raw ? normalizeBaseUrl(raw) : null;
 }
 
+function isR2PublicDevUrl(url: string): boolean {
+  try {
+    return new URL(url).hostname.endsWith(".r2.dev");
+  } catch {
+    return false;
+  }
+}
+
 /** Whether the URL points at media served by Memora (backend files API or object storage CDN). */
 export function isMemoraUploadedUrl(url: string): boolean {
   if (!url) return false;
 
   const mediaBase = getConfiguredMediaBaseUrl();
   if (mediaBase && url.startsWith(`${mediaBase}/`)) {
+    return true;
+  }
+
+  if (isR2PublicDevUrl(url)) {
     return true;
   }
 

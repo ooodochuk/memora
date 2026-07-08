@@ -52,6 +52,13 @@ const mediaCdnPattern = mediaCdnRemotePattern();
 
 const RAILWAY_MEDIA_HOST = "memora-backend-production-4cff.up.railway.app";
 
+/** Cloudflare R2 public dev URLs (pub-*.r2.dev) — fallback when env is missing at build time */
+const R2_PUBLIC_DEV_PATTERN = {
+  protocol: "https" as const,
+  hostname: "**.r2.dev",
+  pathname: "/**",
+};
+
 const nextConfig: NextConfig = {
   output: "standalone",
   images: {
@@ -66,6 +73,7 @@ const nextConfig: NextConfig = {
         hostname: RAILWAY_MEDIA_HOST,
         pathname: "/api/media/files/**",
       },
+      R2_PUBLIC_DEV_PATTERN,
       ...(apiPattern ? [apiPattern] : []),
       ...(mediaCdnPattern ? [mediaCdnPattern] : []),
     ],
