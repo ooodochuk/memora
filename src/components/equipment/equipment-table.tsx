@@ -72,8 +72,9 @@ function EquipmentStatusBadge({ isActive }: { isActive: boolean }) {
   );
 }
 
-function WeightCell({ grams }: { grams: number }) {
-  const weight = formatInventoryWeight(grams);
+function WeightCell({ grams }: { grams: number | null | undefined }) {
+  const safeGrams = typeof grams === "number" && Number.isFinite(grams) ? grams : 0;
+  const weight = formatInventoryWeight(safeGrams);
 
   return (
     <div className="tabular-nums">
@@ -99,28 +100,28 @@ export function EquipmentTable({
 
   return (
     <>
-      {/* Desktop table */}
-      <div className="hidden overflow-hidden rounded-xl border border-border md:block">
+      {/* Desktop table (lg+ — matches dashboard sidebar breakpoint) */}
+      <div className="max-lg:hidden overflow-hidden rounded-xl border border-border">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse text-sm">
             <thead>
               <tr className="border-b border-border bg-muted/30 text-left text-xs font-medium tracking-wide text-muted-foreground uppercase">
-                <th className="sticky top-14 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
+                <th className="sticky top-0 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
                   {t("item")}
                 </th>
-                <th className="sticky top-14 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
+                <th className="sticky top-0 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
                   {t("category")}
                 </th>
-                <th className="sticky top-14 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
+                <th className="sticky top-0 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
                   {t("brandModel")}
                 </th>
-                <th className="sticky top-14 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
+                <th className="sticky top-0 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
                   {t("weight")}
                 </th>
-                <th className="sticky top-14 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
+                <th className="sticky top-0 z-10 bg-muted/95 px-4 py-3 backdrop-blur-sm">
                   {t("status")}
                 </th>
-                <th className="sticky top-14 z-10 bg-muted/95 px-4 py-3 text-right backdrop-blur-sm">
+                <th className="sticky top-0 z-10 bg-muted/95 px-4 py-3 text-right backdrop-blur-sm">
                   <span className="sr-only">{t("actions")}</span>
                 </th>
               </tr>
@@ -174,15 +175,19 @@ export function EquipmentTable({
         </div>
       </div>
 
-      {/* Mobile compact rows */}
-      <ul className="space-y-2 md:hidden" aria-label={t("mobileListLabel")}>
+      {/* Mobile / tablet compact rows */}
+      <ul className="space-y-2 lg:hidden" aria-label={t("mobileListLabel")}>
         {items.map((item) => {
           const category = categoryMap.get(item.categoryId);
           const categoryLabel = category
             ? getEquipmentCategoryLabel(category, tDefault)
             : null;
           const brandModel = [item.brand, item.model].filter(Boolean).join(" · ");
-          const weight = formatInventoryWeight(item.weightGrams);
+          const weight = formatInventoryWeight(
+            typeof item.weightGrams === "number" && Number.isFinite(item.weightGrams)
+              ? item.weightGrams
+              : 0,
+          );
 
           return (
             <li
