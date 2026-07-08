@@ -1,25 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useLocale, useTranslations } from "next-intl";
-import { MoreHorizontal, Pencil, Power, Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { Equipment, EquipmentCategory } from "@/types";
-import type { AppLocale } from "@/i18n/routing";
 import {
   formatPrice,
-  formatWeightGrams,
   getEquipmentCategoryLabel,
 } from "@/lib/equipment/categories";
+import { formatInventoryWeight } from "@/lib/equipment/weight-display";
+import type { AppLocale } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 import { EquipmentIconGlyph } from "@/components/equipment/equipment-icon-glyph";
+import { EquipmentItemActions } from "@/components/equipment/equipment-item-actions";
 import { JournalCard } from "@/components/design-system/journal-card";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
 interface EquipmentCardProps {
@@ -40,100 +33,85 @@ export function EquipmentCard({
   onDelete,
 }: EquipmentCardProps) {
   const t = useTranslations("dashboard.equipment");
-  const tActions = useTranslations("dashboard.equipmentActions");
   const tDefault = useTranslations("equipment.defaultCategories");
   const locale = useLocale() as AppLocale;
   const categoryLabel = category
     ? getEquipmentCategoryLabel(category, tDefault)
     : null;
+  const weight = formatInventoryWeight(item.weightGrams);
+  const brandModel = [item.brand, item.model].filter(Boolean).join(" · ");
 
   return (
     <JournalCard
-      hover
-      className={cn("flex h-full flex-col overflow-hidden p-2 sm:p-2.5", className)}
+      className={cn(
+        "flex h-full min-h-[7.5rem] flex-col p-2.5 sm:min-h-[8rem]",
+        className,
+      )}
     >
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-muted/30">
-        {item.photoUrl ? (
-          <Image
-            src={item.photoUrl}
-            alt={item.name}
-            fill
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-            sizes="(max-width: 640px) 45vw, 180px"
-          />
-        ) : (
-          <div className="flex h-full items-center justify-center">
-            <EquipmentIconGlyph
-              icon={category?.icon ?? "Package"}
-              className="size-7 text-muted-foreground/70"
+      <div className="flex min-h-0 flex-1 gap-2.5">
+        <div className="relative size-14 shrink-0 overflow-hidden rounded-md bg-muted/40 sm:size-16">
+          {item.photoUrl ? (
+            <Image
+              src={item.photoUrl}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="64px"
             />
-          </div>
-        )}
-
-        <span
-          className={cn(
-            "absolute top-1.5 right-1.5 size-2 rounded-full ring-2 ring-card",
-            item.isActive ? "bg-brand" : "bg-muted-foreground/40",
+          ) : (
+            <div className="flex h-full items-center justify-center">
+              <EquipmentIconGlyph
+                icon={category?.icon ?? "Package"}
+                className="size-5 text-muted-foreground/70 sm:size-6"
+              />
+            </div>
           )}
-          aria-hidden
-        />
-        <span className="sr-only">
-          {item.isActive ? t("status.active") : t("status.inactive")}
-        </span>
+        </div>
 
-        <div className="absolute top-1.5 left-1.5">
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              render={
-                <Button
-                  type="button"
-                  variant="secondary"
-                  size="icon-sm"
-                  className="size-8 rounded-full bg-card/90 shadow-sm backdrop-blur-sm"
-                  aria-label={tActions("menu")}
-                />
-              }
+        <div className="flex min-w-0 flex-1 flex-col gap-0.5">
+          {categoryLabel ? (
+            <p className="truncate text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
+              {categoryLabel}
+            </p>
+          ) : null}
+          <h3 className="line-clamp-2 text-sm leading-snug font-medium text-foreground">
+            {item.name}
+          </h3>
+          {brandModel ? (
+            <p className="truncate text-xs text-muted-foreground">{brandModel}</p>
+          ) : null}
+          <div className="mt-auto flex flex-wrap items-center gap-x-2 gap-y-1 pt-1">
+            <span className="text-xs tabular-nums text-foreground">
+              {weight.grams}
+              {weight.kilograms ? (
+                <span className="ml-1 text-muted-foreground">{weight.kilograms}</span>
+              ) : null}
+            </span>
+            <span
+              className={cn(
+                "inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-medium",
+                item.isActive
+                  ? "bg-brand/15 text-brand"
+                  : "bg-muted text-muted-foreground",
+              )}
             >
-              <MoreHorizontal className="size-4" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem onClick={() => onEdit(item)}>
-                <Pencil className="size-4" />
-                {tActions("edit")}
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onToggleActive(item)}>
-                <Power className="size-4" />
-                {item.isActive ? tActions("deactivate") : tActions("activate")}
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem variant="destructive" onClick={() => onDelete(item)}>
-                <Trash2 className="size-4" />
-                {tActions("deleteLabel")}
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+              {item.isActive ? t("status.active") : t("status.inactive")}
+            </span>
+            {item.purchasePrice != null ? (
+              <span className="truncate text-[10px] text-muted-foreground">
+                {formatPrice(item.purchasePrice, locale)}
+              </span>
+            ) : null}
+          </div>
         </div>
-      </div>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-0.5 pt-2">
-        {categoryLabel && (
-          <p className="truncate text-[10px] font-medium tracking-wide text-muted-foreground">
-            {categoryLabel}
-          </p>
-        )}
-        <h3 className="line-clamp-2 font-heading text-sm leading-snug font-medium tracking-tight text-foreground">
-          {item.name}
-        </h3>
-        <p className="truncate text-[11px] text-muted-foreground">
-          {item.brand}
-          {item.model ? ` · ${item.model}` : ""}
-        </p>
-        <div className="mt-auto flex items-center justify-between gap-2 pt-1 text-[10px] tabular-nums text-muted-foreground">
-          <span>{formatWeightGrams(item.weightGrams)}</span>
-          {item.purchasePrice != null && (
-            <span className="truncate">{formatPrice(item.purchasePrice, locale)}</span>
-          )}
-        </div>
+        <EquipmentItemActions
+          item={item}
+          onEdit={onEdit}
+          onToggleActive={onToggleActive}
+          onDelete={onDelete}
+          align="end"
+        />
       </div>
     </JournalCard>
   );

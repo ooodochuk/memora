@@ -1,5 +1,8 @@
 export { EquipmentCard } from "./equipment-card";
 export { EquipmentList } from "./equipment-list";
+export { EquipmentTable } from "./equipment-table";
+export { EquipmentViewSwitcher } from "./equipment-view-switcher";
+export { EquipmentItemActions } from "./equipment-item-actions";
 export { EquipmentForm } from "./equipment-form";
 export { EquipmentEditSheet } from "./equipment-edit-sheet";
 export { EquipmentCreateNestedFlow } from "./equipment-create-nested-flow";

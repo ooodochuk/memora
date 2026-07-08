@@ -8,7 +8,10 @@ import type { Equipment, EquipmentCategory } from "@/types";
 import { getEquipmentCategoryLabel } from "@/lib/equipment/categories";
 import { buildEquipmentCategoryMap } from "@/lib/equipment/category-accessors";
 import { dashboardRoutes } from "@/constants/routes";
+import { useEquipmentViewMode } from "@/hooks/use-equipment-view-mode";
 import { EquipmentCard } from "@/components/equipment/equipment-card";
+import { EquipmentTable } from "@/components/equipment/equipment-table";
+import { EquipmentViewSwitcher } from "@/components/equipment/equipment-view-switcher";
 import { EquipmentEditSheet } from "@/components/equipment/equipment-edit-sheet";
 import { EquipmentDeleteDialog } from "@/components/equipment/equipment-delete-dialog";
 import { EmptyState } from "@/components/design-system/empty-state";
@@ -36,6 +39,7 @@ export function EquipmentList({ items, categories }: EquipmentListProps) {
   const router = useRouter();
   const { showToast } = useAppToast();
   const isDesktop = useIsDesktop();
+  const { viewMode, setMode } = useEquipmentViewMode();
   const deleteMutation = useDeleteEquipment();
   const activeMutation = useSetEquipmentActive();
   const [activeFilter, setActiveFilter] = useState<EquipmentFilter>("all");
@@ -150,7 +154,7 @@ export function EquipmentList({ items, categories }: EquipmentListProps) {
             ))}
           </div>
 
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <Button
                 type="button"
@@ -177,33 +181,46 @@ export function EquipmentList({ items, categories }: EquipmentListProps) {
               ))}
             </div>
 
-            <div className="relative w-full lg:max-w-xs">
-              <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="search"
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder={t("searchPlaceholder")}
-                className="rounded-full bg-card pl-9"
-                aria-label={t("searchPlaceholder")}
-              />
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <div className="relative w-full sm:w-56 lg:w-64">
+                <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  type="search"
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  placeholder={t("searchPlaceholder")}
+                  className="rounded-full bg-card pl-9"
+                  aria-label={t("searchPlaceholder")}
+                />
+              </div>
+              <EquipmentViewSwitcher value={viewMode} onChange={setMode} />
             </div>
           </div>
         </div>
 
         {filteredItems.length > 0 ? (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-3.5 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredItems.map((item) => (
-              <EquipmentCard
-                key={item.id}
-                item={item}
-                category={categoryMap.get(item.categoryId)}
-                onEdit={handleEdit}
-                onToggleActive={handleToggleActive}
-                onDelete={setDeletingItem}
-              />
-            ))}
-          </div>
+          viewMode === "table" ? (
+            <EquipmentTable
+              items={filteredItems}
+              categoryMap={categoryMap}
+              onEdit={handleEdit}
+              onToggleActive={handleToggleActive}
+              onDelete={setDeletingItem}
+            />
+          ) : (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredItems.map((item) => (
+                <EquipmentCard
+                  key={item.id}
+                  item={item}
+                  category={categoryMap.get(item.categoryId)}
+                  onEdit={handleEdit}
+                  onToggleActive={handleToggleActive}
+                  onDelete={setDeletingItem}
+                />
+              ))}
+            </div>
+          )
         ) : (
           <EmptyState
             icon={Package}

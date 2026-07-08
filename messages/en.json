@@ -650,7 +650,21 @@
         "noResults": "No equipment found",
         "noResultsDescription": "Try a different search or filter.",
         "emptyTitle": "Your equipment inventory is empty",
-        "emptyDescription": "Add the gear you travel with — tents, bikes, cameras, and everything in between."
+        "emptyDescription": "Add the gear you travel with — tents, bikes, cameras, and everything in between.",
+        "viewMode": {
+          "label": "Equipment view",
+          "cards": "Cards",
+          "table": "Table"
+        },
+        "table": {
+          "item": "Item",
+          "category": "Category",
+          "brandModel": "Brand / Model",
+          "weight": "Weight",
+          "status": "Status",
+          "actions": "Actions",
+          "mobileListLabel": "Equipment list"
+        }
       },
       "newEquipment": {
         "title": "Add equipment",
