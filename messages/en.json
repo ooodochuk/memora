@@ -400,11 +400,11 @@
   },
   "designConcepts": {
     "title": "Design concepts",
-    "description": "Ten visual directions for Memora — compare palettes, typography, and UI personality before choosing one to implement.",
+    "description": "Ten editorial travel-journal directions — magazine covers, photo grids, and warm palettes. Compare before choosing one to implement.",
     "note": "These styles are for comparison only. The live app still uses the current Quiet Journal theme.",
-    "lightThemes": "Light themes",
-    "darkThemes": "Dark themes",
-    "tokenCount": "{count} concepts with full token sets (colors, typography, radius, shadows, components)."
+    "lightThemes": "Light editorial",
+    "darkThemes": "Dark cinematic",
+    "tokenCount": "{count} editorial concepts with full token sets."
   },
   "notFound": {
     "title": "Page not found",
