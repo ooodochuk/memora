@@ -1,15 +1,15 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { routes, dashboardRoutes } from "@/constants/routes";
-import { useCurrentProfile, useLogout } from "@/features/auth/hooks";
+import { useCurrentProfile } from "@/features/auth/hooks";
+import { useSignOut } from "@/features/auth/use-sign-out";
 import { useAuth } from "@/providers/auth-provider";
 import { Container } from "@/components/layout/container";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { Button } from "@/components/ui/button";
-import { useAppToast } from "@/components/design-system/app-toast";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   DropdownMenu,
@@ -36,10 +36,7 @@ export function SiteHeader() {
   const { isReady, isAuthenticated } = useAuth();
   const profileQuery = useCurrentProfile();
   const profile = profileQuery.data;
-  const router = useRouter();
-  const logout = useLogout();
-  const { showToast } = useAppToast();
-  const [open, setOpen] = useState(false);
+  const { signOut, isPending: isSigningOut } = useSignOut();
 
   const journalHref = !isAuthenticated
     ? "/login"
@@ -57,10 +54,11 @@ export function SiteHeader() {
     ? getProfileInitials(profile.displayName)
     : "?";
 
+  const [open, setOpen] = useState(false);
+
   async function handleLogout() {
-    await logout.mutateAsync();
-    showToast(t("logoutSuccess"));
-    router.replace("/");
+    if (isSigningOut) return;
+    await signOut(t("logoutSuccess"));
   }
 
   const authArea = !isReady ? (
@@ -140,9 +138,10 @@ export function SiteHeader() {
 
         <DropdownMenuItem
           variant="destructive"
-          disabled={logout.isPending}
+          disabled={isSigningOut}
+          aria-label={t("logOut")}
           onClick={async () => {
-            if (logout.isPending) return;
+            if (isSigningOut) return;
             await handleLogout();
           }}
         >

@@ -49,7 +49,7 @@
     "dashboard": "Dashboard",
     "myProfile": "My profile",
     "logOut": "Log out",
-    "logoutSuccess": "Signed out successfully",
+    "logoutSuccess": "Successfully signed out.",
     "menu": "Menu",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
@@ -436,6 +436,8 @@
     "header": {
       "createTrip": "Start adventure",
       "viewJournal": "View public journal",
+      "logOut": "Log out",
+      "logoutSuccess": "Successfully signed out.",
       "menuLabel": "Account menu",
       "sidebarLabel": "Dashboard navigation"
     },

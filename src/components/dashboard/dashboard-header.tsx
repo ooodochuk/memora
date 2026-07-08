@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Plus } from "lucide-react";
+import { LogOut, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { dashboardRoutes, routes } from "@/constants/routes";
 import { useCurrentProfile } from "@/features/auth/hooks";
+import { useSignOut } from "@/features/auth/use-sign-out";
 import { getProfileInitials } from "@/lib/profile/display";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
@@ -27,8 +29,16 @@ export function DashboardHeader() {
  const tCommon = useTranslations("common");
  const profileQuery = useCurrentProfile();
  const profile = profileQuery.data;
+ const { signOut, isPending: isSigningOut } = useSignOut();
+ const [menuOpen, setMenuOpen] = useState(false);
 
  const initials = profile ? getProfileInitials(profile.displayName) : "?";
+
+ async function handleLogout() {
+  if (isSigningOut) return;
+  setMenuOpen(false);
+  await signOut(t("logoutSuccess"));
+ }
 
  return (
  <header className={cn("sticky top-0 z-40 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background/95 backdrop-blur-sm sm:h-16", pagePadding)}>
@@ -67,7 +77,7 @@ export function DashboardHeader() {
  <LocaleSwitcher />
  <ThemeToggle />
 
- <DropdownMenu>
+ <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
  <DropdownMenuTrigger
  aria-label={t("menuLabel")}
  render={
@@ -118,6 +128,17 @@ export function DashboardHeader() {
  {t("viewJournal")}
  </DropdownMenuItem>
  ) : null}
+ <DropdownMenuSeparator />
+ <DropdownMenuItem
+ variant="destructive"
+ disabled={isSigningOut}
+ aria-label={t("logOut")}
+ className="text-muted-foreground focus:text-destructive data-highlighted:text-destructive"
+ onClick={() => void handleLogout()}
+ >
+ <LogOut className="size-4" aria-hidden />
+ {t("logOut")}
+ </DropdownMenuItem>
  </DropdownMenuContent>
  </DropdownMenu>
  </div>

@@ -49,7 +49,7 @@
     "dashboard": "Панель",
     "myProfile": "Мій профіль",
     "logOut": "Вийти",
-    "logoutSuccess": "Ти вийшов з акаунта",
+    "logoutSuccess": "Ви успішно вийшли.",
     "menu": "Меню",
     "openMenu": "Відкрити меню",
     "closeMenu": "Закрити меню"
@@ -436,6 +436,8 @@
     "header": {
       "createTrip": "Почати пригоду",
       "viewJournal": "Публічний журнал",
+      "logOut": "Вийти",
+      "logoutSuccess": "Ви успішно вийшли.",
       "menuLabel": "Меню облікового запису",
       "sidebarLabel": "Навігація dashboard"
     },
