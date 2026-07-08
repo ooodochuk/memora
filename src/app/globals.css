@@ -55,11 +55,10 @@
 }
 
 /*
- * Memora — "Quiet Journal"
+ * Memora — "Quiet Journal" (dark)
  * Warm paper & ink neutrals. One clay accent for actions only.
- * Serif headings, sans UI. Calm surfaces, minimal chrome.
  */
-:root {
+.dark {
   --background: oklch(0.23 0.012 58);
   --foreground: oklch(0.88 0.012 86);
   --card: oklch(0.255 0.013 58);
@@ -260,9 +259,9 @@
     box-shadow: 0 1px 2px color-mix(in oklch, var(--foreground) 2%, transparent);
   }
 
-  .light .surface-card,
-  .kinfolk .surface-card,
-  .conde-travel .surface-card {
+  html.light .surface-card,
+  html.kinfolk .surface-card,
+  html.conde-travel .surface-card {
     box-shadow: 0 1px 3px color-mix(in oklch, var(--foreground) 5%, transparent);
   }
 

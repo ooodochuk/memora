@@ -5,6 +5,7 @@ import { hasLocale } from "next-intl";
 import { Playfair_Display, Source_Sans_3 } from "next/font/google";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { ThemeInitScript } from "@/providers/theme-init-script";
 import { QueryProvider } from "@/providers/query-provider";
 import { AuthProvider } from "@/providers/auth-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -47,9 +48,12 @@ export default async function LocaleLayout({
  return (
  <html
  lang={locale}
- className={`dark ${playfair.variable} ${sourceSans.variable} h-full`}
+ className={`${playfair.variable} ${sourceSans.variable} h-full`}
  suppressHydrationWarning
  >
+ <head>
+ <ThemeInitScript />
+ </head>
  <body
  className="min-h-full flex flex-col font-sans antialiased"
  suppressHydrationWarning

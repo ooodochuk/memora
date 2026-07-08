@@ -4,7 +4,7 @@
  */
 
 /* ── Kinfolk Journal (light) ── */
-.kinfolk {
+html.kinfolk {
   color-scheme: light;
 
   --background: #f4f0e8;
@@ -75,7 +75,7 @@
 }
 
 /* ── Condé Travel (light) ── */
-.conde-travel {
+html.conde-travel {
   color-scheme: light;
 
   --background: #f7f4ee;
@@ -146,7 +146,7 @@
 }
 
 /* ── Darkroom (dark) ── */
-.darkroom {
+html.darkroom {
   color-scheme: dark;
 
   --background: #121110;
@@ -217,7 +217,7 @@
 }
 
 /* ── Velvet Evening (dark) ── */
-.velvet-evening {
+html.velvet-evening {
   color-scheme: dark;
 
   --background: #120a10;
@@ -303,19 +303,19 @@ html.darkroom body::before {
 }
 
 /* Editorial light themes — card shadow */
-:is(.kinfolk, .conde-travel) .surface-card {
+:is(html.kinfolk, html.conde-travel) .surface-card {
   box-shadow: 0 1px 3px color-mix(in srgb, var(--foreground) 6%, transparent);
 }
 
-.conde-travel .surface-card {
+html.conde-travel .surface-card {
   box-shadow: none;
 }
 
 /* Editorial dark themes — card shadow */
-:is(.darkroom, .velvet-evening) .surface-card {
+:is(html.darkroom, html.velvet-evening) .surface-card {
   box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 4%, transparent);
 }
 
-.velvet-evening .surface-card {
+html.velvet-evening .surface-card {
   box-shadow: 0 0 24px color-mix(in srgb, var(--brand) 8%, transparent);
 }
