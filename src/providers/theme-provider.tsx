@@ -2,6 +2,7 @@
 
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import type { ReactNode } from "react";
+import { appThemeIds } from "@/lib/design-system/themes";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
  return (
@@ -9,7 +10,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
  attribute="class"
  defaultTheme="dark"
  enableSystem={false}
- themes={["dark", "light"]}
+ themes={[...appThemeIds]}
  disableTransitionOnChange
  >
  {children}

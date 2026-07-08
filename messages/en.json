@@ -74,7 +74,19 @@
     "label": "Theme",
     "light": "Light",
     "dark": "Dark",
-    "system": "System"
+    "system": "System",
+    "groups": {
+      "default": "Default",
+      "editorial": "Editorial"
+    },
+    "styles": {
+      "quietJournalDark": "Quiet Journal · Dark",
+      "quietJournalLight": "Quiet Journal · Light",
+      "kinfolk": "Kinfolk Journal",
+      "condeTravel": "Condé Travel",
+      "darkroom": "Darkroom",
+      "velvetEvening": "Velvet Evening"
+    }
   },
   "locale": {
     "label": "Language",

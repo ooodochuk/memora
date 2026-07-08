@@ -2,9 +2,10 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "../lib/design-system/concepts/concepts.css";
+@import "../lib/design-system/themes/styles.css";
 
-@custom-variant dark (&:is(.dark *));
-@custom-variant light (&:is(.light *));
+@custom-variant dark (&:is(.dark *, .darkroom *, .velvet-evening *));
+@custom-variant light (&:is(.light *, .kinfolk *, .conde-travel *));
 
 @theme inline {
   --color-background: var(--background);
@@ -200,8 +201,16 @@
     color-scheme: dark;
   }
 
-  html.light {
+  html.light,
+  html.kinfolk,
+  html.conde-travel {
     color-scheme: light;
+  }
+
+  html.dark,
+  html.darkroom,
+  html.velvet-evening {
+    color-scheme: dark;
   }
 
   body {
@@ -251,7 +260,9 @@
     box-shadow: 0 1px 2px color-mix(in oklch, var(--foreground) 2%, transparent);
   }
 
-  .light .surface-card {
+  .light .surface-card,
+  .kinfolk .surface-card,
+  .conde-travel .surface-card {
     box-shadow: 0 1px 3px color-mix(in oklch, var(--foreground) 5%, transparent);
   }
 

@@ -1,0 +1,321 @@
+/**
+ * Editorial app themes — semantic shadcn tokens mapped from design concepts.
+ * Applied via next-themes as classes on `<html>`.
+ */
+
+/* ── Kinfolk Journal (light) ── */
+.kinfolk {
+  color-scheme: light;
+
+  --background: #f4f0e8;
+  --foreground: #2a2520;
+  --card: #faf8f4;
+  --card-foreground: #2a2520;
+  --popover: #faf8f4;
+  --popover-foreground: #2a2520;
+  --primary: #3d5a4c;
+  --primary-foreground: #faf8f4;
+  --brand: #c17f59;
+  --brand-foreground: #faf8f4;
+  --secondary: #ebe6dc;
+  --secondary-foreground: #2a2520;
+  --muted: #ebe6dc;
+  --muted-foreground: #7a7268;
+  --accent: #ebe6dc;
+  --accent-foreground: #2a2520;
+  --destructive: #a65d57;
+  --destructive-foreground: #faf8f4;
+  --border: #d9d2c6;
+  --input: #ebe6dc;
+  --ring: #3d5a4c;
+  --radius: 0.5rem;
+  --chart-1: #3d5a4c;
+  --chart-2: #b8846a;
+  --chart-3: #c17f59;
+  --chart-4: #5c7a6b;
+  --chart-5: #a65d57;
+  --sidebar: #f4f0e8;
+  --sidebar-foreground: #2a2520;
+  --sidebar-primary: #3d5a4c;
+  --sidebar-primary-foreground: #faf8f4;
+  --sidebar-accent: #ebe6dc;
+  --sidebar-accent-foreground: #2a2520;
+  --sidebar-border: #d9d2c6;
+  --sidebar-ring: #3d5a4c;
+
+  --event-sleep: #e8e4ef;
+  --event-sleep-fg: #5a5470;
+  --event-food: #f0e4d8;
+  --event-food-fg: #8b5e3c;
+  --event-hike: #e2ebe4;
+  --event-hike-fg: #3d5a4c;
+  --event-bike: #dfe8ef;
+  --event-bike-fg: #3d5a6a;
+  --event-transport: #ebe8e2;
+  --event-transport-fg: #6a645c;
+  --event-place: #e0ebe6;
+  --event-place-fg: #3d5a50;
+  --event-photo: #f0e8dc;
+  --event-photo-fg: #8b6840;
+  --event-expense: #f0e0dc;
+  --event-expense-fg: #a65d57;
+  --event-note: #ebe6dc;
+  --event-note-fg: #7a7268;
+  --event-tip: #ede8d8;
+  --event-tip-fg: #7a6a40;
+
+  --status-planning: #dfe8ef;
+  --status-planning-fg: #3d5a6a;
+  --status-draft: #ebe6dc;
+  --status-draft-fg: #7a7268;
+  --status-published: #e2ebe4;
+  --status-published-fg: #3d5a4c;
+  --status-archived: #ebe8e2;
+  --status-archived-fg: #6a645c;
+}
+
+/* ── Condé Travel (light) ── */
+.conde-travel {
+  color-scheme: light;
+
+  --background: #f7f4ee;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #111111;
+  --primary-foreground: #ffffff;
+  --brand: #c41e3a;
+  --brand-foreground: #ffffff;
+  --secondary: #efebe3;
+  --secondary-foreground: #111111;
+  --muted: #efebe3;
+  --muted-foreground: #666666;
+  --accent: #efebe3;
+  --accent-foreground: #111111;
+  --destructive: #c41e3a;
+  --destructive-foreground: #ffffff;
+  --border: #dddddd;
+  --input: #efebe3;
+  --ring: #111111;
+  --radius: 0.125rem;
+  --chart-1: #111111;
+  --chart-2: #c41e3a;
+  --chart-3: #444444;
+  --chart-4: #2d6a4f;
+  --chart-5: #bc6c25;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111111;
+  --sidebar-primary: #111111;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #efebe3;
+  --sidebar-accent-foreground: #111111;
+  --sidebar-border: #dddddd;
+  --sidebar-ring: #111111;
+
+  --event-sleep: #eeeeee;
+  --event-sleep-fg: #444444;
+  --event-food: #f5eee8;
+  --event-food-fg: #bc6c25;
+  --event-hike: #eeeeee;
+  --event-hike-fg: #2d6a4f;
+  --event-bike: #eeeeee;
+  --event-bike-fg: #444444;
+  --event-transport: #f0f0f0;
+  --event-transport-fg: #666666;
+  --event-place: #eeeeee;
+  --event-place-fg: #2d6a4f;
+  --event-photo: #f5f0e8;
+  --event-photo-fg: #111111;
+  --event-expense: #f5e8e8;
+  --event-expense-fg: #c41e3a;
+  --event-note: #f0f0f0;
+  --event-note-fg: #666666;
+  --event-tip: #f5f0e0;
+  --event-tip-fg: #444444;
+
+  --status-planning: #eeeeee;
+  --status-planning-fg: #444444;
+  --status-draft: #f0f0f0;
+  --status-draft-fg: #666666;
+  --status-published: #eeeeee;
+  --status-published-fg: #2d6a4f;
+  --status-archived: #f0f0f0;
+  --status-archived-fg: #666666;
+}
+
+/* ── Darkroom (dark) ── */
+.darkroom {
+  color-scheme: dark;
+
+  --background: #121110;
+  --foreground: #e8e4de;
+  --card: #1a1918;
+  --card-foreground: #e8e4de;
+  --popover: #1a1918;
+  --popover-foreground: #e8e4de;
+  --primary: #e8e4de;
+  --primary-foreground: #121110;
+  --brand: #c0392b;
+  --brand-foreground: #e8e4de;
+  --secondary: #242220;
+  --secondary-foreground: #e8e4de;
+  --muted: #242220;
+  --muted-foreground: #7a7570;
+  --accent: #242220;
+  --accent-foreground: #e8e4de;
+  --destructive: #c0392b;
+  --destructive-foreground: #e8e4de;
+  --border: #33302e;
+  --input: #242220;
+  --ring: #c0392b;
+  --radius: 0.25rem;
+  --chart-1: #c0392b;
+  --chart-2: #9a9590;
+  --chart-3: #6b8f71;
+  --chart-4: #c4a035;
+  --chart-5: #e8e4de;
+  --sidebar: #121110;
+  --sidebar-foreground: #e8e4de;
+  --sidebar-primary: #c0392b;
+  --sidebar-primary-foreground: #e8e4de;
+  --sidebar-accent: #242220;
+  --sidebar-accent-foreground: #e8e4de;
+  --sidebar-border: #33302e;
+  --sidebar-ring: #c0392b;
+
+  --event-sleep: #221f28;
+  --event-sleep-fg: #b8b0c8;
+  --event-food: #28221e;
+  --event-food-fg: #d4a574;
+  --event-hike: #1e2420;
+  --event-hike-fg: #8fb89a;
+  --event-bike: #1e2228;
+  --event-bike-fg: #8aa8c8;
+  --event-transport: #222220;
+  --event-transport-fg: #a8a49c;
+  --event-place: #1e2422;
+  --event-place-fg: #8ab8a8;
+  --event-photo: #28241e;
+  --event-photo-fg: #d4b874;
+  --event-expense: #281e1e;
+  --event-expense-fg: #c47a6a;
+  --event-note: #222220;
+  --event-note-fg: #9a9590;
+  --event-tip: #28261e;
+  --event-tip-fg: #c4b874;
+
+  --status-planning: #1e2228;
+  --status-planning-fg: #8aa8c8;
+  --status-draft: #222220;
+  --status-draft-fg: #9a9590;
+  --status-published: #1e2420;
+  --status-published-fg: #8fb89a;
+  --status-archived: #222220;
+  --status-archived-fg: #7a7570;
+}
+
+/* ── Velvet Evening (dark) ── */
+.velvet-evening {
+  color-scheme: dark;
+
+  --background: #120a10;
+  --foreground: #f5ede4;
+  --card: #1a1018;
+  --card-foreground: #f5ede4;
+  --popover: #1a1018;
+  --popover-foreground: #f5ede4;
+  --primary: #d4af6a;
+  --primary-foreground: #120a10;
+  --brand: #d4af6a;
+  --brand-foreground: #120a10;
+  --secondary: #241820;
+  --secondary-foreground: #f5ede4;
+  --muted: #241820;
+  --muted-foreground: #a89890;
+  --accent: #241820;
+  --accent-foreground: #f5ede4;
+  --destructive: #c45c6a;
+  --destructive-foreground: #f5ede4;
+  --border: #3d2838;
+  --input: #241820;
+  --ring: #d4af6a;
+  --radius: 0.75rem;
+  --chart-1: #d4af6a;
+  --chart-2: #9b7b9e;
+  --chart-3: #c45c6a;
+  --chart-4: #7a9e7e;
+  --chart-5: #f5ede4;
+  --sidebar: #120a10;
+  --sidebar-foreground: #f5ede4;
+  --sidebar-primary: #d4af6a;
+  --sidebar-primary-foreground: #120a10;
+  --sidebar-accent: #241820;
+  --sidebar-accent-foreground: #f5ede4;
+  --sidebar-border: #3d2838;
+  --sidebar-ring: #d4af6a;
+
+  --event-sleep: #1e1424;
+  --event-sleep-fg: #b8a0c8;
+  --event-food: #241a18;
+  --event-food-fg: #d4af6a;
+  --event-hike: #141e18;
+  --event-hike-fg: #7a9e7e;
+  --event-bike: #141820;
+  --event-bike-fg: #9b7b9e;
+  --event-transport: #1a1418;
+  --event-transport-fg: #a89890;
+  --event-place: #141e1a;
+  --event-place-fg: #7a9e7e;
+  --event-photo: #241e14;
+  --event-photo-fg: #d4af6a;
+  --event-expense: #241418;
+  --event-expense-fg: #c45c6a;
+  --event-note: #1a1418;
+  --event-note-fg: #a89890;
+  --event-tip: #241e14;
+  --event-tip-fg: #d4af6a;
+
+  --status-planning: #141820;
+  --status-planning-fg: #9b7b9e;
+  --status-draft: #1a1418;
+  --status-draft-fg: #a89890;
+  --status-published: #141e18;
+  --status-published-fg: #7a9e7e;
+  --status-archived: #1a1418;
+  --status-archived-fg: #887870;
+}
+
+/* Darkroom — subtle film grain overlay */
+html.darkroom body {
+  position: relative;
+}
+
+html.darkroom body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Editorial light themes — card shadow */
+:is(.kinfolk, .conde-travel) .surface-card {
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--foreground) 6%, transparent);
+}
+
+.conde-travel .surface-card {
+  box-shadow: none;
+}
+
+/* Editorial dark themes — card shadow */
+:is(.darkroom, .velvet-evening) .surface-card {
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--foreground) 4%, transparent);
+}
+
+.velvet-evening .surface-card {
+  box-shadow: 0 0 24px color-mix(in srgb, var(--brand) 8%, transparent);
+}

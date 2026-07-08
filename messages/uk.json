@@ -74,7 +74,19 @@
     "label": "Тема",
     "light": "Світла",
     "dark": "Темна",
-    "system": "Системна"
+    "system": "Системна",
+    "groups": {
+      "default": "Базові",
+      "editorial": "Editorial"
+    },
+    "styles": {
+      "quietJournalDark": "Quiet Journal · Темна",
+      "quietJournalLight": "Quiet Journal · Світла",
+      "kinfolk": "Kinfolk Journal",
+      "condeTravel": "Condé Travel",
+      "darkroom": "Darkroom",
+      "velvetEvening": "Velvet Evening"
+    }
   },
   "locale": {
     "label": "Мова",
