@@ -396,8 +396,7 @@
   "footer": {
     "copyright": "© {year} Memora. Crafted for travelers.",
     "privacy": "Privacy",
-    "terms": "Terms",
-    "prototypeNote": "Frontend prototype with mock data"
+    "terms": "Terms"
   },
   "notFound": {
     "title": "Page not found",

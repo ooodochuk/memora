@@ -396,8 +396,7 @@
   "footer": {
     "copyright": "© {year} Memora. Створено для мандрівників.",
     "privacy": "Конфіденційність",
-    "terms": "Умови",
-    "prototypeNote": "Frontend-прототип з тестовими даними"
+    "terms": "Умови"
   },
   "notFound": {
     "title": "Сторінку не знайдено",

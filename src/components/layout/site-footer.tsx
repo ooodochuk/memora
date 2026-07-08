@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/layout/container";
-import { Separator } from "@/components/ui/separator";
 
 export async function SiteFooter() {
  const t = await getTranslations("footer");
@@ -18,10 +17,6 @@ export async function SiteFooter() {
  <span className="cursor-not-allowed opacity-60">{t("terms")}</span>
  </div>
  </div>
- <Separator className="my-6" />
- <p className="text-center text-xs text-muted-foreground/80">
- {t("prototypeNote")}
- </p>
  </Container>
  </footer>
  );
