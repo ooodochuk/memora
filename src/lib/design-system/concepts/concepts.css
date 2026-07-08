@@ -1,0 +1,332 @@
+/**
+ * Design concept preview tokens — scoped under [data-design-concept].
+ * Not wired to production theme; used for comparison page only.
+ */
+[data-design-concept="scandinavian-light"] {
+  --concept-primary: #1F7A8C;
+  --concept-secondary: #D98C5F;
+  --concept-accent: #E4572E;
+  --concept-background: #F7F5F2;
+  --concept-surface: #FFFFFF;
+  --concept-surface-muted: #F1EFEB;
+  --concept-foreground: #1C1917;
+  --concept-muted-foreground: #78716C;
+  --concept-border: #D7D0C6;
+  --concept-success: #3C9D7A;
+  --concept-warning: #D98C5F;
+  --concept-error: #D95A4E;
+  --concept-info: #1F7A8C;
+  --concept-radius-sm: 8px;
+  --concept-radius-md: 10px;
+  --concept-radius-lg: 12px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --concept-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --concept-shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.1);
+  --concept-font-heading: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-font-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 150–180ms;
+  --concept-motion-easing: ease-out;
+}
+
+[data-design-concept="apple-minimal-light"] {
+  --concept-primary: #0071E3;
+  --concept-secondary: #6E6E73;
+  --concept-accent: #FF9F0A;
+  --concept-background: #F5F5F7;
+  --concept-surface: #FFFFFF;
+  --concept-surface-muted: #E5E5EA;
+  --concept-foreground: #1D1D1F;
+  --concept-muted-foreground: #86868B;
+  --concept-border: #D2D2D7;
+  --concept-success: #34C759;
+  --concept-warning: #FFCC00;
+  --concept-error: #FF3B30;
+  --concept-info: #0A84FF;
+  --concept-radius-sm: 6px;
+  --concept-radius-md: 8px;
+  --concept-radius-lg: 14px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: none;
+  --concept-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --concept-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --concept-font-heading: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 200ms;
+  --concept-motion-easing: ease-out;
+}
+
+[data-design-concept="glass-light"] {
+  --concept-primary: #2563EB;
+  --concept-secondary: #8B5CF6;
+  --concept-accent: #F97316;
+  --concept-background: linear-gradient(#F5FAFF, #F0F4FF, #F8F2FF);
+  --concept-surface: rgba(255, 255, 255, 0.72);
+  --concept-surface-muted: rgba(255, 255, 255, 0.55);
+  --concept-foreground: #0F172A;
+  --concept-muted-foreground: #64748B;
+  --concept-border: rgba(255, 255, 255, 0.6);
+  --concept-success: #22C55E;
+  --concept-warning: #EAB308;
+  --concept-error: #EF4444;
+  --concept-info: #2563EB;
+  --concept-radius-sm: 12px;
+  --concept-radius-md: 16px;
+  --concept-radius-lg: 20px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.08);
+  --concept-shadow-md: 0 18px 45px rgba(15, 23, 42, 0.14);
+  --concept-shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.18);
+  --concept-font-heading: Sora, ui-sans-serif, system-ui, sans-serif;
+  --concept-font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 180–220ms;
+  --concept-motion-easing: cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+[data-design-concept="premium-banking-light"] {
+  --concept-primary: #0F172A;
+  --concept-secondary: #1E293B;
+  --concept-accent: #C28C3C;
+  --concept-background: #F3F4F6;
+  --concept-surface: #FFFFFF;
+  --concept-surface-muted: #F9FAFB;
+  --concept-foreground: #0F172A;
+  --concept-muted-foreground: #64748B;
+  --concept-border: #E2E8F0;
+  --concept-success: #16A34A;
+  --concept-warning: #EAB308;
+  --concept-error: #DC2626;
+  --concept-info: #0EA5E9;
+  --concept-radius-sm: 4px;
+  --concept-radius-md: 6px;
+  --concept-radius-lg: 8px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --concept-shadow-md: 0 10px 30px rgba(15, 23, 42, 0.12);
+  --concept-shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.16);
+  --concept-font-heading: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-font-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 160ms;
+  --concept-motion-easing: ease-out;
+}
+
+[data-design-concept="soft-saas-light"] {
+  --concept-primary: #6366F1;
+  --concept-secondary: #EC4899;
+  --concept-accent: #14B8A6;
+  --concept-background: #FAFAFA;
+  --concept-surface: #FFFFFF;
+  --concept-surface-muted: #F4F4F5;
+  --concept-foreground: #18181B;
+  --concept-muted-foreground: #71717A;
+  --concept-border: #E4E4E7;
+  --concept-success: #22C55E;
+  --concept-warning: #F59E0B;
+  --concept-error: #EF4444;
+  --concept-info: #6366F1;
+  --concept-radius-sm: 8px;
+  --concept-radius-md: 12px;
+  --concept-radius-lg: 16px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --concept-shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --concept-shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.1);
+  --concept-font-heading: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 180ms;
+  --concept-motion-easing: ease-out;
+}
+
+[data-design-concept="github-dark"] {
+  --concept-primary: #2F81F7;
+  --concept-secondary: #6E7681;
+  --concept-accent: #3FB950;
+  --concept-background: #010409;
+  --concept-surface: #0D1117;
+  --concept-surface-muted: #161B22;
+  --concept-foreground: #E6EDF3;
+  --concept-muted-foreground: #8B949E;
+  --concept-border: #30363D;
+  --concept-success: #3FB950;
+  --concept-warning: #D29922;
+  --concept-error: #F85149;
+  --concept-info: #2F81F7;
+  --concept-radius-sm: 4px;
+  --concept-radius-md: 6px;
+  --concept-radius-lg: 8px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: none;
+  --concept-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --concept-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --concept-font-heading: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 120ms;
+  --concept-motion-easing: ease-out;
+}
+
+[data-design-concept="linear-vercel-dark"] {
+  --concept-primary: #6366F1;
+  --concept-secondary: #22D3EE;
+  --concept-accent: #F97316;
+  --concept-background: #020617;
+  --concept-surface: #050816;
+  --concept-surface-muted: #0B1020;
+  --concept-foreground: #F8FAFC;
+  --concept-muted-foreground: #94A3B8;
+  --concept-border: #1E293B;
+  --concept-success: #22C55E;
+  --concept-warning: #FACC15;
+  --concept-error: #FB7185;
+  --concept-info: #38BDF8;
+  --concept-radius-sm: 6px;
+  --concept-radius-md: 10px;
+  --concept-radius-lg: 14px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: 0 0 0 1px rgba(148, 163, 184, 0.1);
+  --concept-shadow-md: 0 18px 50px rgba(15, 23, 42, 0.6);
+  --concept-shadow-lg: 0 24px 64px rgba(15, 23, 42, 0.7);
+  --concept-font-heading: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 160–200ms;
+  --concept-motion-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-design-concept="material3-modern"] {
+  --concept-primary: #6750A4;
+  --concept-secondary: #625B71;
+  --concept-accent: #7D5260;
+  --concept-background: #FFFBFE;
+  --concept-surface: #FEF7FF;
+  --concept-surface-muted: #E7E0EC;
+  --concept-foreground: #1C1B1F;
+  --concept-muted-foreground: #49454F;
+  --concept-border: #CAC4D0;
+  --concept-success: #386A20;
+  --concept-warning: #7D5700;
+  --concept-error: #BA1A1A;
+  --concept-info: #00639B;
+  --concept-radius-sm: 4px;
+  --concept-radius-md: 8px;
+  --concept-radius-lg: 12px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --concept-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.24);
+  --concept-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --concept-font-heading: Roboto, ui-sans-serif, system-ui, sans-serif;
+  --concept-font-body: Roboto, ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 200–300ms;
+  --concept-motion-easing: cubic-bezier(0.2, 0, 0, 1);
+}
+
+[data-design-concept="enterprise-professional-light"] {
+  --concept-primary: #2563EB;
+  --concept-secondary: #0F172A;
+  --concept-accent: #0891B2;
+  --concept-background: #F9FAFB;
+  --concept-surface: #FFFFFF;
+  --concept-surface-muted: #F3F4F6;
+  --concept-foreground: #111827;
+  --concept-muted-foreground: #6B7280;
+  --concept-border: #E5E7EB;
+  --concept-success: #15803D;
+  --concept-warning: #B45309;
+  --concept-error: #B91C1C;
+  --concept-info: #0369A1;
+  --concept-radius-sm: 4px;
+  --concept-radius-md: 6px;
+  --concept-radius-lg: 8px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --concept-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --concept-shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.12);
+  --concept-font-heading: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 120–150ms;
+  --concept-motion-easing: ease-out;
+}
+
+[data-design-concept="luxury-dark"] {
+  --concept-primary: #EAB308;
+  --concept-secondary: #7C3AED;
+  --concept-accent: #F97316;
+  --concept-background: #05030A;
+  --concept-surface: #0B0713;
+  --concept-surface-muted: #120B21;
+  --concept-foreground: #FAF5FF;
+  --concept-muted-foreground: #A78BFA;
+  --concept-border: #2E1065;
+  --concept-success: #22C55E;
+  --concept-warning: #FACC15;
+  --concept-error: #FB7185;
+  --concept-info: #38BDF8;
+  --concept-radius-sm: 6px;
+  --concept-radius-md: 12px;
+  --concept-radius-lg: 24px;
+  --concept-radius-pill: 999px;
+  --concept-shadow-sm: 0 0 24px rgba(234, 179, 8, 0.08);
+  --concept-shadow-md: 0 8px 32px rgba(124, 58, 237, 0.2);
+  --concept-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --concept-font-heading: "Playfair Display", ui-serif, Georgia, serif;
+  --concept-font-body: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --concept-motion-duration: 220–260ms;
+  --concept-motion-easing: ease-in-out;
+}
+
+/* Shared preview utilities — only active inside a concept scope */
+[data-design-concept] .concept-preview-root {
+  background: var(--concept-background);
+  color: var(--concept-foreground);
+  font-family: var(--concept-font-body);
+}
+
+[data-design-concept] .concept-preview-heading {
+  font-family: var(--concept-font-heading);
+}
+
+[data-design-concept] .concept-preview-surface {
+  background: var(--concept-surface);
+  border: 1px solid var(--concept-border);
+  border-radius: var(--concept-radius-lg);
+  box-shadow: var(--concept-shadow-sm);
+}
+
+[data-design-concept] .concept-preview-btn-primary {
+  background: var(--concept-primary);
+  color: var(--concept-surface);
+  border-radius: var(--concept-radius-md);
+  border: none;
+}
+
+[data-design-concept] .concept-preview-btn-secondary {
+  background: transparent;
+  color: var(--concept-primary);
+  border: 1px solid var(--concept-primary);
+  border-radius: var(--concept-radius-md);
+}
+
+[data-design-concept] .concept-preview-input {
+  background: var(--concept-surface-muted);
+  border: 1px solid var(--concept-border);
+  border-radius: var(--concept-radius-sm);
+  color: var(--concept-foreground);
+}
+
+[data-design-concept] .concept-preview-muted {
+  color: var(--concept-muted-foreground);
+}
+
+[data-design-concept] .concept-preview-status-success {
+  color: var(--concept-success);
+}
+
+[data-design-concept] .concept-preview-status-warning {
+  color: var(--concept-warning);
+}
+
+[data-design-concept] .concept-preview-status-error {
+  color: var(--concept-error);
+}
+
+[data-design-concept="glass-light"] .concept-preview-surface {
+  backdrop-filter: blur(12px);
+}

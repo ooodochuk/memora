@@ -26,6 +26,7 @@ This `/docs` directory is the **single source of truth** for product, architectu
 | [ARCHITECTURE_DECISIONS.md](./ARCHITECTURE_DECISIONS.md) | Record of key technical decisions (ADR-001–024) |
 | [QUALITY_AUDIT.md](./QUALITY_AUDIT.md) | Full quality audit — scores, risks, readiness |
 | [QUALITY_ACTION_PLAN.md](./QUALITY_ACTION_PLAN.md) | Prioritized P0–P3 fix list |
+| [design-concepts/README.md](./design-concepts/README.md) | Ten visual redesign directions (comparison) |
 
 Cursor rules in `.cursor/rules/memora-ux-architecture.mdc` complement this documentation for day-to-day UI work.
 
