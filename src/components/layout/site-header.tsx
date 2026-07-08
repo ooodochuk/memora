@@ -196,10 +196,10 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1">
-          {authArea}
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <LocaleSwitcher />
           <ThemeToggle />
+          {authArea}
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
