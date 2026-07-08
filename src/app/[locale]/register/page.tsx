@@ -12,7 +12,7 @@ export default async function RegisterPage({ params }: RegisterPageProps) {
   setRequestLocale(locale);
 
   return (
-    <GuestAuthRedirect>
+    <GuestAuthRedirect loadingClassName="min-h-[70vh]">
       <PageContainer size="authWide" className="flex min-h-[70vh] items-center py-12">
         <RegisterForm />
       </PageContainer>

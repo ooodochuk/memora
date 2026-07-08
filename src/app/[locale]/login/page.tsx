@@ -12,7 +12,7 @@ export default async function LoginPage({ params }: LoginPageProps) {
   setRequestLocale(locale);
 
   return (
-    <GuestAuthRedirect>
+    <GuestAuthRedirect loadingClassName="min-h-[70vh]">
       <PageContainer size="auth" className="flex min-h-[70vh] items-center py-12">
         <LoginForm />
       </PageContainer>

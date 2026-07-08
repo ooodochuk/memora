@@ -3,6 +3,7 @@ import { PageSection } from "@/components/design-system/page-container";
 import { Eyebrow, Heading, Lead } from "@/components/design-system/typography";
 import { IconBadge } from "@/components/design-system/icon-badge";
 import { JournalCard } from "@/components/design-system/journal-card";
+import { GuestAuthRedirect } from "@/components/auth/guest-auth-redirect";
 import { HomeHeroActions } from "@/components/marketing/home-hero-actions";
 import { HomeExploreSection } from "@/components/marketing/home-explore-section";
 import { BookOpen, Camera, Globe2 } from "lucide-react";
@@ -37,8 +38,9 @@ export default async function HomePage({ params }: HomePageProps) {
   ];
 
   return (
-    <>
-      <section className="relative min-h-[78vh] overflow-hidden film-grain">
+    <GuestAuthRedirect loadingClassName="min-h-[60vh]">
+      <>
+        <section className="relative min-h-[78vh] overflow-hidden film-grain">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-background to-background" />
         <div className="photo-vignette absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/55 to-background" />
@@ -87,6 +89,7 @@ export default async function HomePage({ params }: HomePageProps) {
           {tCommon("appName")} — {tCommon("tagline")}
         </p>
       </div>
-    </>
+      </>
+    </GuestAuthRedirect>
   );
 }
